@@ -1,0 +1,52 @@
+{
+  "name": "angular2-school-diary",
+  "version": "1.0.0",
+  "description": "Angular2 School Diary",
+  "scripts": {
+    "clean": "gulp clean",
+    "compile": "gulp compile",
+    "build": "gulp build",
+    "start": "concurrent --kill-others \"gulp watch\" \"lite-server\"",
+    "postinstall": "typings install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/katol62/angular2-school-diary.git"
+  },
+  "author": "Unknown",
+  "license": "MIT",
+  "bugs": {
+    "url": ""
+  },
+  "dependencies": {
+    "@angular/common": "~2.4.7",
+    "@angular/compiler": "~2.4.7",
+    "@angular/core": "~2.4.7",
+    "@angular/forms": "~2.4.7",
+    "@angular/http": "~2.4.7",
+    "@angular/platform-browser": "~2.4.7",
+    "@angular/platform-browser-dynamic": "~2.4.7",
+    "@angular/router": "~3.4.7",
+    "@angular/upgrade": "~2.4.7",
+
+    "core-js": "^2.4.1",
+    "reflect-metadata": "^0.1.9",
+    "rxjs": "5.1.1",
+    "systemjs": "0.20.7",
+    "zone.js": "^0.7.6",
+    "primeng": "^2.0.0"
+  },
+  "devDependencies": {
+    "concurrently": "^3.3.0",
+    "del": "^2.2.2",
+    "gulp": "^3.9.1",
+    "gulp-sourcemaps": "^2.4.1",
+    "gulp-tslint": "^7.1.0",
+    "gulp-typescript": "^3.1.4",
+    "lite-server": "^2.2.2",
+    "tslint": "^4.4.2",
+    "typescript": "^2.1.6",
+    "typings": "^2.1.0",
+    "ts-node": "^2.1.0"
+  }
+}
