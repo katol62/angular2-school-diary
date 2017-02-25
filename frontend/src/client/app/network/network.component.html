@@ -1,0 +1,166 @@
+<!-- Page Content -->
+<div class="container network-comp">
+
+    <!-- Page Heading/Breadcrumbs -->
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Моя сеть
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="index.html">Домашняя</a>
+                </li>
+                <li class="active">Моя сеть</li>
+            </ol>
+        </div>
+    </div>
+    <!-- /.row -->
+
+    <div class="row">
+        <div class="col-lg-12">
+            <nav class="navbar navbar-inverse network-header">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" (click)="goHome()">Наша школа</a>
+                    </div>
+                    <div class="collapse navbar-collapse" id="myNavbar">
+                        <ul class="nav navbar-nav first-group">
+                            <li><a><span class="fa fa-users"></span></a></li>
+                            <li><a><span class="fa fa-thumbs-o-up"></span></a></li>
+                            <li><a><span class="fa fa-globe"></span></a></li>
+                        </ul>
+                        <div class="col-sm-3 col-md-3">
+                            <form class="navbar-form" role="search">
+                                <div class="input-group">
+                                    <input type="text" class="form-control search" placeholder="Найти" name="q">
+                                    <div class="input-group-btn">
+                                        <button class="btn btn-default custom-search" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a><span class="glyphicon glyphicon-user"></span> Профиль</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Content Row -->
+    <div class="row">
+        <!-- Sidebar Column -->
+        <div class="col-md-3">
+
+            <div class="row">
+                <div class="col-md-5">
+                    <img src="http://placehold.it/100">
+                </div>
+                <div class="col-md-7">
+                    <span class="profile-name">Вася Пупкин</span>
+                    <span class="profile-edit"><a>Редактировать</a></span>
+                </div>
+            </div>
+
+            <div class="row padding-top-20">
+                <div class="col-md-12">
+                    <div class="list-group">
+                        <a class="list-group-item"><i class="fa fa-file-text" aria-hidden="true"></i> Новости</a>
+                        <a class="list-group-item"><i class="fa fa-commenting" aria-hidden="true"></i> Сообщения</a>
+                        <a class="list-group-item"><i class="fa fa-calendar" aria-hidden="true"></i> События</a>
+                        <a class="list-group-item"><i class="fa fa-users" aria-hidden="true"></i> Друзья</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- Content Column -->
+        <div class="col-md-6">
+            <div class="row news-header">
+                <div class="col-md-8">
+                    <h2><i class="fa fa-file-text-o" aria-hidden="true"></i> Новости</h2>
+                </div>
+                <div class="col-md-4 margin-top-30">
+                    <span><a><strong>Важные</strong></a> | <a>Недавние</a></span>
+                </div>
+            </div>
+            <div class="row news-header">
+                <div class="col-md-12 margin-top-10 margin-bottom-10 flex flex-wrap-row flex-align-horizontal-left">
+                    <span class="margin-right-10">Поделиться: </span>
+                    <span class="margin-right-10"><a><i class="fa fa-file-text-o" aria-hidden="true"></i> Статус</a></span>
+                    <span class="margin-right-10"><a><i class="fa fa-camera" aria-hidden="true"></i> Фото</a></span>
+                    <span class="margin-right-10"><a><i class="fa fa-link" aria-hidden="true"></i> Ссылка</a></span>
+                    <span><a><i class="fa fa-video-camera" aria-hidden="true"></i> Видео</a></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2 margin-top-10">
+                    <img src="http://placehold.it/70">
+                </div>
+                <div class="col-md-10">
+                    <h3>Заголовок</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta, et temporibus, facere perferendis veniam beatae non debitis, numquam blanditiis necessitatibus vel mollitia dolorum laudantium, voluptate dolores iure maxime ducimus fugit... <a>Еще...</a></p>
+                </div>
+                <div class="col-md-12 flex flex-wrap-row flex-align-horizontal-left">
+                    <span><a><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> Нравится</a></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2 margin-top-10">
+                    <img src="http://placehold.it/70">
+                </div>
+                <div class="col-md-10">
+                    <h3>Заголовок</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta, et temporibus, facere perferendis veniam beatae non debitis, numquam blanditiis necessitatibus vel mollitia dolorum laudantium, voluptate dolores iure maxime ducimus fugit... <a>Еще...</a></p>
+                </div>
+                <div class="col-md-12 flex flex-wrap-row flex-align-horizontal-left">
+                    <span><a><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> Нравится</a></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="row margin-side-zero">
+                <div class="col-md-12 sub-header margin-side-zero margin-top-10 margin-bottom-10 flex flex-wrap-row flex-align-horizontal-stretch">
+                    <span><strong>События</strong></span>
+                    <span><a>Все</a></span>
+                </div>
+            </div>
+            <div class="row margin-side-zero">
+                <div class="col-sm-12 col-md-12 margin-side-zero ">
+                    <div class="input-group">
+                        <input type="text" class="form-control search" placeholder="Что вы планируете" name="q">
+                        <div class="input-group-btn">
+                            <button class="btn btn-default custom-search" type="submit"><i class="fa fa-check"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row margin-side-zero">
+                <div class="col-md-12 sub-header margin-side-zero margin-top-10 margin-bottom-10 flex flex-wrap-row flex-align-horizontal-stretch">
+                    <span><strong>Люди, которых вы возможно знаете</strong></span>
+                    <span><a>Все</a></span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- /.row -->
+
+    <hr>
+
+    <!-- Footer -->
+    <footer>
+        <div class="row">
+            <div class="col-lg-12">
+                <p>Copyright &copy; Your Website 2014</p>
+            </div>
+        </div>
+    </footer>
+
+</div>
+<!-- /.container -->

@@ -1,0 +1,50 @@
+.network-comp {
+  .network-header {
+    background: #2A3F54;
+
+    .navbar-brand {
+      color: #e1e1e1;
+    }
+
+    ul {
+      &.first-group {
+        margin-left: 20px;
+      }
+    }
+
+    li {
+      a {
+        color: #e1e1e1;
+        padding: 10px 5px;
+      }
+    }
+
+    button {
+      &.custom-search {
+        height: 34px;
+      }
+    }
+
+  }
+
+  span {
+    &.profile-name {
+      font-weight: bold;
+      width: 100%;
+    }
+
+    &.prifile-edit {
+      a {
+        font-size: 0.8em;
+      }
+      width: 100%;
+    }
+
+  }
+
+}
+
+
+
+
+
