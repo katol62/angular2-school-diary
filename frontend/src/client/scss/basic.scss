@@ -122,6 +122,11 @@ a {
   margin-right: 0;
 }
 
+.padding-side-zero {
+  padding-left: 0;
+  padding-right: 0;
+}
+
 .news-header {
   border-bottom: 1px solid #ccc;
 }
@@ -135,4 +140,9 @@ button {
   &.custom-search {
     height: 34px;
   }
+}
+
+.image-left {
+  float: left;
+  margin: 10px 10px 3px 0;
 }

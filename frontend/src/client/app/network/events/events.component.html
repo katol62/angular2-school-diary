@@ -1,0 +1,49 @@
+<div class="row news-header">
+    <div class="col-md-8">
+        <h2 (click)="backToList()"><i class="fa fa-calendar-o" aria-hidden="true"></i> События</h2>
+    </div>
+    <div class="col-md-4 margin-top-30">
+        <span><a><strong>Важные</strong></a> | <a>Недавние</a></span>
+    </div>
+</div>
+
+<div class="row news-header">
+    <div class="col-md-12 margin-top-10 margin-bottom-10 flex flex-wrap-row flex-align-horizontal-left">
+        <span class="margin-right-10">Поделиться: </span>
+        <span class="margin-right-10"><a><i class="fa fa-file-text-o" aria-hidden="true"></i> Статус</a></span>
+        <span class="margin-right-10"><a><i class="fa fa-camera" aria-hidden="true"></i> Фото</a></span>
+        <span class="margin-right-10"><a><i class="fa fa-link" aria-hidden="true"></i> Ссылка</a></span>
+        <span><a><i class="fa fa-video-camera" aria-hidden="true"></i> Видео</a></span>
+    </div>
+</div>
+
+<ng-container *ngIf="!selected">
+    <div class="row" *ngFor='let elm of events'>
+        <div class="col-md-2 margin-top-10">
+            <img [src]="elm.thumbUrl">
+        </div>
+        <div class="col-md-10">
+            <h3><a (click)="details(elm)">{{elm.title}}</a></h3>
+            <p>{{elm.text.substr(0,elm.limit)}}<span [hidden]="!elm.showMore">... <a (click)="toggle(elm)"> Еще</a></span><span [hidden]="elm.showMore"> {{elm.text.substr(elm.limit, elm.text.length)}} <a (click)="toggle(elm)">Спрятать</a></span>
+            </p>
+        </div>
+        <div class="col-md-12 flex flex-wrap-row flex-align-horizontal-left">
+            <span><a><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> Нравится</a></span>
+        </div>
+    </div>
+</ng-container>
+<ng-container *ngIf="selected">
+    <div class="row">
+        <div class="col-md-12 margin-top-10">
+            <img [src]="selected.logoUrl">
+        </div>
+        <div class="col-md-12">
+            <h3>{{selected.title}}</h3>
+            <p>{{selected.text}} <span> <a (click)="backToList()">К списку</a></span></p>
+        </div>
+        <div class="col-md-12 flex flex-wrap-row flex-align-horizontal-left">
+            <span><a><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> Нравится</a></span>
+        </div>
+    </div>
+</ng-container>
+

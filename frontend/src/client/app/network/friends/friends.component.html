@@ -1,0 +1,26 @@
+<div class="row news-header">
+    <div class="col-md-8">
+        <h2 (click)="backToList()"><i class="fa fa-users" aria-hidden="true"></i> Друзья</h2>
+    </div>
+    <div class="col-md-4 margin-top-30">
+        <span><a><strong>Важные</strong></a> | <a>Недавние</a></span>
+    </div>
+</div>
+<div class="row news-header">
+    <div class="col-md-12 margin-top-10 margin-bottom-10 flex flex-wrap-row flex-align-horizontal-left">
+        <span class="margin-right-10">Поделиться: </span>
+        <span class="margin-right-10"><a><i class="fa fa-file-text-o" aria-hidden="true"></i> Статус</a></span>
+        <span class="margin-right-10"><a><i class="fa fa-camera" aria-hidden="true"></i> Фото</a></span>
+        <span class="margin-right-10"><a><i class="fa fa-link" aria-hidden="true"></i> Ссылка</a></span>
+        <span><a><i class="fa fa-video-camera" aria-hidden="true"></i> Видео</a></span>
+    </div>
+</div>
+
+<div class="row" *ngFor='let elm of friendList'>
+    <div class="col-md-12">
+        <img class="image-left" [src]="elm.avatarUrl">
+        <h4><a>{{elm.firstName}} {{elm.lastName}}</a></h4>
+        <p>Blah Blah Blah</p>
+    </div>
+</div>
+

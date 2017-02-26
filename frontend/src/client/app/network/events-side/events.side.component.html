@@ -1,0 +1,13 @@
+<div class="col-md-12 sub-header margin-side-zero margin-top-10 margin-bottom-10 flex flex-wrap-row flex-align-horizontal-stretch">
+    <span><strong>События</strong></span>
+    <span [hidden]="show"><a (click)="triggerShow()">Все</a></span>
+    <span [hidden]="!show"><a (click)="triggerShow()">Спрятать</a></span>
+</div>
+<div class="col-md-12 margin-side-zero padding-side-zero" [hidden]="!show">
+    <div class="row margin-side-zero padding-side-zero">
+        <div class="col-md-12 margin-side-zero padding-side-zero">
+            <h3>Новость 1</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta, et temporibus, facere perferendis veniam beatae non debitis, numquam blanditiis necessitatibus vel mollitia dolorum laudantium, voluptate dolores iure maxime ducimus fugit</p>
+        </div>
+    </div>
+</div>

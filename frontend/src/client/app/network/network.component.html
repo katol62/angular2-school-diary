@@ -70,10 +70,9 @@
             <div class="row padding-top-20">
                 <div class="col-md-12">
                     <div class="list-group">
-                        <a class="list-group-item"><i class="fa fa-file-text" aria-hidden="true"></i> Новости</a>
-                        <a class="list-group-item"><i class="fa fa-commenting" aria-hidden="true"></i> Сообщения</a>
-                        <a class="list-group-item"><i class="fa fa-calendar" aria-hidden="true"></i> События</a>
-                        <a class="list-group-item"><i class="fa fa-users" aria-hidden="true"></i> Друзья</a>
+                        <span *ngFor="let elm of modes">
+                            <a class="list-group-item" (click)="selectMode(elm)" [class.active]="elm.mode==currentMode"><i class="fa {{elm.icon}}" aria-hidden="true"></i> {{elm.title}}</a>
+                        </span>
                     </div>
                 </div>
             </div>
@@ -81,57 +80,17 @@
         </div>
         <!-- Content Column -->
         <div class="col-md-6">
-            <div class="row news-header">
-                <div class="col-md-8">
-                    <h2><i class="fa fa-file-text-o" aria-hidden="true"></i> Новости</h2>
-                </div>
-                <div class="col-md-4 margin-top-30">
-                    <span><a><strong>Важные</strong></a> | <a>Недавние</a></span>
-                </div>
-            </div>
-            <div class="row news-header">
-                <div class="col-md-12 margin-top-10 margin-bottom-10 flex flex-wrap-row flex-align-horizontal-left">
-                    <span class="margin-right-10">Поделиться: </span>
-                    <span class="margin-right-10"><a><i class="fa fa-file-text-o" aria-hidden="true"></i> Статус</a></span>
-                    <span class="margin-right-10"><a><i class="fa fa-camera" aria-hidden="true"></i> Фото</a></span>
-                    <span class="margin-right-10"><a><i class="fa fa-link" aria-hidden="true"></i> Ссылка</a></span>
-                    <span><a><i class="fa fa-video-camera" aria-hidden="true"></i> Видео</a></span>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-2 margin-top-10">
-                    <img src="http://placehold.it/70">
-                </div>
-                <div class="col-md-10">
-                    <h3>Заголовок</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta, et temporibus, facere perferendis veniam beatae non debitis, numquam blanditiis necessitatibus vel mollitia dolorum laudantium, voluptate dolores iure maxime ducimus fugit... <a>Еще...</a></p>
-                </div>
-                <div class="col-md-12 flex flex-wrap-row flex-align-horizontal-left">
-                    <span><a><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> Нравится</a></span>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-2 margin-top-10">
-                    <img src="http://placehold.it/70">
-                </div>
-                <div class="col-md-10">
-                    <h3>Заголовок</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta, et temporibus, facere perferendis veniam beatae non debitis, numquam blanditiis necessitatibus vel mollitia dolorum laudantium, voluptate dolores iure maxime ducimus fugit... <a>Еще...</a></p>
-                </div>
-                <div class="col-md-12 flex flex-wrap-row flex-align-horizontal-left">
-                    <span><a><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> Нравится</a></span>
-                </div>
-            </div>
+            <sd-network-news *ngIf="currentMode==modes[0].mode"></sd-network-news>
+            <sd-network-events *ngIf="currentMode==modes[1].mode"></sd-network-events>
+            <sd-network-feed *ngIf="currentMode==modes[2].mode"></sd-network-feed>
+            <sd-network-friends *ngIf="currentMode==modes[3].mode"></sd-network-friends>
         </div>
         <div class="col-md-3">
             <div class="row margin-side-zero">
-                <div class="col-md-12 sub-header margin-side-zero margin-top-10 margin-bottom-10 flex flex-wrap-row flex-align-horizontal-stretch">
-                    <span><strong>События</strong></span>
-                    <span><a>Все</a></span>
-                </div>
+                <sd-sidebar-events></sd-sidebar-events>
             </div>
             <div class="row margin-side-zero">
-                <div class="col-sm-12 col-md-12 margin-side-zero ">
+                <div class="col-sm-12 col-md-12 margin-side-zero padding-side-zero">
                     <div class="input-group">
                         <input type="text" class="form-control search" placeholder="Что вы планируете" name="q">
                         <div class="input-group-btn">
@@ -140,9 +99,9 @@
                     </div>
                 </div>
             </div>
-            <div class="row margin-side-zero">
+            <div class="row margin-side-zero padding-side-zero">
                 <div class="col-md-12 sub-header margin-side-zero margin-top-10 margin-bottom-10 flex flex-wrap-row flex-align-horizontal-stretch">
-                    <span><strong>Люди, которых вы возможно знаете</strong></span>
+                    <span><strong>Возможные друзья</strong></span>
                     <span><a>Все</a></span>
                 </div>
             </div>

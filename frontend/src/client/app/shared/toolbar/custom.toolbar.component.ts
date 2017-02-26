@@ -63,7 +63,6 @@ export class CustomToolbarComponent {
   }
 
   goNetwork() {
-    debugger;
     this.router.navigateByUrl('/network');
   }
 
