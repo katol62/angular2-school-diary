@@ -1,5 +1,5 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
-import {Router} from "@angular/router";
+import { Router } from '@angular/router';
 
 /**
  * This class represents the lazy loaded HomeComponent.
@@ -16,7 +16,7 @@ export class ContactsComponent implements OnInit {
     constructor(public router:Router) {}
 
     ngOnInit() {
-        console.log('init')
+        console.log('init');
     }
 
     goHome() {

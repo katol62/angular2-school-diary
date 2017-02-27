@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import {NetworkComponent} from "./network.component";
+import { NetworkComponent } from './network.component';
 
 @NgModule({
     imports: [

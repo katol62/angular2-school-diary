@@ -1,6 +1,6 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { GlobalEventsManager, AuthService } from '../../shared/index';
-import {Router} from "@angular/router";
+import { Router } from '@angular/router';
 
 @Component({
     moduleId: module.id,
@@ -14,6 +14,10 @@ export class EventsSidebarComponent implements OnInit {
     show:boolean = false;
 
     constructor(public router:Router, public globalEventsManager:GlobalEventsManager, public authService:AuthService) {}
+
+    ngOnInit() {
+        console.log('init');
+    }
 
     triggerShow() {
         this.show = !this.show;

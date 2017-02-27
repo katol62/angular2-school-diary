@@ -10,6 +10,7 @@ import { SeedConfig } from './seed.config';
 export class ProjectConfig extends SeedConfig {
 
   PROJECT_TASKS_DIR = join(process.cwd(), this.TOOLS_DIR, 'tasks', 'project');
+  PRIME_NG_THEME = 'omega';
 
   FONTS_DEST = `${this.APP_DEST}/fonts`;
   FONTS_SRC = [
@@ -22,7 +23,6 @@ export class ProjectConfig extends SeedConfig {
   ];
 
 
-  PRIME_NG_THEME = 'omega';
   CSS_IMAGE_DEST = `${this.CSS_DEST}/images`;
   CSS_IMAGE_SRC = [
     'node_modules/primeng/resources/themes/' + this.PRIME_NG_THEME + '/images/**'

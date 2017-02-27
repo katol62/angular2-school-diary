@@ -1,5 +1,5 @@
-import {Component, OnInit} from "@angular/core";
-import {Router, ActivatedRoute} from "@angular/router";
+import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Account, User, GlobalEventsManager, AuthService } from '../shared/index';
 
 /**
@@ -18,6 +18,8 @@ export class LoginComponent implements OnInit {
     loading = false;
     returnUrl: string;
 
+    authSend = false;
+    authFailed = false;
 
     ngOnInit() {
         // reset login status
@@ -38,12 +40,14 @@ export class LoginComponent implements OnInit {
 
     login() {
 
+        this.authSend = true;
         let user:User = this.authService.login(this.model.username, this.model.password);
-debugger;
-        if (user.username != null) {
+
+        if (user.username !== null) {
             this.globalEventsManager.isLoggedIn(true);
             this.router.navigateByUrl('/network');
         } else {
+            this.authFailed = true;
             this.globalEventsManager.isLoggedIn(false);
         }
 

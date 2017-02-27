@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import {Router, ActivatedRoute} from "@angular/router";
-import {GlobalEventsManager, AuthService} from "../index";
+import { Router, ActivatedRoute } from '@angular/router';
+import { GlobalEventsManager, AuthService } from '../index';
 
 /**
  * This class represents the toolbar component.
@@ -18,13 +18,13 @@ export class CustomToolbarComponent {
   constructor(public router:Router,
               public authService:AuthService,
               private globalEventsManager: GlobalEventsManager) {
-    this.globalEventsManager.showToolBarEmitter.subscribe((mode)=>{
+    this.globalEventsManager.showToolBarEmitter.subscribe((mode)=> {
       // mode will be null the first time it is created, so you need to igonore it when null
       if (mode !== null) {
         this.showToolBar = mode;
       }
     });
-    this.globalEventsManager.isLoggedInEmitter.subscribe((mode)=>{
+    this.globalEventsManager.isLoggedInEmitter.subscribe((mode)=> {
       // mode will be null the first time it is created, so you need to igonore it when null
       if (mode !== null) {
         this.isLoggedIn = mode;
@@ -64,6 +64,10 @@ export class CustomToolbarComponent {
 
   goNetwork() {
     this.router.navigateByUrl('/network');
+  }
+
+  profile() {
+    console.log('profile');
   }
 
 }

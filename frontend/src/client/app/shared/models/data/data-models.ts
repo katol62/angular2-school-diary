@@ -1,4 +1,4 @@
-import {BaseModel} from "../base-model";
+import { BaseModel } from '../base-model';
 
 export class DataNews extends BaseModel {
     public title:string;
@@ -29,8 +29,7 @@ export class DataFeed extends BaseModel {
     public feedText:string;
 }
 
-export class Mode {
-    public id:number;
+export class Mode extends BaseModel {
     public title:string;
     public mode:string;
     public icon:string;

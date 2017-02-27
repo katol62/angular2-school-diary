@@ -28,19 +28,15 @@ export class IntroComponent implements OnInit {
         // this.images.push({source:'./assets/img/city-q-c-800-350-8.jpg', alt:'Description for Image 5', title:'Title 5'});
         // this.images.push({source:'./assets/img/city-q-c-800-350-9.jpg', alt:'Description for Image 6', title:'Title 6'});
 
-        let elm:any = this.el.nativeElement.getElementsByClassName("carousel");
+        let elm:any = this.el.nativeElement.getElementsByClassName('carousel');
         
-        jQuery(elm).carousel(()=>{
-            debugger;
+        jQuery(elm).carousel(() => {
+            console.log('carousel');
         });
     }
 
     ngAfterViewChecked() {
+        console.log('ngAfterViewChecked');
     }
-
-    // getStyle(index:number) {
-    //     let src = "url("+this.images[index].source+") no-repeat";
-    //     return src;
-    // }
 
 }

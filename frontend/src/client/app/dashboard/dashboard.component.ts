@@ -1,9 +1,9 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { GlobalEventsManager } from '../shared/index';
-import {Router} from "@angular/router";
+import { Router } from '@angular/router';
 
 /**
- * This class represents the lazy loaded HomeComponent.
+ * This class represents the lazy loaded DashboardComponent.
  */
 @Component({
     moduleId: module.id,
@@ -19,10 +19,11 @@ export class DashboardComponent implements OnInit {
     constructor(public router:Router, public globalEventsManager:GlobalEventsManager) {}
 
     ngOnInit() {
-        console.log('init')
+        console.log('init');
     }
 
     goHome() {
         this.router.navigateByUrl('/');
     }
 }
+

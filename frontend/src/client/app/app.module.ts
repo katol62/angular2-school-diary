@@ -20,13 +20,13 @@ import { DashboardModule } from './dashboard/dashboard.module';
 import { fakeBackendProvider } from './shared/fakebuckup/index';
 import { MockBackend, MockConnection } from '@angular/http/testing';
 import { BaseRequestOptions } from '@angular/http';
-import {NetworkModule} from "./network/network.module";
-import {NewsModule} from "./network/news/news.module";
-import {EventsSidebarModule} from "./network/events-side/events.side.module";
-import {DataService} from "./shared/data/data-service";
-import {EventsModule} from "./network/events/events.module";
-import {FeedModule} from "./network/feed/feed.module";
-import {FriendsModule} from "./network/friends/friends.module";
+import { NetworkModule } from './network/network.module';
+import { NewsModule } from './network/news/news.module';
+import { EventsSidebarModule } from './network/events-side/events.side.module';
+import { DataService } from './shared/data/data-service';
+import { EventsModule } from './network/events/events.module';
+import { FeedModule } from './network/feed/feed.module';
+import { FriendsModule } from './network/friends/friends.module';
 
 
 @NgModule({

@@ -1,8 +1,8 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { GlobalEventsManager, AuthService } from '../shared/index';
-import {Router} from "@angular/router";
-import {Mode} from "../shared/models/data/data-models";
-import {MODES} from "../shared/data/test-data";
+import { Router } from '@angular/router';
+import { Mode } from '../shared/models/data/data-models';
+import { MODES } from '../shared/data/test-data';
 
 /**
  * This class represents the lazy loaded NetworkComponent.

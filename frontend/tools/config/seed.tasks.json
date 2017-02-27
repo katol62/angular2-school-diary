@@ -40,6 +40,23 @@
     "copy.prod",
     "build.js.prod",
     "build.bundles",
+    "minify.bundles",
+    "build.index.prod"
+  ],
+
+  "build.prod.old": [
+    "initialize",
+    "check.tools",
+    "clean.prod",
+    "tslint",
+    "build.assets.prod",
+    "build.fonts",
+    "build.theme_fonts",
+    "build.css_images",
+    "build.html_css",
+    "copy.prod",
+    "build.js.prod",
+    "build.bundles",
     "build.bundles.app",
     "minify.bundles",
     "build.index.prod"

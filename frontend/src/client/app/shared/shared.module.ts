@@ -5,7 +5,7 @@ import { RouterModule } from '@angular/router';
 
 import { NavbarComponent } from './navbar/navbar.component';
 import { NameListService } from './name-list/name-list.service';
-import {AuthService, AuthGuard} from './index';
+import { AuthService, AuthGuard } from './index';
 
 /**
  * Do not specify providers for modules that might be imported by a lazy loaded module.

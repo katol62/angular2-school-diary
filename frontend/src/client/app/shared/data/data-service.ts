@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import {DataNews, DataEvent, DataFriend, DataFeed} from "../models/data/data-models";
-import {NEWS, EVENTS, FRIENDS, FEED} from "./test-data";
+import { DataNews, DataEvent, DataFriend, DataFeed } from '../models/data/data-models';
+import { NEWS, EVENTS, FRIENDS, FEED } from './test-data';
 
 
 @Injectable()

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
 import { User } from '../index';
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map'
+import 'rxjs/add/operator/map';
 
 @Injectable()
 export class AuthService {
@@ -31,11 +31,11 @@ export class AuthService {
         debugger;
         let user:User = new User();
 
-        if (username == this.AdminUser.username && password == this.AdminUser.password) {
+        if (username === this.AdminUser.username && password === this.AdminUser.password) {
             localStorage.setItem('currentUser', JSON.stringify(this.AdminUser));
             user = this.AdminUser;
         }
-        if (username == this.PlainUser.username && password == this.PlainUser.password) {
+        if (username === this.PlainUser.username && password === this.PlainUser.password) {
             localStorage.setItem('currentUser', JSON.stringify(this.PlainUser));
             user = this.PlainUser;
         }
@@ -53,7 +53,7 @@ export class AuthService {
 
         if (localStorage.getItem('currentUser')) {
             let user:User = JSON.parse(localStorage.getItem('currentUser'));
-            return (user.username != null);
+            return (user.username !== null);
         }
         return false;
     }

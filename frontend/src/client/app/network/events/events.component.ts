@@ -1,7 +1,6 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
-import { GlobalEventsManager, AuthService } from '../shared/index';
-import {Router} from "@angular/router";
-import {DataNews, DataService} from "../../shared/index";
+import {Router} from '@angular/router';
+import { DataNews, DataService, GlobalEventsManager, AuthService } from '../../shared/index';
 
 @Component({
     moduleId: module.id,
