@@ -9,24 +9,24 @@ import { SeedConfig } from './seed.config';
  */
 export class ProjectConfig extends SeedConfig {
 
-  PROJECT_TASKS_DIR = join(process.cwd(), this.TOOLS_DIR, 'tasks', 'project');
-  PRIME_NG_THEME = 'omega';
-
-  FONTS_DEST = `${this.APP_DEST}/fonts`;
-  FONTS_SRC = [
-    'node_modules/font-awesome/fonts/**'
-  ];
-
-  THEME_FONTS_DEST = `${this.APP_DEST}/css/fonts`;
-  THEME_FONTS_SRC = [
-    'node_modules/primeng/resources/themes/' + this.PRIME_NG_THEME + '/fonts/**',
-  ];
-
-
-  CSS_IMAGE_DEST = `${this.CSS_DEST}/images`;
-  CSS_IMAGE_SRC = [
-    'node_modules/primeng/resources/themes/' + this.PRIME_NG_THEME + '/images/**'
-  ];
+    PROJECT_TASKS_DIR = join(process.cwd(), this.TOOLS_DIR, 'tasks', 'project');
+  //  PRIME_NG_THEME = 'omega';
+  // //
+    FONTS_DEST = `${this.APP_DEST}/fonts`;
+    FONTS_SRC = [
+      'node_modules/font-awesome/fonts/**',
+      'node_modules/bootstrap/dist/fonts/**'
+    ];
+  // //
+  //  THEME_FONTS_DEST = `${this.APP_DEST}/css/fonts`;
+  //  THEME_FONTS_SRC = [
+  //    'node_modules/primeng/resources/themes/' + this.PRIME_NG_THEME + '/fonts/**',
+  //  ];
+  // //
+  //  CSS_IMAGE_DEST = `${this.CSS_DEST}/images`;
+  //  CSS_IMAGE_SRC = [
+  //    'node_modules/primeng/resources/themes/' + this.PRIME_NG_THEME + '/images/**'
+  //  ];
 
   constructor() {
     super();
@@ -40,8 +40,8 @@ export class ProjectConfig extends SeedConfig {
       ...this.NPM_DEPENDENCIES,
 
       { src: 'jquery/dist/jquery.min.js', inject: 'libs' },
-      { src: 'primeng/resources/primeng.css', inject: true },
-      { src: 'primeng/resources/themes/omega/theme.css', inject: true },
+      // { src: 'primeng/resources/primeng.css', inject: true },
+      // { src: 'primeng/resources/themes/omega/theme.css', inject: true },
       { src: 'font-awesome/css/font-awesome.min.css', inject: true },
       { src: 'bootstrap/dist/js/bootstrap.min.js', inject: 'libs'},
       { src: 'bootstrap/dist/css/bootstrap.min.css', inject: true},
