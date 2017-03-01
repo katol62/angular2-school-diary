@@ -18,7 +18,6 @@ import { FooterModule } from './shared/footer/footer.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 // used to create fake backend
 import { fakeBackendProvider } from './shared/fakebuckup/index';
-import { MockBackend, MockConnection } from '@angular/http/testing';
 import { BaseRequestOptions } from '@angular/http';
 import { NetworkModule } from './network/network.module';
 import { NewsModule } from './network/news/news.module';
@@ -54,10 +53,7 @@ import { FriendsModule } from './network/friends/friends.module';
     },
     GlobalEventsManager,
     // providers used to create fake backend
-      DataService,
-    fakeBackendProvider,
-    MockBackend,
-    BaseRequestOptions
+      DataService
   ],
   bootstrap: [AppComponent]
 
