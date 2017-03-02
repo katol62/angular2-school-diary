@@ -9,4 +9,4 @@ import { DashboardComponent } from './dashboard.component';
     exports: [DashboardComponent],
     providers: []
 })
-export class DashboardModule { }
+export class DashboardModule {}
