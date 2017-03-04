@@ -14,7 +14,7 @@ import { Router } from '@angular/router';
 
 export class DashboardComponent implements OnInit {
 
-    panels:[] = [
+    panels:any[] = [
         {id:'profile', title: 'Профиль', icon: 'fa fa-user fa-lg'},
         {id:'elm1', title: 'Элемент 1', icon: 'fa fa-gift fa-lg', elms: [
             {id: 'sub1', title: 'Sub1'},
@@ -37,7 +37,7 @@ export class DashboardComponent implements OnInit {
         this.router.navigateByUrl('/');
     }
 
-    selectPanel(panelId) {
+    selectPanel(panelId:string) {
         this.currentPanel = panelId;
     }
 }

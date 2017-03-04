@@ -66,10 +66,6 @@ export class CustomToolbarComponent {
     this.router.navigateByUrl('/network');
   }
 
-  goDashboard() {
-    this.router.navigateByUrl('/dashboard');
-  }
-
   profile() {
     console.log('profile');
   }
