@@ -26,24 +26,30 @@ import { DataService } from './shared/data/data-service';
 import { EventsModule } from './network/events/events.module';
 import { FeedModule } from './network/feed/feed.module';
 import { FriendsModule } from './network/friends/friends.module';
+import { RegisterModule } from "./register/register.module";
+import {User} from './shared/models/user';
+import { UserService,AlertService}  from './shared/index';
+import { ProfileModule } from './dashboard/profile/profile.module';
 
 
 @NgModule({
   imports: [BrowserModule,
-    HttpModule,
-    AppRoutingModule,
-    IntroModule, LoginModule,
-    AboutModule, HomeModule,
-    CustomToolbarModule,
-    FooterModule,
-    ContactsModule,
-    DashboardModule,
+      HttpModule,
+      AppRoutingModule,
+      IntroModule, LoginModule,
+      AboutModule, HomeModule,
+      CustomToolbarModule,
+      FooterModule,
+      ContactsModule,
+      DashboardModule,
       NetworkModule,
       NewsModule,
       EventsSidebarModule,
       EventsModule,
       FeedModule,
       FriendsModule,
+      RegisterModule,
+      ProfileModule,
       SharedModule.forRoot()],
   declarations: [AppComponent],
   providers: [
@@ -53,7 +59,9 @@ import { FriendsModule } from './network/friends/friends.module';
     },
     GlobalEventsManager,
     // providers used to create fake backend
-      DataService
+      DataService,
+      UserService,
+      AlertService
   ],
   bootstrap: [AppComponent]
 

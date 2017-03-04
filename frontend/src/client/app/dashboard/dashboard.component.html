@@ -7,8 +7,8 @@
             <h1 class="page-header">Моя сеть
             </h1>
             <ol class="breadcrumb">
-                <li><a href="index.html">Домашняя</a></li>
-                <li class="active">Панель</li>
+                <li><a (click)="goHome()">Домашняя</a></li>
+                <li class="active">Панель управления</li>
             </ol>
         </div>
     </div>
@@ -55,11 +55,30 @@
     <div class="row">
         <!-- Sidebar Column -->
         <div class="col-md-3 dashboard-left">
+            <div class="nav-side-menu">
+                <div class="brand">Brand Logo</div>
+                <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+
+                <div class="menu-list">
+
+                    <ul id="menu-content" class="menu-content collapse out">
+                        <span *ngFor="let elm of panels">
+                        <li [attr.data-toggle]="elm.elms? 'collapse' : ''" [attr.data-target]="elm.elms? '#'+elm.id : ''" [attr.class]="elm.elms? 'collapsed ' : ''" [attr.class]="currentPanel==elm.id ? 'active' : ''">
+                            <a (click)="currentPanel=='panel' ? null : selectPanel(elm.id)">
+                                <i [attr.class]="elm.icon"></i> {{elm.title}} <span *ngIf="elm.elms" class="arrow"></span>
+                            </a>
+                        </li>
+                        <ul *ngIf="elm.elms" class="sub-menu collapse" id="{{elm.id}}">
+                            <li *ngFor="let sub of elm.elms" [attr.class]="selectedPanel==sub.id ? 'active' : ''"><a (click)="selectedPanel==sub.id ? null : selectPanel(sub.id)">{{sub.title}}</a></li>
+                        </ul>
+                        </span>
+                    </ul>
+                </div>
+            </div>
         </div>
         <!-- Content Column -->
         <div class="col-md-9">
-            <h2>Section Heading</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta, et temporibus, facere perferendis veniam beatae non debitis, numquam blanditiis necessitatibus vel mollitia dolorum laudantium, voluptate dolores iure maxime ducimus fugit.</p>
+            <sd-dashboard-profile *ngIf="currentPanel=='profile'"></sd-dashboard-profile>
         </div>
     </div>
     <!-- /.row -->
