@@ -1,17 +1,20 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
-import { User } from '../index';
+import { User, Account } from '../index';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
 @Injectable()
 export class AuthService {
-    AdminUser:User;
-    PlainUser:User;
+
+    users:User[] = [
+        {username: 'admin', password: 'admin', type: 'admin', firstName: 'Админ', lastName: 'Иванов'},
+        {username: 'teacher', password: 'teacher', type: 'teacher', firstName: 'Учитель', lastName: 'Иванов'},
+        {username: 'chief', password: 'chief', type: 'chief', firstName: 'Директор', lastName: 'Иванов'},
+        {username: 'parent', password: 'parent', type: 'parent', firstName: 'Родитель', lastName: 'Иванов'}
+    ];
 
     constructor(private http: Http) {
-        this.AdminUser = new User('admin', 'admin', 'admin');
-        this.PlainUser = new User('user', 'user', 'user');
     }
 
     // login(username: string, password: string) {
@@ -28,21 +31,27 @@ export class AuthService {
 
     login(username: string, password: string) {
 
-        debugger;
-        let user:User = new User();
+        return new Promise((resolve, reject) => {
+            localStorage.removeItem('currentUser');
 
-        if (username === this.AdminUser.username && password === this.AdminUser.password) {
-            localStorage.setItem('currentUser', JSON.stringify(this.AdminUser));
-            user = this.AdminUser;
-        }
-        if (username === this.PlainUser.username && password === this.PlainUser.password) {
-            localStorage.setItem('currentUser', JSON.stringify(this.PlainUser));
-            user = this.PlainUser;
-        }
+            let retUser = null;
 
-        return user;
+            this.users.forEach((user:User) => {
+                if (user.username === username && user.password === user.password) {
+                    localStorage.setItem('currentUser', JSON.stringify(user));
+                    retUser = user;
+                }
+            });
+            if (retUser) {
+                resolve(retUser);
+            } else {
+                reject(retUser);
+            }
+        });
+
     }
 
+    //temporary
 
     logout() {
         // remove user from local storage to log user out

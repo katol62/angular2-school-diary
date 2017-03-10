@@ -1,14 +1,13 @@
 <!-- Page Content -->
-<div class="container">
+<div class="container dashboard-comp">
 
     <!-- Page Heading/Breadcrumbs -->
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">Моя сеть
-            </h1>
+            <h1 class="page-header">{{title}}</h1>
             <ol class="breadcrumb">
                 <li><a (click)="goHome()">Домашняя</a></li>
-                <li class="active">Панель управления</li>
+                <li class="active">{{title}}<span *ngIf="currentTitle"> -> {{currentTitle}}</span></li>
             </ol>
         </div>
     </div>
@@ -16,7 +15,7 @@
 
     <div class="row">
         <div class="col-lg-12">
-            <nav class="navbar navbar-inverse network-header">
+            <nav class="navbar navbar-inverse dashboard-header">
                 <div class="container-fluid">
                     <div class="navbar-header">
                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -32,18 +31,8 @@
                             <li><a><span class="fa fa-thumbs-o-up"></span></a></li>
                             <li><a><span class="fa fa-globe"></span></a></li>
                         </ul>
-                        <div class="col-sm-3 col-md-3">
-                            <form class="navbar-form" role="search">
-                                <div class="input-group">
-                                    <input type="text" class="form-control search" placeholder="Найти" name="q">
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-default custom-search" type="submit"><i class="glyphicon glyphicon-search"></i></button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a><span class="glyphicon glyphicon-user"></span> Профиль</a></li>
+                            <li><a><span class="glyphicon glyphicon-user"></span> {{currentUser.firstName}} {{currentUser.lastName}}</a></li>
                         </ul>
                     </div>
                 </div>
@@ -54,31 +43,15 @@
     <!-- Content Row -->
     <div class="row">
         <!-- Sidebar Column -->
-        <div class="col-md-3 dashboard-left">
-            <div class="nav-side-menu">
-                <div class="brand">Brand Logo</div>
-                <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
-
-                <div class="menu-list">
-
-                    <ul id="menu-content" class="menu-content collapse out">
-                        <span *ngFor="let elm of panels">
-                        <li [attr.data-toggle]="elm.elms? 'collapse' : ''" [attr.data-target]="elm.elms? '#'+elm.id : ''" [attr.class]="elm.elms? 'collapsed ' : ''" [attr.class]="currentPanel==elm.id ? 'active' : ''">
-                            <a (click)="currentPanel=='panel' ? null : selectPanel(elm.id)">
-                                <i [attr.class]="elm.icon"></i> {{elm.title}} <span *ngIf="elm.elms" class="arrow"></span>
-                            </a>
-                        </li>
-                        <ul *ngIf="elm.elms" class="sub-menu collapse" id="{{elm.id}}">
-                            <li *ngFor="let sub of elm.elms" [attr.class]="selectedPanel==sub.id ? 'active' : ''"><a (click)="selectedPanel==sub.id ? null : selectPanel(sub.id)">{{sub.title}}</a></li>
-                        </ul>
-                        </span>
-                    </ul>
-                </div>
-            </div>
+        <div class="col-md-3">
+            <sd-dashboard-menu [panels]="panels" [user]="currentUser" [currentPanel]="currentPanel" (onSelected)="selectPanel($event)"></sd-dashboard-menu>
         </div>
         <!-- Content Column -->
         <div class="col-md-9">
-            <sd-dashboard-profile *ngIf="currentPanel=='profile'"></sd-dashboard-profile>
+            <sd-dashboard-profile *ngIf="currentPanel=='profile'" [user]="currentUser"></sd-dashboard-profile>
+            <sd-dashboard-schools *ngIf="currentPanel=='schools'" [user]="currentUser"></sd-dashboard-schools>
+            <sd-dashboard-system *ngIf="currentPanel=='system'" [user]="currentUser"></sd-dashboard-system>
+            <sd-dashboard-consumers *ngIf="currentPanel=='consumers'" [user]="currentUser"></sd-dashboard-consumers>
         </div>
     </div>
     <!-- /.row -->

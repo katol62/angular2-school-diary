@@ -41,16 +41,11 @@ export class LoginComponent implements OnInit {
     login() {
 
         this.authSend = true;
-        let user:User = this.authService.login(this.model.username, this.model.password);
 
-        if (user.username !== null) {
-            this.globalEventsManager.isLoggedIn(true);
-            this.router.navigateByUrl('/network');
-        } else {
-            this.authFailed = true;
-            this.globalEventsManager.isLoggedIn(false);
-        }
-
+        this.authService.login(this.model.username, this.model.password).then((data)=>{
+            this.afterSignIn(data)
+        });
+        
         // this.authService.login(this.model.username, this.model.password)
         //     .subscribe(
         //         data => {
@@ -61,7 +56,13 @@ export class LoginComponent implements OnInit {
         //         });
     }
 
-    afterSignIn(user:Account) {
-        this.router.navigateByUrl('/');
+    afterSignIn(user:any) {
+        if (user === null) {
+            this.authFailed = true;
+            this.globalEventsManager.isLoggedIn(false);
+        } else {
+            this.globalEventsManager.isLoggedIn(true);
+            this.router.navigateByUrl('/network');
+        }
     }
 }

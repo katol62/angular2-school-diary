@@ -1,17 +1,17 @@
 import { Component, OnInit, ElementRef, Input } from '@angular/core';
 import {Router} from '@angular/router';
 import { GlobalEventsManager, AuthService } from '../../shared/index';
-import {User} from "../../shared/models/user";
+import { User } from '../../shared/models/user';
 
 @Component({
     moduleId: module.id,
-    selector: 'sd-dashboard-profile',
-    templateUrl: 'profile.component.html',
-    styleUrls: ['profile.component.css'],
+    selector: 'sd-dashboard-system',
+    templateUrl: 'system.component.html',
+    styleUrls: ['system.component.css'],
 })
 
 
-export class ProfileComponent implements OnInit {
+export class SystemComponent implements OnInit {
 
     @Input() user:User;
 

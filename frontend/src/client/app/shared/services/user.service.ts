@@ -7,6 +7,14 @@ import { User } from '../models/index';
 export class UserService {
     constructor(private http: Http) { }
 
+    getCurrentUser() {
+        if (localStorage.getItem('currentUser')) {
+            let user:User = JSON.parse(localStorage.getItem('currentUser'));
+            return user;
+        }
+        return null;
+    }
+
     getAll() {
         //return this.http.get('/api/users', this.jwt()).map((response: Response) => response.json());
     }
