@@ -6,13 +6,14 @@ import { RouterModule } from '@angular/router';
 import { NavbarComponent } from './navbar/navbar.component';
 import { NameListService } from './name-list/name-list.service';
 import { AuthService, AuthGuard } from './index';
+import {VideoModule} from "./video/video.module";
 
 /**
  * Do not specify providers for modules that might be imported by a lazy loaded module.
  */
 
 @NgModule({
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, VideoModule],
   declarations: [NavbarComponent],
   exports: [NavbarComponent,
     CommonModule, FormsModule, RouterModule]

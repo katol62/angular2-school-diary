@@ -30,6 +30,7 @@ import { RegisterModule } from "./register/register.module";
 import {User} from './shared/models/user';
 import { UserService,AlertService}  from './shared/index';
 import { ProfileModule } from './dashboard/profile/profile.module';
+import {VideoModule} from "./shared/video/video.module";
 
 
 @NgModule({
@@ -50,6 +51,7 @@ import { ProfileModule } from './dashboard/profile/profile.module';
       FriendsModule,
       RegisterModule,
       ProfileModule,
+      VideoModule,
       SharedModule.forRoot()],
   declarations: [AppComponent],
   providers: [

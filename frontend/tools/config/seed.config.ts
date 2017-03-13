@@ -389,6 +389,7 @@ export class SeedConfig {
       '@angular/router/testing': 'node_modules/@angular/router/bundles/router-testing.umd.js',
 
       'primeng': `${this.APP_BASE}node_modules/primeng`,
+      'videojs': `${this.APP_BASE}node_modules/video.js/dist/*.js`,
 
       'app/*': '/app/*',
       // For test config

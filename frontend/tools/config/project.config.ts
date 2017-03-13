@@ -1,7 +1,7 @@
 import { join } from 'path';
 
 import { SeedConfig } from './seed.config';
-// import { ExtendPackages } from './seed.config.interfaces';
+import { ExtendPackages } from './seed.config.interfaces';
 
 /**
  * This class extends the basic seed configuration, allowing for project specific overrides. A few examples can be found
@@ -40,8 +40,14 @@ export class ProjectConfig extends SeedConfig {
       ...this.NPM_DEPENDENCIES,
 
       { src: 'jquery/dist/jquery.min.js', inject: 'libs' },
+      { src: 'video.js/dist/video.js', inject: 'libs' },
+      { src: 'videojs-flash/dist/videojs-flash.min.js', inject: 'libs' },
+      { src: 'videojs-ie8/dist/videojs-ie8.min.js', inject: 'libs' },
+      { src: 'videojs-contrib-hls/dist/videojs-contrib-hls.min.js', inject: 'libs' },
+      //{ src: 'videojs-swf/dist/video-js.swf', inject: 'libs' },
       // { src: 'primeng/resources/primeng.css', inject: true },
       // { src: 'primeng/resources/themes/omega/theme.css', inject: true },
+      { src: 'video.js/dist/video-js.css', inject: true },
       { src: 'font-awesome/css/font-awesome.min.css', inject: true },
       { src: 'bootstrap/dist/js/bootstrap.min.js', inject: 'libs'},
       { src: 'bootstrap/dist/css/bootstrap.min.css', inject: true},
@@ -56,13 +62,20 @@ export class ProjectConfig extends SeedConfig {
     ];
 
     // Add packages (e.g. ng2-translate)
+
+    let additionalPackages: ExtendPackages[] = [{
+      name: 'videojs',
+      // Path to the package's bundle
+      path: 'node_modules/video.js/dist/video.js'
+    }];
+
     // let additionalPackages: ExtendPackages[] = [{
     //   name: 'ng2-translate',
     //   // Path to the package's bundle
     //   path: 'node_modules/ng2-translate/bundles/ng2-translate.umd.js'
     // }];
     //
-    // this.addPackagesBundles(additionalPackages);
+      this.addPackagesBundles(additionalPackages);
 
     /* Add proxy middlewar */
     // this.PROXY_MIDDLEWARE = [
