@@ -41,13 +41,22 @@ public class RestApiController {
 	@RequestMapping(value = "/login/", method = RequestMethod.GET)
 	public ResponseEntity<?> getUser(@RequestParam String login, String password) {
 		logger.info("Fetching User with login {}, password {}", login, password);
+
+		//String acrHeaders = request.getHeader("Access-Control-Request-Headers");
+		//String acrMethod = request.getHeader("Access-Control-Request-Method");
+
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("Access-Control-Allow-Origin", "*");
+		//headers.add("X-Fsl-Location", "/");
+		//headers.add("X-Fsl-Response-Code", "302");
+
 		User user = userService.findByLogin(login, password);
 		if (user == null) {
 			logger.error("User with ogin {}, password {} not found.", login, password);
 			return new ResponseEntity(new CustomErrorType("User with login " + login
-					+ " password " + password + " not found"), HttpStatus.NOT_FOUND);
+					+ " password " + password + " not found"), headers, HttpStatus.NOT_FOUND);
 		}
-		return new ResponseEntity<User>(user, HttpStatus.OK);
+		return new ResponseEntity<User>(user, headers, HttpStatus.OK);
 	}
 
 	// -------------------Retrieve Single User------------------------------------------
