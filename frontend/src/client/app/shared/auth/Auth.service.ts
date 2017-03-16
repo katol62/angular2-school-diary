@@ -23,7 +23,7 @@ export class AuthService {
         params.set('login', username);
         params.set('password', password);
 
-        return this.http.get('http://31.148.96.25:3003/rest/api/login/', {search: params})
+        return this.http.get('http://staging.schoolarlife.ru:3003/rest/api/login/', {search: params})
             .map((response: Response) => {
                 // login successful if there's a jwt token in the response
                 let user = response.json();
