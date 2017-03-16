@@ -28,7 +28,7 @@ export class DashboardComponent implements OnInit {
     // ];
     panels:any[] = [];
 
-    title:string = 'Панель инструментов';
+    title:string = 'Панель управления';
     currentPanel:string = '';
     currentTitle:string = '';
     selectedPanel:any = null;

@@ -220,13 +220,15 @@ export class SeedConfig {
    * The folder for built files in the `dev` environment.
    * @type {string}
    */
-  DEV_DEST = `${this.DIST_DIR}/dev`;
+  //DEV_DEST = `${this.DIST_DIR}/dev`;
+  DEV_DEST = `${this.DIST_DIR}/webapp`;
 
   /**
    * The folder for the built files in the `prod` environment.
    * @type {string}
    */
-  PROD_DEST = `${this.DIST_DIR}/prod`;
+  //PROD_DEST = `${this.DIST_DIR}/prod`;
+  PROD_DEST = `${this.DIST_DIR}/webapp`;
 
   /**
    * The folder for the built files of the e2e-specs.
@@ -498,7 +500,9 @@ export class SeedConfig {
   * Browser-sync middleware configurations array.
   * @type {Array}
   */
-  PROXY_MIDDLEWARE: any[] = [];
+  PROXY_MIDDLEWARE: any[] = [
+    require('http-proxy-middleware')('/rest/api',{ ws: true, target: 'http://localhost:3003', changeOrigin: false })
+  ];
 
   /**
    * Configurations for NPM module configurations. Add to or override in project.config.ts.

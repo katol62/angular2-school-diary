@@ -42,18 +42,22 @@ export class LoginComponent implements OnInit {
 
         this.authSend = true;
 
-        this.authService.login(this.model.username, this.model.password).then((data)=>{
-            this.afterSignIn(data)
-        });
+        // this.authService.login(this.model.username, this.model.password).then((data)=>{
+        //     debugger;
+        //     this.afterSignIn(data)
+        // });
         
-        // this.authService.login(this.model.username, this.model.password)
-        //     .subscribe(
-        //         data => {
-        //             this.router.navigate([this.returnUrl]);
-        //         },
-        //         error => {
-        //
-        //         });
+        this.authService.login(this.model.username, this.model.password)
+            .subscribe(
+                data => {
+                    debugger;
+                    this.afterSignIn(data);
+                    //this.router.navigate([this.returnUrl]);
+                },
+                error => {
+                    this.afterSignIn(null)
+                }
+            );
     }
 
     afterSignIn(user:any) {

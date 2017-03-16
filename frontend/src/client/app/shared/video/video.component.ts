@@ -35,7 +35,6 @@ export class VideoComponent implements AfterViewInit, OnInit, OnDestroy {
 
         this.videoJSplayer = videojs(this.video.nativeElement, options, () => {
             console.log('Good to go!');
-            debugger;
 
             let source:any = {
                 src: 'https://d2zihajmogu5jn.cloudfront.net/bipbop-advanced/bipbop_16x9_variant.m3u8',

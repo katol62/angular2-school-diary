@@ -3,6 +3,8 @@ import { join } from 'path';
 import { SeedConfig } from './seed.config';
 import { ExtendPackages } from './seed.config.interfaces';
 
+const proxy = require('proxy-middleware');
+
 /**
  * This class extends the basic seed configuration, allowing for project specific overrides. A few examples can be found
  * below.
@@ -78,12 +80,27 @@ export class ProjectConfig extends SeedConfig {
       this.addPackagesBundles(additionalPackages);
 
     /* Add proxy middlewar */
-    // this.PROXY_MIDDLEWARE = [
-    //   require('http-proxy-middleware')({ ws: false, target: 'http://localhost:3003' })
-    // ];
+    this.PROXY_MIDDLEWARE = [
+      require('http-proxy-middleware')('/rest/api',{ ws: true, target: 'http://localhost:3003', changeOrigin: false })
+    ];
 
     /* Add to or override NPM module configurations: */
     // this.PLUGIN_CONFIGS['browser-sync'] = { ghostMode: false };
+      this.PLUGIN_CONFIGS['browser-sync'] = {
+          middleware: [
+              proxy({
+                  ws: false,
+                  protocol: 'http:',
+                  target: 'http://localhost:3003',
+                  hostname: 'localhost',
+                  port: 3003,
+                  pathname: '/rest/api',
+                  route: '/rest/api'
+              }),
+              require('connect-history-api-fallback')({index: `${this.APP_BASE}index.html`}
+              ), ...this.PROXY_MIDDLEWARE
+          ],
+      }
   }
 
 }
