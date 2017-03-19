@@ -50,7 +50,6 @@ export class LoginComponent implements OnInit {
         this.authService.login(this.model.username, this.model.password)
             .subscribe(
                 data => {
-                    debugger;
                     this.afterSignIn(data);
                     //this.router.navigate([this.returnUrl]);
                 },

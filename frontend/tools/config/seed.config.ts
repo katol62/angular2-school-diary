@@ -501,7 +501,7 @@ export class SeedConfig {
   * @type {Array}
   */
   PROXY_MIDDLEWARE: any[] = [
-    require('http-proxy-middleware')('/rest/api',{ ws: true, target: 'http://localhost:3003', changeOrigin: false })
+    //require('http-proxy-middleware')('/rest/api',{ ws: true, target: 'http://localhost:3003', changeOrigin: false })
   ];
 
   /**
