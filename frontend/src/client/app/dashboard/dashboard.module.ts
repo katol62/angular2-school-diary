@@ -7,7 +7,7 @@ import {SchoolsModule} from './schools/schools.module';
 import {DashboardMenuModule} from "./menu/index";
 import {SystemModule} from './system/system.module';
 import {ConsumersModule} from "./consumers/consumers.module";
-import {VideoModule} from "../shared/video/video.module";
+import {SvideoModule} from "../shared/simple-video/svideo.module";
 
 @NgModule({
     imports: [CommonModule,
@@ -16,7 +16,7 @@ import {VideoModule} from "../shared/video/video.module";
         SchoolsModule,
         SystemModule,
         ConsumersModule,
-        VideoModule,
+        SvideoModule,
         DashboardMenuModule
     ],
     declarations: [DashboardComponent],

@@ -81,7 +81,7 @@ export class CustomToolbarComponent {
         this.router.navigateByUrl('/');
     }
 
-    goTab(tab) {
+    goTab(tab:any) {
         this.selectedTab = tab.id;
         this.router.navigateByUrl(tab.link);
     }
