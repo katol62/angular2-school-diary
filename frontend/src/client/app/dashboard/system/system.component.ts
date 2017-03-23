@@ -15,7 +15,7 @@ export class SystemComponent implements OnInit {
 
     @Input() user:User;
 
-    webvideo:any = {idx: '1', src: 'http://staging.schoolarlife.ru:8090/feed.webm', type: 'video/webm'};
+    webvideo:any = {idx: '1', src: 'http://staging.schoolarlife.ru:8090/cam.webm', type: 'video/webm'};
 
     constructor(private globalEventManager:GlobalEventsManager) { }
 
