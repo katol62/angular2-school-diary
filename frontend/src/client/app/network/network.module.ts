@@ -7,6 +7,7 @@ import { EventsSidebarModule } from './events-side/events.side.module';
 import { EventsModule } from './events/events.module';
 import { FeedModule } from './feed/feed.module';
 import { FriendsModule } from './friends/friends.module';
+import {BreadcrumbsModule} from "../shared/breadcrumbs/breadcrumbs.module";
 
 @NgModule({
     imports: [CommonModule,
@@ -15,6 +16,7 @@ import { FriendsModule } from './friends/friends.module';
         EventsSidebarModule,
         EventsModule,
         FeedModule,
+        BreadcrumbsModule,
         FriendsModule
     ],
     declarations: [NetworkComponent],

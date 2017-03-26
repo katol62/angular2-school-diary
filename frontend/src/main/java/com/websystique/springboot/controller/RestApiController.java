@@ -1,7 +1,10 @@
 package com.websystique.springboot.controller;
 
 import java.util.List;
+import java.util.Map;
 
+import com.websystique.springboot.model.Auth;
+import com.websystique.springboot.service.AuthService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,126 +22,129 @@ import com.websystique.springboot.util.CustomErrorType;
 @RequestMapping("/api")
 public class RestApiController {
 
-	public static final Logger logger = LoggerFactory.getLogger(RestApiController.class);
+    public static final Logger logger = LoggerFactory.getLogger(RestApiController.class);
 
-	@Autowired
-	UserService userService; //Service which will do all data retrieval/manipulation work
+    @Autowired
+    UserService userService; //Service which will do all data retrieval/manipulation work
 
-	// -------------------Retrieve All Users---------------------------------------------
+    @Autowired
+    AuthService authService; //Service which will do all data retrieval/manipulation work
 
-	@RequestMapping(value = "/user/", method = RequestMethod.GET)
-	public ResponseEntity<List<User>> listAllUsers() {
-		List<User> users = userService.findAllUsers();
-		if (users.isEmpty()) {
-			return new ResponseEntity(HttpStatus.NO_CONTENT);
-			// You many decide to return HttpStatus.NOT_FOUND
-		}
-		return new ResponseEntity<List<User>>(users, HttpStatus.OK);
-	}
+    // -------------------Retrieve All Users---------------------------------------------
 
-	// -------------------Retrieve Single User------------------------------------------
+    @RequestMapping(value = "/user/", method = RequestMethod.GET)
+    public ResponseEntity<List<User>> listAllUsers() {
+        List<User> users = userService.findAllUsers();
+        if (users.isEmpty()) {
+            return new ResponseEntity(HttpStatus.NO_CONTENT);
+            // You many decide to return HttpStatus.NOT_FOUND
+        }
+        return new ResponseEntity<List<User>>(users, HttpStatus.OK);
+    }
 
-	@RequestMapping(value = "/login/", method = RequestMethod.GET)
-	public ResponseEntity<?> getUser(@RequestParam String login, String password) {
-		logger.info("Fetching User with login {}, password {}", login, password);
+    // -------------------Retrieve Single User------------------------------------------
 
-		//String acrHeaders = request.getHeader("Access-Control-Request-Headers");
-		//String acrMethod = request.getHeader("Access-Control-Request-Method");
+    @RequestMapping(value = "/login/", method = RequestMethod.POST)
+    public ResponseEntity<?> getUser(@RequestBody Object data) {
 
-		HttpHeaders headers = new HttpHeaders();
-		headers.add("Access-Control-Allow-Origin", "*");
-		//headers.add("X-Fsl-Location", "/");
-		//headers.add("X-Fsl-Response-Code", "302");
+        String login = (String) ((Map) data).get("login");
+        String password = (String) ((Map) data).get("password");
 
-		User user = userService.findByLogin(login, password);
-		if (user == null) {
-			logger.error("User with ogin {}, password {} not found.", login, password);
-			return new ResponseEntity(new CustomErrorType("User with login " + login
-					+ " password " + password + " not found"), headers, HttpStatus.NOT_FOUND);
-		}
-		return new ResponseEntity<User>(user, headers, HttpStatus.OK);
-	}
+        logger.info("Fetching User with login {}, password {}", login, password);
 
-	// -------------------Retrieve Single User------------------------------------------
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Access-Control-Allow-Origin", "*");
 
-	@RequestMapping(value = "/user/{id}", method = RequestMethod.GET)
-	public ResponseEntity<?> getUser(@PathVariable("id") long id) {
-		logger.info("Fetching User with id {}", id);
-		User user = userService.findById(id);
-		if (user == null) {
-			logger.error("User with id {} not found.", id);
-			return new ResponseEntity(new CustomErrorType("User with id " + id 
-					+ " not found"), HttpStatus.NOT_FOUND);
-		}
-		return new ResponseEntity<User>(user, HttpStatus.OK);
-	}
+        Auth user = authService.authenticate(login, password);
 
-	// -------------------Create a User-------------------------------------------
+        if (user == null) {
+            logger.error("User with ogin {}, password {} not found.", login, password);
+            return new ResponseEntity(new CustomErrorType("User with login " + login
+                    + " password " + password + " not found"), headers, HttpStatus.UNAUTHORIZED);
+        }
+        return new ResponseEntity<Auth>(user, headers, HttpStatus.OK);
+    }
 
-	@RequestMapping(value = "/user/", method = RequestMethod.POST)
-	public ResponseEntity<?> createUser(@RequestBody User user, UriComponentsBuilder ucBuilder) {
-		logger.info("Creating User : {}", user);
+    // -------------------Retrieve Single User------------------------------------------
 
-		if (userService.isUserExist(user)) {
-			logger.error("Unable to create. A User with name {} already exist", user.getUserName());
-			return new ResponseEntity(new CustomErrorType("Unable to create. A User with name " + 
-			user.getUserName() + " already exist."),HttpStatus.CONFLICT);
-		}
-		userService.saveUser(user);
+    @RequestMapping(value = "/user/{id}", method = RequestMethod.GET)
+    public ResponseEntity<?> getUser(@PathVariable("id") long id) {
+        logger.info("Fetching User with id {}", id);
+        User user = userService.findById(id);
+        if (user == null) {
+            logger.error("User with id {} not found.", id);
+            return new ResponseEntity(new CustomErrorType("User with id " + id
+                    + " not found"), HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<User>(user, HttpStatus.OK);
+    }
 
-		HttpHeaders headers = new HttpHeaders();
-		headers.setLocation(ucBuilder.path("/api/user/{id}").buildAndExpand(user.getId()).toUri());
-		return new ResponseEntity<String>(headers, HttpStatus.CREATED);
-	}
+    // -------------------Create a User-------------------------------------------
 
-	// ------------------- Update a User ------------------------------------------------
+    @RequestMapping(value = "/user/", method = RequestMethod.POST)
+    public ResponseEntity<?> createUser(@RequestBody User user, UriComponentsBuilder ucBuilder) {
+        logger.info("Creating User : {}", user);
 
-	@RequestMapping(value = "/user/{id}", method = RequestMethod.PUT)
-	public ResponseEntity<?> updateUser(@PathVariable("id") long id, @RequestBody User user) {
-		logger.info("Updating User with id {}", id);
+        if (userService.isUserExist(user)) {
+            logger.error("Unable to create. A User with name {} already exist", user.getUserName());
+            return new ResponseEntity(new CustomErrorType("Unable to create. A User with name " +
+                    user.getUserName() + " already exist."), HttpStatus.CONFLICT);
+        }
+        userService.saveUser(user);
 
-		User currentUser = userService.findById(id);
+        HttpHeaders headers = new HttpHeaders();
+        headers.setLocation(ucBuilder.path("/api/user/{id}").buildAndExpand(user.getId()).toUri());
+        return new ResponseEntity<String>(headers, HttpStatus.CREATED);
+    }
 
-		if (currentUser == null) {
-			logger.error("Unable to update. User with id {} not found.", id);
-			return new ResponseEntity(new CustomErrorType("Unable to upate. User with id " + id + " not found."),
-					HttpStatus.NOT_FOUND);
-		}
+    // ------------------- Update a User ------------------------------------------------
 
-		currentUser.setUserName(user.getUserName());
-		currentUser.setPassword(user.getPassword());
-		currentUser.setFirstName(user.getFirstName());
+    @RequestMapping(value = "/user/{id}", method = RequestMethod.PUT)
+    public ResponseEntity<?> updateUser(@PathVariable("id") long id, @RequestBody User user) {
+        logger.info("Updating User with id {}", id);
+
+        User currentUser = userService.findById(id);
+
+        if (currentUser == null) {
+            logger.error("Unable to update. User with id {} not found.", id);
+            return new ResponseEntity(new CustomErrorType("Unable to upate. User with id " + id + " not found."),
+                    HttpStatus.NOT_FOUND);
+        }
+
+        currentUser.setUserName(user.getUserName());
+        currentUser.setPassword(user.getPassword());
+        currentUser.setFirstName(user.getFirstName());
         currentUser.setLastName(user.getLastName());
         currentUser.setType(user.getType());
 
-		userService.updateUser(currentUser);
-		return new ResponseEntity<User>(currentUser, HttpStatus.OK);
-	}
+        userService.updateUser(currentUser);
+        return new ResponseEntity<User>(currentUser, HttpStatus.OK);
+    }
 
-	// ------------------- Delete a User-----------------------------------------
+    // ------------------- Delete a User-----------------------------------------
 
-	@RequestMapping(value = "/user/{id}", method = RequestMethod.DELETE)
-	public ResponseEntity<?> deleteUser(@PathVariable("id") long id) {
-		logger.info("Fetching & Deleting User with id {}", id);
+    @RequestMapping(value = "/user/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity<?> deleteUser(@PathVariable("id") long id) {
+        logger.info("Fetching & Deleting User with id {}", id);
 
-		User user = userService.findById(id);
-		if (user == null) {
-			logger.error("Unable to delete. User with id {} not found.", id);
-			return new ResponseEntity(new CustomErrorType("Unable to delete. User with id " + id + " not found."),
-					HttpStatus.NOT_FOUND);
-		}
-		userService.deleteUserById(id);
-		return new ResponseEntity<User>(HttpStatus.NO_CONTENT);
-	}
+        User user = userService.findById(id);
+        if (user == null) {
+            logger.error("Unable to delete. User with id {} not found.", id);
+            return new ResponseEntity(new CustomErrorType("Unable to delete. User with id " + id + " not found."),
+                    HttpStatus.NOT_FOUND);
+        }
+        userService.deleteUserById(id);
+        return new ResponseEntity<User>(HttpStatus.NO_CONTENT);
+    }
 
-	// ------------------- Delete All Users-----------------------------
+    // ------------------- Delete All Users-----------------------------
 
-	@RequestMapping(value = "/user/", method = RequestMethod.DELETE)
-	public ResponseEntity<User> deleteAllUsers() {
-		logger.info("Deleting All Users");
+    @RequestMapping(value = "/user/", method = RequestMethod.DELETE)
+    public ResponseEntity<User> deleteAllUsers() {
+        logger.info("Deleting All Users");
 
-		userService.deleteAllUsers();
-		return new ResponseEntity<User>(HttpStatus.NO_CONTENT);
-	}
+        userService.deleteAllUsers();
+        return new ResponseEntity<User>(HttpStatus.NO_CONTENT);
+    }
 
 }

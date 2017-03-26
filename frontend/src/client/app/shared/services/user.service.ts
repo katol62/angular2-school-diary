@@ -8,11 +8,13 @@ export class UserService {
     constructor(private http: Http) { }
 
     getCurrentUser() {
+        let user:User = null;
         if (localStorage.getItem('currentUser')) {
-            let user:User = JSON.parse(localStorage.getItem('currentUser'));
-            return user;
+            let auth:any = JSON.parse(localStorage.getItem('currentUser'));
+            let token:string = auth.token ? auth.token : null;
+            user = auth.user;
         }
-        return null;
+        return user;
     }
 
     getAll() {

@@ -13,6 +13,8 @@ import { Router } from '@angular/router';
 
 export class ContactsComponent implements OnInit {
 
+    title:string = 'Контакты';
+
     constructor(public router:Router) {}
 
     ngOnInit() {

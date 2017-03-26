@@ -12,6 +12,8 @@ import { Router } from '@angular/router';
 })
 export class AboutComponent {
 
+  title:string = 'O нас';
+
   constructor(public router:Router) {}
 
   goHome() {

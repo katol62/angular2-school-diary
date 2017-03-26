@@ -1,17 +1,18 @@
 <!-- Page Content -->
-<div class="container dashboard-comp">
+<div class="container-fluid dashboard-comp">
 
     <!-- Page Heading/Breadcrumbs -->
-    <div class="row">
-        <div class="col-lg-12">
-            <h1 class="page-header">{{title}}</h1>
-            <ol class="breadcrumb">
-                <li><a (click)="goHome()">Домашняя</a></li>
-                <li class="active">{{title}}<span *ngIf="currentTitle"> -> {{currentTitle}}</span></li>
-            </ol>
-        </div>
-    </div>
+    <!--<div class="row">-->
+        <!--<div class="col-lg-12">-->
+            <!--<h1 class="page-header">{{title}}</h1>-->
+            <!--<ol class="breadcrumb">-->
+                <!--<li><a (click)="goHome()">Домашняя</a></li>-->
+                <!--<li class="active">{{title}}<span *ngIf="currentTitle"> -> {{currentTitle}}</span></li>-->
+            <!--</ol>-->
+        <!--</div>-->
+    <!--</div>-->
     <!-- /.row -->
+    <sd-breadcrumbs [pageTitle]="title" [pageSubTitle]="currentTitle"></sd-breadcrumbs>
 
     <!--<div class="row">-->
         <!--<div class="col-lg-12">-->
@@ -52,6 +53,8 @@
             <sd-dashboard-schools *ngIf="currentPanel=='schools'" [user]="currentUser"></sd-dashboard-schools>
             <sd-dashboard-system *ngIf="currentPanel=='system'" [user]="currentUser"></sd-dashboard-system>
             <sd-dashboard-consumers *ngIf="currentPanel=='consumers'" [user]="currentUser"></sd-dashboard-consumers>
+            <sd-dashboard-plan *ngIf="currentPanel=='plan'" [user]="currentUser"></sd-dashboard-plan>
+            <sd-dashboard-schedule *ngIf="currentPanel=='schedule'" [user]="currentUser"></sd-dashboard-schedule>
         </div>
     </div>
     <!-- /.row -->

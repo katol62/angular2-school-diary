@@ -8,7 +8,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { GlobalEventsManager } from './shared/index';
 
 import { AboutModule } from './about/about.module';
-import { HomeModule } from './home/home.module';
 import { ContactsModule } from './contacts/contacts.module';
 import { IntroModule } from './intro/intro.module';
 import { LoginModule } from './login/login.module';
@@ -16,9 +15,6 @@ import { SharedModule } from './shared/shared.module';
 import { CustomToolbarModule } from './shared/toolbar/custom.toolbar.module';
 import { FooterModule } from './shared/footer/footer.module';
 import { DashboardModule } from './dashboard/dashboard.module';
-// used to create fake backend
-import { fakeBackendProvider } from './shared/fakebuckup/index';
-import { BaseRequestOptions } from '@angular/http';
 import { NetworkModule } from './network/network.module';
 import { NewsModule } from './network/news/news.module';
 import { EventsSidebarModule } from './network/events-side/events.side.module';
@@ -27,10 +23,10 @@ import { EventsModule } from './network/events/events.module';
 import { FeedModule } from './network/feed/feed.module';
 import { FriendsModule } from './network/friends/friends.module';
 import { RegisterModule } from "./register/register.module";
-import {User} from './shared/models/user';
 import { UserService,AlertService}  from './shared/index';
 import { ProfileModule } from './dashboard/profile/profile.module';
 import {SvideoModule} from "./shared/simple-video/svideo.module";
+import {BreadcrumbsModule} from "./shared/breadcrumbs/breadcrumbs.module";
 
 
 @NgModule({
@@ -38,7 +34,7 @@ import {SvideoModule} from "./shared/simple-video/svideo.module";
       HttpModule,
       AppRoutingModule,
       IntroModule, LoginModule,
-      AboutModule, HomeModule,
+      AboutModule, 
       CustomToolbarModule,
       FooterModule,
       ContactsModule,
@@ -52,6 +48,7 @@ import {SvideoModule} from "./shared/simple-video/svideo.module";
       RegisterModule,
       ProfileModule,
       SvideoModule,
+      BreadcrumbsModule,
       SharedModule.forRoot()],
   declarations: [AppComponent],
   providers: [
@@ -60,7 +57,6 @@ import {SvideoModule} from "./shared/simple-video/svideo.module";
       useValue: '<%= APP_BASE %>',
     },
     GlobalEventsManager,
-    // providers used to create fake backend
       DataService,
       UserService,
       AlertService

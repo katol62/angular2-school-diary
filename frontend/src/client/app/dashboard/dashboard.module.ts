@@ -3,11 +3,14 @@ import { CommonModule } from '@angular/common';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './dashboard.component';
 import { ProfileModule } from './profile/profile.module';
-import {SchoolsModule} from './schools/schools.module';
-import {DashboardMenuModule} from "./menu/index";
-import {SystemModule} from './system/system.module';
-import {ConsumersModule} from "./consumers/consumers.module";
-import {SvideoModule} from "../shared/simple-video/svideo.module";
+import { SchoolsModule } from './schools/schools.module';
+import { DashboardMenuModule } from "./menu/index";
+import { SystemModule } from './system/system.module';
+import { ConsumersModule } from "./consumers/consumers.module";
+import { SvideoModule } from '../shared/simple-video/svideo.module';
+import { PlanModule } from './plan/plan.module';
+import { ScheduleModule } from './schedule/schedule.module';
+import {BreadcrumbsModule} from "../shared/breadcrumbs/breadcrumbs.module";
 
 @NgModule({
     imports: [CommonModule,
@@ -17,6 +20,9 @@ import {SvideoModule} from "../shared/simple-video/svideo.module";
         SystemModule,
         ConsumersModule,
         SvideoModule,
+        PlanModule,
+        ScheduleModule,
+        BreadcrumbsModule,
         DashboardMenuModule
     ],
     declarations: [DashboardComponent],

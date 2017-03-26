@@ -42,16 +42,10 @@ export class LoginComponent implements OnInit {
 
         this.authSend = true;
 
-        // this.authService.login(this.model.username, this.model.password).then((data)=>{
-        //     debugger;
-        //     this.afterSignIn(data)
-        // });
-        
         this.authService.login(this.model.username, this.model.password)
             .subscribe(
                 data => {
                     this.afterSignIn(data);
-                    //this.router.navigate([this.returnUrl]);
                 },
                 error => {
                     this.afterSignIn(null)
@@ -65,7 +59,8 @@ export class LoginComponent implements OnInit {
             this.globalEventsManager.isLoggedIn(false);
         } else {
             this.globalEventsManager.isLoggedIn(true);
-            this.router.navigateByUrl('/network');
+            this.router.navigateByUrl('network');
+            this.globalEventsManager.selectedMenuItem('network');
         }
     }
 }

@@ -21,6 +21,7 @@ export class NetworkComponent implements OnInit {
     title:string = 'Моя сеть';
     modes:Mode[] = MODES;
     currentMode:string = MODES[0].mode;
+    currentTitle = MODES[0].title;
     currentUser:User = new User();
 
     constructor(public router:Router, public globalEventsManager:GlobalEventsManager, public authService:AuthService, private userService:UserService) {}
@@ -36,6 +37,7 @@ export class NetworkComponent implements OnInit {
 
     selectMode(modeObj:Mode) {
         this.currentMode = modeObj.mode;
+        this.currentTitle = modeObj.title;
     }
 
 }

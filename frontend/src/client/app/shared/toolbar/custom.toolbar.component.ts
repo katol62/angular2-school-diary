@@ -41,16 +41,18 @@ export class CustomToolbarComponent {
         this.selectedTab = tab.id;
 
         this.globalEventsManager.showToolBarEmitter.subscribe((mode)=> {
-            // mode will be null the first time it is created, so you need to igonore it when null
-
             this.currentUser = this.userService.getCurrentUser();
-
             if (mode !== null) {
                 this.showToolBar = mode;
             }
         });
+        this.globalEventsManager.setSelectedMenuItemEmitter.subscribe((mode)=> {
+            if (mode !== null) {
+                this.selectedTab = mode;
+            }
+        });
+
         this.globalEventsManager.isLoggedInEmitter.subscribe((mode)=> {
-            // mode will be null the first time it is created, so you need to igonore it when null
             if (mode !== null) {
                 this.isLoggedIn = mode;
                 this.currentUser = this.userService.getCurrentUser();
@@ -71,6 +73,7 @@ export class CustomToolbarComponent {
     }
 
     onLogin() {
+        this.selectedTab = null;
         this.router.navigateByUrl('/login');
     }
 
@@ -84,26 +87,6 @@ export class CustomToolbarComponent {
     goTab(tab:any) {
         this.selectedTab = tab.id;
         this.router.navigateByUrl(tab.link);
-    }
-
-    goHome() {
-        this.router.navigateByUrl('/');
-    }
-
-    goAbout() {
-        this.router.navigateByUrl('/about');
-    }
-
-    goContact() {
-        this.router.navigateByUrl('/contacts');
-    }
-
-    goDashboard() {
-        this.router.navigateByUrl('/dashboard');
-    }
-
-    goNetwork() {
-        this.router.navigateByUrl('/network');
     }
 
     profile() {
