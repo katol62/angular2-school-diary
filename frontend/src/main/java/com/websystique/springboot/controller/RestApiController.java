@@ -18,6 +18,7 @@ import com.websystique.springboot.model.User;
 import com.websystique.springboot.service.UserService;
 import com.websystique.springboot.util.CustomErrorType;
 
+@CrossOrigin(maxAge = 3600)
 @RestController
 @RequestMapping("/api")
 public class RestApiController {
