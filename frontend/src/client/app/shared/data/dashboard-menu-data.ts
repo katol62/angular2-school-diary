@@ -29,9 +29,14 @@ export const DashboardMenu: any = {
     ],
     'parent': [
         {id: 'profile', title: 'Профайл', icon: 'fa fa-user fa-lg'},
-        {id: 'schedule', title: 'Расписание', icon: 'fa fa-user fa-lg'},
+        {id: 'schedule', title: 'Расписание', icon: 'fa fa-user fa-lg',
+            elms: [
+                {id: 'child1', title: 'Расписание', icon: 'fa fa-user fa-lg'},
+                {id: 'child2', title: 'Расписание', icon: 'fa fa-user fa-lg'}
+            ]
+        },
         {id: 'hometask', title: 'Домашнее задание', icon: 'fa fa-user fa-lg'},
-        {id: 'schedule', title: 'Ведомость', icon: 'fa fa-user fa-lg'},
+        {id: 'list', title: 'Ведомость', icon: 'fa fa-user fa-lg'},
         {id: 'events', title: 'События', icon: 'fa fa-user fa-lg'},
         {id: 'tasks', title: 'Задачи', icon: 'fa fa-user fa-lg'}
     ]
