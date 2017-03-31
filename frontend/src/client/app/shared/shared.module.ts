@@ -8,13 +8,14 @@ import { NameListService } from './name-list/name-list.service';
 import { AuthService, AuthGuard } from './index';
 import {FooterModule} from "./footer/footer.module";
 import {SvideoModule} from "./simple-video/svideo.module";
+import {HlsPlayerModule} from "./hls-video/hls-player.module";
 
 /**
  * Do not specify providers for modules that might be imported by a lazy loaded module.
  */
 
 @NgModule({
-  imports: [CommonModule, RouterModule, FooterModule, SvideoModule],
+  imports: [CommonModule, RouterModule, FooterModule, SvideoModule, HlsPlayerModule],
   declarations: [NavbarComponent],
   exports: [NavbarComponent,
     CommonModule, FormsModule, RouterModule]

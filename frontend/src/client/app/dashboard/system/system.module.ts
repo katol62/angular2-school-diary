@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {SystemComponent} from "./system.component";
-import {SvideoModule} from "../../shared/simple-video/svideo.module";
+import {HlsPlayerModule} from "../../shared/hls-video/hls-player.module";
 
 @NgModule({
-    imports: [CommonModule, SvideoModule],
+    imports: [CommonModule, HlsPlayerModule],
     declarations: [SystemComponent],
     exports: [SystemComponent],
     providers: []

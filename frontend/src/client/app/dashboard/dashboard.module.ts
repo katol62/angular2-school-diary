@@ -11,6 +11,7 @@ import { SvideoModule } from '../shared/simple-video/svideo.module';
 import { PlanModule } from './plan/plan.module';
 import { ScheduleModule } from './schedule/schedule.module';
 import {BreadcrumbsModule} from "../shared/breadcrumbs/breadcrumbs.module";
+import {HlsPlayerModule} from "../shared/hls-video/hls-player.module";
 
 @NgModule({
     imports: [CommonModule,
@@ -20,6 +21,7 @@ import {BreadcrumbsModule} from "../shared/breadcrumbs/breadcrumbs.module";
         SystemModule,
         ConsumersModule,
         SvideoModule,
+        HlsPlayerModule,
         PlanModule,
         ScheduleModule,
         BreadcrumbsModule,

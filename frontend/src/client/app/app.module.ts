@@ -27,6 +27,7 @@ import { UserService,AlertService}  from './shared/index';
 import { ProfileModule } from './dashboard/profile/profile.module';
 import {SvideoModule} from "./shared/simple-video/svideo.module";
 import {BreadcrumbsModule} from "./shared/breadcrumbs/breadcrumbs.module";
+import {HlsPlayerModule} from "./shared/hls-video/hls-player.module";
 
 
 @NgModule({
@@ -48,6 +49,7 @@ import {BreadcrumbsModule} from "./shared/breadcrumbs/breadcrumbs.module";
       RegisterModule,
       ProfileModule,
       SvideoModule,
+      HlsPlayerModule,
       BreadcrumbsModule,
       SharedModule.forRoot()],
   declarations: [AppComponent],

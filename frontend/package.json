@@ -140,6 +140,7 @@
     "tslint": "^4.3.0",
     "typescript": "^2.1.6",
     "video.js": "^5.17.0",
+    "hls.js": "^0.7.4",
     "videojs-contrib-hls": "^5.3.3",
     "videojs-flash": "^1.0.0-RC.2",
     "walk": "^2.3.9",
