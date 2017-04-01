@@ -13,11 +13,13 @@ import { DataFeed, DataService, GlobalEventsManager, AuthService } from "../../s
 export class FeedComponent implements OnInit {
 
     feed: DataFeed [] = [];
+    selectedPage:string = 'feed';
 
-    constructor(private dataService: DataService) { }
+    constructor(private dataService: DataService, private globalEventsManager:GlobalEventsManager) { }
 
     ngOnInit() {
         this.feed = this.dataService.getFeed();
+        this.globalEventsManager.selectedMenuItem('network');
     }
 
 }

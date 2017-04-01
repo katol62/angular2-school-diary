@@ -6,7 +6,11 @@ import { AuthGuard } from '../shared/index';
 @NgModule({
     imports: [
         RouterModule.forChild([
-            { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] }
+            {
+                path: 'dashboard',
+                component: DashboardComponent,
+                canActivate: [AuthGuard]
+            }
         ])
     ],
     exports: [RouterModule]

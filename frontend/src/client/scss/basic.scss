@@ -14,8 +14,11 @@ div {
 
 /* Set up a default font and some padding to provide breathing room */
 body {
-  font-family: Roboto, "Helvetica Neue", sans-serif;
-  font-size: 16px;
+  color: #73879C;
+  font-family: "Helvetica Neue",Roboto,Arial,"Droid Sans",sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.471;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -88,6 +91,8 @@ button {
 
 a {
   cursor: pointer;
+  color: #73879C;
+
 }
 
 .padding-top-20 {

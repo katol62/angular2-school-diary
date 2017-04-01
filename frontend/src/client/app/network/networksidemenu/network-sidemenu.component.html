@@ -1,0 +1,19 @@
+<div class="row">
+    <div class="col-md-5">
+        <img src="http://placehold.it/100">
+    </div>
+    <div class="col-md-7">
+        <span class="profile-name">{{currentUser.firstName}} {{currentUser.lastName}}</span>
+        <span class="profile-edit"><a>Редактировать</a></span>
+    </div>
+</div>
+
+<div class="row padding-top-20">
+    <div class="col-md-12">
+        <div class="list-group">
+            <span *ngFor="let elm of menuElements">
+                <a class="list-group-item" (click)="selectPage(elm.page)" [class.active]="elm.page==selectedPage"><i class="fa {{elm.icon}}" aria-hidden="true"></i> {{elm.title}}</a>
+            </span>
+        </div>
+    </div>
+</div>

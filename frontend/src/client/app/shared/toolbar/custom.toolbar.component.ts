@@ -19,11 +19,11 @@ export class CustomToolbarComponent {
     isLoggedIn:boolean = false;
 
     tabs:any[] = [
-        {id: 'home', title: 'Домашняя', link: '/', hide: false},
-        {id: 'about', title: 'О нас', link: '/about', hide: false},
-        {id: 'contacts', title: 'Контакты', link: '/contacts', hide: false},
-        {id: 'network', title: 'Моя сеть', link: '/network', hide: true},
-        {id: 'dashboard', title: 'Панель управления', link: '/dashboard', hide: true}
+        {id: 'home', title: 'Домашняя', link: '', hide: false},
+        {id: 'about', title: 'О нас', link: 'about', hide: false},
+        {id: 'contacts', title: 'Контакты', link: 'contacts', hide: false},
+        {id: 'network', title: 'Моя сеть', link: 'network', hide: true},
+        {id: 'dashboard', title: 'Панель управления', link: 'dashboard', hide: true}
     ];
     selectedTab:string = 'home';
 
@@ -86,13 +86,21 @@ export class CustomToolbarComponent {
 
     goTab(tab:any) {
         this.selectedTab = tab.id;
-        this.router.navigateByUrl(tab.link);
+        this.router.navigateByUrl('/'+tab.link);
+        this.globalEventsManager.selectedMenuItem(tab.link);
     }
 
     profile() {
         console.log('profile');
         this.router.navigateByUrl('/dashboard');
+        this.globalEventsManager.selectedMenuItem('dashboard');
     }
+
+    goHome() {
+        this.router.navigateByUrl('/');
+        this.globalEventsManager.selectedMenuItem('');
+    }
+
 
 }
 

@@ -13,11 +13,13 @@ import { DataFriend, DataService, GlobalEventsManager, AuthService } from '../..
 export class FriendsComponent implements OnInit {
 
     friendList: DataFriend [] = [];
+    selectedPage:string = 'friends';
 
-    constructor(private dataService: DataService) { }
+    constructor(private dataService: DataService, private globalEventsManager:GlobalEventsManager) { }
 
     ngOnInit() {
         this.friendList = this.dataService.getFriends();
+        this.globalEventsManager.selectedMenuItem('network');
     }
 
 }

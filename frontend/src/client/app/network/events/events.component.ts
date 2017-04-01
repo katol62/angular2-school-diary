@@ -14,11 +14,13 @@ export class EventsComponent implements OnInit {
 
     events: DataNews [];
     selected:DataNews = null;
+    selectedPage:string = 'events';
 
-    constructor(private dataService: DataService) { }
+    constructor(private dataService: DataService, private globalEventsManager:GlobalEventsManager) { }
 
     ngOnInit() {
         this.events = this.dataService.getEvents();
+        this.globalEventsManager.selectedMenuItem('network');
     }
 
     toggle(elm:DataNews) {

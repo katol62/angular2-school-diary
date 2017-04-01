@@ -11,13 +11,16 @@ import { DataNews, DataService, GlobalEventsManager, AuthService } from "../../s
 
 export class NewsComponent implements OnInit {
 
+    selectedPage:string = 'news';
+    
     news: DataNews [];
     selected:DataNews = null;
 
-    constructor(private dataService: DataService) { }
+    constructor(private dataService: DataService, private globalEventsManager:GlobalEventsManager) { }
 
     ngOnInit() {
         this.news = this.dataService.getNews();
+        this.globalEventsManager.selectedMenuItem('network');
     }
 
     toggle(elm:DataNews) {
