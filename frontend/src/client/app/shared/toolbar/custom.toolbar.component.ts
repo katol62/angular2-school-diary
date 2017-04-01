@@ -19,7 +19,7 @@ export class CustomToolbarComponent {
     isLoggedIn:boolean = false;
 
     tabs:any[] = [
-        {id: 'home', title: 'Домашняя', link: '', hide: false},
+        {id: '', title: 'Домашняя', link: '', hide: false},
         {id: 'about', title: 'О нас', link: 'about', hide: false},
         {id: 'contacts', title: 'Контакты', link: 'contacts', hide: false},
         {id: 'network', title: 'Моя сеть', link: 'network', hide: true},

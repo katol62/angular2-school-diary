@@ -59,8 +59,8 @@ export class LoginComponent implements OnInit {
             this.globalEventsManager.isLoggedIn(false);
         } else {
             this.globalEventsManager.isLoggedIn(true);
-            this.router.navigateByUrl('network');
-            this.globalEventsManager.selectedMenuItem('network');
+            this.router.navigateByUrl(this.returnUrl);
+            //this.globalEventsManager.selectedMenuItem('network');
         }
     }
 }
