@@ -1,9 +1,11 @@
 import {Component} from '@angular/core';
 import {Location} from '@angular/common';
 import {Router, ActivatedRoute} from '@angular/router';
-import {GlobalEventsManager, AuthService} from '../index';
+import {AuthService} from '../index';
 import {User} from "../models/user";
 import {UserService} from "../services/user.service";
+import {GlobalSettings} from "../data/global-settings";
+import {GlobalEventsManager} from "../events/global-events.manager";
 
 /**
  * This class represents the toolbar component.
@@ -93,7 +95,7 @@ export class CustomToolbarComponent {
     profile() {
         console.log('profile');
         this.router.navigateByUrl('/dashboard');
-        this.globalEventsManager.selectedMenuItem('dashboard');
+        this.globalEventsManager.selectedMenuItem(GlobalSettings.ROUTE_DASHBOARD);
     }
 
     goHome() {

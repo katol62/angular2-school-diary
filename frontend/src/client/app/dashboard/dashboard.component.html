@@ -45,16 +45,16 @@
     <div class="row">
         <!-- Sidebar Column -->
         <div class="col-md-3">
-            <sd-dashboard-menu [panels]="panels" [user]="currentUser" [currentPanel]="currentPanel" (onSelected)="selectPanel($event)"></sd-dashboard-menu>
+            <!--sd-dashboard-menu [dashPanels]="panels" [user]="currentUser" [currentPanel]="currentPanel" (onSelected)="selectPanel($event)"></sd-dashboard-menu-->
         </div>
         <!-- Content Column -->
         <div class="col-md-9">
-            <sd-dashboard-profile *ngIf="currentPanel=='profile'" [user]="currentUser"></sd-dashboard-profile>
-            <sd-dashboard-schools *ngIf="currentPanel=='schools'" [user]="currentUser"></sd-dashboard-schools>
-            <sd-dashboard-system *ngIf="currentPanel=='system'" [user]="currentUser"></sd-dashboard-system>
-            <sd-dashboard-consumers *ngIf="currentPanel=='consumers'" [user]="currentUser"></sd-dashboard-consumers>
-            <sd-dashboard-plan *ngIf="currentPanel=='plan'" [user]="currentUser"></sd-dashboard-plan>
-            <sd-dashboard-schedule *ngIf="currentPanel=='schedule'" [user]="currentUser"></sd-dashboard-schedule>
+            <!--<sd-dashboard-profile *ngIf="currentPanel=='profile'" [user]="currentUser"></sd-dashboard-profile>-->
+            <!--<sd-dashboard-schools *ngIf="currentPanel=='schools'" [user]="currentUser"></sd-dashboard-schools>-->
+            <!--<sd-dashboard-system *ngIf="currentPanel=='system'" [user]="currentUser"></sd-dashboard-system>-->
+            <!--<sd-dashboard-consumers *ngIf="currentPanel=='consumers'" [user]="currentUser"></sd-dashboard-consumers>-->
+            <!--<sd-dashboard-plan *ngIf="currentPanel=='plan'" [user]="currentUser"></sd-dashboard-plan>-->
+            <!--<sd-dashboard-schedule *ngIf="currentPanel=='schedule'" [user]="currentUser"></sd-dashboard-schedule>-->
         </div>
     </div>
     <!-- /.row -->

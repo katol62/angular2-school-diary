@@ -1,6 +1,10 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import {Router} from '@angular/router';
-import { GlobalEventsManager, User } from '../../shared/index';
+import { Component, OnInit, Input } from '@angular/core';
+import {Router, ActivatedRoute} from '@angular/router';
+import {UserService} from "../../shared/services/user.service";
+import {DashboardMenu} from "../../shared/data/dashboard-menu-data";
+import {GlobalSettings} from "../../shared/data/global-settings";
+import {User} from "../../shared/models/user";
+import {GlobalEventsManager} from "../../shared/events/global-events.manager";
 
 @Component({
     moduleId: module.id,
@@ -12,17 +16,23 @@ import { GlobalEventsManager, User } from '../../shared/index';
 
 export class DashboardMenuComponent implements OnInit {
 
-    @Input() user:User;
-    @Input() panels:any[];
-    @Input() currentPanel:string;
-    @Output() onSelected = new EventEmitter<string>();
+    currentUser:User = new User();
+    panels:any[] = [];
 
+    @Input() selectedPanel:string;
+
+    constructor(public globalEventsManager:GlobalEventsManager, private userService:UserService, private route: ActivatedRoute, public router:Router) {}
+    
+    
     ngOnInit() {
         console.log('init');
+        this.currentUser = this.userService.getCurrentUser();
+        this.panels = DashboardMenu['all'];
     }
 
     selectPanel(panel:string) {
-        this.onSelected.emit(panel);
+        this.router.navigateByUrl('dashboard/'+panel);
+        this.globalEventsManager.selectedMenuItem(GlobalSettings.ROUTE_DASHBOARD);
     }
 
 }

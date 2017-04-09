@@ -40,6 +40,26 @@ export class AuthService {
         return false;
     }
 
+    getLoggedInUser() {
+        if (localStorage.getItem('currentUser')) {
+            let auth:any = JSON.parse(localStorage.getItem('currentUser'));
+            return auth.user;
+        }
+        return null;
+    }
+
+    isLoggedInWithRole(role:string) {
+
+        if (localStorage.getItem('currentUser')) {
+            let auth:any = JSON.parse(localStorage.getItem('currentUser'));
+            if (role) {
+                return (auth.user && auth.user.userName !== null && auth.user.type !== null && auth.user.type === role );
+            }
+            return (auth.user && auth.user.userName !== null);
+        }
+        return false;
+    }
+
     //service
     private handleLogin(response: Response) {
         let auth = response.json();

@@ -10,7 +10,7 @@ import {FriendsComponent} from "./friends/friends.component";
 @NgModule({
     imports: [
         RouterModule.forChild([
-            { path: 'network', redirectTo:'network/news', pathMatch: 'full'}
+            { path: 'network', redirectTo:'network/news', pathMatch: 'full'},
         ])
     ],
     exports: [RouterModule]

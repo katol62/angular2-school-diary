@@ -1,6 +1,8 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 import {Router} from '@angular/router';
-import { DataFriend, DataService, GlobalEventsManager, AuthService } from '../../shared/index';
+import { DataFriend, DataService, AuthService } from '../../shared/index';
+import {GlobalSettings} from "../../shared/data/global-settings";
+import {GlobalEventsManager} from "../../shared/events/global-events.manager";
 
 @Component({
     moduleId: module.id,
@@ -13,13 +15,13 @@ import { DataFriend, DataService, GlobalEventsManager, AuthService } from '../..
 export class FriendsComponent implements OnInit {
 
     friendList: DataFriend [] = [];
-    selectedPage:string = 'friends';
+    selectedPage:string = GlobalSettings.ROUTE_NETWORK_FRIENDS;
 
     constructor(private dataService: DataService, private globalEventsManager:GlobalEventsManager) { }
 
     ngOnInit() {
         this.friendList = this.dataService.getFriends();
-        this.globalEventsManager.selectedMenuItem('network');
+        this.globalEventsManager.selectedMenuItem(GlobalSettings.ROUTE_NETWORK);
     }
 
 }

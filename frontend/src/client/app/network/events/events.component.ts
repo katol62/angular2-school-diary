@@ -1,6 +1,8 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 import {Router} from '@angular/router';
-import { DataNews, DataService, GlobalEventsManager, AuthService } from '../../shared/index';
+import { DataNews, DataService, AuthService } from '../../shared/index';
+import {GlobalSettings} from "../../shared/data/global-settings";
+import {GlobalEventsManager} from "../../shared/events/global-events.manager";
 
 @Component({
     moduleId: module.id,
@@ -14,13 +16,13 @@ export class EventsComponent implements OnInit {
 
     events: DataNews [];
     selected:DataNews = null;
-    selectedPage:string = 'events';
+    selectedPage:string = GlobalSettings.ROUTE_NETWORK_EVENTS;
 
     constructor(private dataService: DataService, private globalEventsManager:GlobalEventsManager) { }
 
     ngOnInit() {
         this.events = this.dataService.getEvents();
-        this.globalEventsManager.selectedMenuItem('network');
+        this.globalEventsManager.selectedMenuItem(GlobalSettings.ROUTE_NETWORK);
     }
 
     toggle(elm:DataNews) {

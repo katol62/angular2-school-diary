@@ -1,17 +1,5 @@
-<div class="nav-side-menu">
-    <div class="menu-list">
-
-        <ul id="menu-content" class="menu-content collapse out">
-            <span *ngFor="let elm of panels">
-                <li [attr.data-toggle]="elm.elms? 'collapse' : ''" [attr.data-target]="elm.elms? '#'+elm.id : ''" [attr.class]="elm.elms? 'collapsed ' : ''" [attr.class]="currentPanel==elm.id ? 'active' : ''">
-                    <a (click)="currentPanel=='panel' ? null : selectPanel(elm.id)">
-                        <i [attr.class]="elm.icon"></i> {{elm.title}} <span *ngIf="elm.elms" class="arrow"></span>
-                    </a>
-                </li>
-                <ul *ngIf="elm.elms" class="sub-menu collapse" id="{{elm.id}}">
-                    <li *ngFor="let sub of elm.elms" [attr.class]="selectedPanel==sub.id ? 'active' : ''"><a (click)="selectedPanel==sub.id ? null : selectPanel(sub.id)">{{sub.title}}</a></li>
-                </ul>
-            </span>
-        </ul>
-    </div>
+<div class="list-group">
+    <span *ngFor="let elm of panels">
+        <a *ngIf="elm.role==currentUser.type" class="list-group-item" (click)="selectPanel(elm.id)" [class.active]="selectedPanel==elm.id"><i class="fa {{elm.icon}}" aria-hidden="true"></i> {{elm.title}}</a>
+    </span>
 </div>

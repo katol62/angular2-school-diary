@@ -1,5 +1,5 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
-import { GlobalEventsManager } from '../shared/index';
+import {GlobalEventsManager} from "../shared/events/global-events.manager";
 declare var jQuery:any;
 
 /**
@@ -33,6 +33,9 @@ export class IntroComponent implements OnInit {
         jQuery(elm).carousel(() => {
             console.log('carousel');
         });
+
+        this.globalEventsManager.selectedMenuItem('');
+
     }
 
     ngAfterViewChecked() {

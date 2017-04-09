@@ -1,0 +1,56 @@
+<!-- Page Content -->
+<div class="container-fluid dashboard-comp margin-top-30">
+
+    <!-- Content Row -->
+    <div class="row">
+        <!-- Sidebar Column -->
+        <div class="col-md-3">
+            <sd-dashboard-menu [selectedPanel]="selectedPanel"></sd-dashboard-menu>
+        </div>
+        <!-- Content Column -->
+        <div class="col-md-9">
+            <div class="container-fluid profile">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 col-md-12">
+                        <div class="well well-sm">
+                            <div class="row">
+                                <div class="col-sm-6 col-md-2">
+                                    <img src="http://placehold.it/158x158" class="img-rounded img-responsive" draggable="false" />
+                                </div>
+                                <div class="col-sm-6 col-md-4">
+                                    <h4>{{currentUser.firstName}} {{currentUser.lastName}}</h4>
+                                    <small>
+                                        <cite>Address to be replaced  <i class="glyphicon glyphicon-map-marker"></i></cite>
+                                    </small>
+                                    <p>
+                                        <i class="glyphicon glyphicon-envelope"></i> tobereplaced@gmail.com <br />
+                                        <!--<i class="glyphicon glyphicon-globe"></i> <a href="http://google.com/">www.google.com</a> <br />-->
+                                        <i class="glyphicon glyphicon-gift"></i> 1997-03-12
+                                    </p>
+                                </div>
+                                <div class="col-sm-6 col-md-6">
+                                    <span class="label label-info pull-right">Level: 1</span>
+                                    <h4>Детали</h4>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+                                </div>
+                                <div class="col-sm-6 col-md-12">
+                                    <div class="row nav">
+                                        <div class="col-md-12" style="margin: 0px;">
+                                            <hr>
+                                            <button class="rate-btn rate-btn-friendly"><i class="fa fa-smile-o fa-lg"></i> 62</button>
+                                            <button class="rate-btn rate-btn-heart"><i class="fa fa-heart-o fa-lg"></i> 54</button>
+                                            <button class="rate-btn rate-btn-like"><i class="fa fa-thumbs-o-up fa-lg"></i> 67</button>
+                                            <span class="pull-right">Report: <button class="rate-btn rate-btn-report"> <i class="fa fa-frown-o fa-lg"></i> 2</button></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.row -->
+</div>
+<!-- /.container -->

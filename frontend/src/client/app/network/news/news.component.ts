@@ -1,6 +1,7 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 import {Router} from "@angular/router";
 import { DataNews, DataService, GlobalEventsManager, AuthService } from "../../shared/index";
+import {GlobalSettings} from "../../shared/data/global-settings";
 
 @Component({
     moduleId: module.id,
@@ -11,7 +12,7 @@ import { DataNews, DataService, GlobalEventsManager, AuthService } from "../../s
 
 export class NewsComponent implements OnInit {
 
-    selectedPage:string = 'news';
+    selectedPage:string = GlobalSettings.ROUTE_NETWORK_NEWS;
     
     news: DataNews [];
     selected:DataNews = null;
@@ -20,7 +21,7 @@ export class NewsComponent implements OnInit {
 
     ngOnInit() {
         this.news = this.dataService.getNews();
-        this.globalEventsManager.selectedMenuItem('network');
+        this.globalEventsManager.selectedMenuItem(GlobalSettings.ROUTE_NETWORK);
     }
 
     toggle(elm:DataNews) {

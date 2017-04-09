@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import {UserService} from "../../shared/services/user.service";
 import {User} from "../../shared/models/user";
 import {GlobalEventsManager} from "../../shared/events/global-events.manager";
+import {GlobalSettings} from "../../shared/data/global-settings";
 
 /**
  * This class represents the lazy loaded NetworkComponent.
@@ -18,10 +19,10 @@ import {GlobalEventsManager} from "../../shared/events/global-events.manager";
 export class NetworkSidemenuComponent implements OnInit {
 
     menuElements: any[] = [
-        {id: 1, title: 'Новости', page: 'news', icon: 'fa-file-text'},
-        {id: 2, title: 'Сообщения', page: 'feed', icon: 'fa-commenting'},
-        {id: 3, title: 'События', page: 'events', icon: 'fa-calendar'},
-        {id: 4, title: 'Друзья', page: 'friends', icon: 'fa-users'}
+        {id: 1, title: 'Новости', page: GlobalSettings.ROUTE_NETWORK_NEWS, icon: 'fa-file-text'},
+        {id: 2, title: 'Сообщения', page: GlobalSettings.ROUTE_NETWORK_FEED, icon: 'fa-commenting'},
+        {id: 3, title: 'События', page: GlobalSettings.ROUTE_NETWORK_EVENTS, icon: 'fa-calendar'},
+        {id: 4, title: 'Друзья', page: GlobalSettings.ROUTE_NETWORK_FRIENDS, icon: 'fa-users'}
     ];
 
     currentUser:User = new User();
@@ -41,7 +42,7 @@ export class NetworkSidemenuComponent implements OnInit {
 
     selectPage(page:string) {
         this.router.navigateByUrl('/network/'+page);
-        this.globalEventsManager.selectedMenuItem('network');
+        this.globalEventsManager.selectedMenuItem(GlobalSettings.ROUTE_NETWORK);
     }
 
 }

@@ -1,44 +1,42 @@
-
+import {GlobalSettings} from './global-settings';
 
 export const DashboardMenu: any = {
-    'admin': [
-        {id: 'schools', title: 'Учебные заведения', icon: 'fa fa-user fa-lg'},
-        {id: 'consumers', title: 'Пользователи', icon: 'fa fa-user fa-lg'},
-        {id: 'system', title: 'Состояние системы', icon: 'fa fa-user fa-lg'},
-        {id: 'reports', title: 'Отчетность', icon: 'fa fa-user fa-lg'}
-    ],
-    'chief': [
-        {id: 'profile', title: 'Профайл', icon: 'fa fa-user fa-lg'},
-        {id: 'plan', title: 'Учебный план', icon: 'fa fa-user fa-lg'},
-        {id: 'schedule', title: 'Расписание', icon: 'fa fa-user fa-lg'},
-        {id: 'courses', title: 'Предметы и темы', icon: 'fa fa-user fa-lg'},
-        {id: 'teachers', title: 'Учители', icon: 'fa fa-user fa-lg'},
-        {id: 'students', title: 'Ученики', icon: 'fa fa-user fa-lg'},
-        {id: 'parents', title: 'Родители', icon: 'fa fa-user fa-lg'},
-        {id: 'events', title: 'События', icon: 'fa fa-user fa-lg'},
-        {id: 'tasks', title: 'Задачи', icon: 'fa fa-user fa-lg'},
-        {id: 'feeding', title: 'Меню питания', icon: 'fa fa-user fa-lg'}
-    ],
-    'teacher': [
-        {id: 'profile', title: 'Профайл', icon: 'fa fa-user fa-lg'},
-        {id: 'hometask', title: 'Домашнее задание', icon: 'fa fa-user fa-lg'},
-        {id: 'schedule', title: 'Расписание', icon: 'fa fa-user fa-lg'},
-        {id: 'teacher-schedule', title: 'Ведомость', icon: 'fa fa-user fa-lg'},
-        {id: 'events', title: 'События', icon: 'fa fa-user fa-lg'},
-        {id: 'tasks', title: 'Задачи', icon: 'fa fa-user fa-lg'}
-    ],
-    'parent': [
-        {id: 'profile', title: 'Профайл', icon: 'fa fa-user fa-lg'},
-        {id: 'schedule', title: 'Расписание', icon: 'fa fa-user fa-lg',
+    'all': [
+        {id: GlobalSettings.ROUTE_DASHBOARD_ADMIN_SCHOOLS, title: 'Учебные заведения', icon: 'fa fa-user fa-lg', role: GlobalSettings.ROLE_ADMIN},
+        {id: GlobalSettings.ROUTE_DASHBOARD_ADMIN_CONSUMERS, title: 'Пользователи', icon: 'fa fa-user fa-lg', role: GlobalSettings.ROLE_ADMIN},
+        {id: GlobalSettings.ROUTE_DASHBOARD_ADMIN_SYSTEM, title: 'Состояние системы', icon: 'fa fa-user fa-lg', role: GlobalSettings.ROLE_ADMIN},
+        {id: GlobalSettings.ROUTE_DASHBOARD_ADMIN_REPORTS, title: 'Отчетность', icon: 'fa fa-user fa-lg', role: GlobalSettings.ROLE_ADMIN},
+
+        {id: GlobalSettings.ROUTE_DASHBOARD_CHIEF_PROFILE, title: 'Профайл', icon: 'fa fa-user fa-lg', role: GlobalSettings.ROLE_CHIEF},
+        {id: GlobalSettings.ROUTE_DASHBOARD_CHIEF_PLAN, title: 'Учебный план', icon: 'fa fa-user fa-lg', role: GlobalSettings.ROLE_CHIEF},
+        {id: GlobalSettings.ROUTE_DASHBOARD_CHIEF_SCHEDULE, title: 'Расписание', icon: 'fa fa-user fa-lg', role: GlobalSettings.ROLE_CHIEF},
+        {id: GlobalSettings.ROUTE_DASHBOARD_CHIEF_COURSES, title: 'Предметы и темы', icon: 'fa fa-user fa-lg', role: GlobalSettings.ROLE_CHIEF},
+        {id: GlobalSettings.ROUTE_DASHBOARD_CHIEF_TEACHERS, title: 'Учители', icon: 'fa fa-user fa-lg', role: GlobalSettings.ROLE_CHIEF},
+        {id: GlobalSettings.ROUTE_DASHBOARD_CHIEF_STUDENTS, title: 'Ученики', icon: 'fa fa-user fa-lg', role: GlobalSettings.ROLE_CHIEF},
+        {id: GlobalSettings.ROUTE_DASHBOARD_CHIEF_PARENTS, title: 'Родители', icon: 'fa fa-user fa-lg', role: GlobalSettings.ROLE_CHIEF},
+        {id: GlobalSettings.ROUTE_DASHBOARD_CHIEF_EVENTS, title: 'События', icon: 'fa fa-user fa-lg', role: GlobalSettings.ROLE_CHIEF},
+        {id: GlobalSettings.ROUTE_DASHBOARD_CHIEF_TASKS, title: 'Задачи', icon: 'fa fa-user fa-lg', role: GlobalSettings.ROLE_CHIEF},
+        {id: GlobalSettings.ROUTE_DASHBOARD_CHIEF_MEALS, title: 'Меню питания', icon: 'fa fa-user fa-lg', role: GlobalSettings.ROLE_CHIEF},
+
+        {id: GlobalSettings.ROUTE_DASHBOARD_TEACHER_PROFILE, title: 'Профайл', icon: 'fa fa-user fa-lg', role: GlobalSettings.ROLE_TEACHER},
+        {id: GlobalSettings.ROUTE_DASHBOARD_TEACHER_HOMETASK, title: 'Домашнее задание', icon: 'fa fa-user fa-lg', role: GlobalSettings.ROLE_TEACHER},
+        {id: GlobalSettings.ROUTE_DASHBOARD_TEACHER_SCHEDULE, title: 'Расписание', icon: 'fa fa-user fa-lg', role: GlobalSettings.ROLE_TEACHER},
+        {id: GlobalSettings.ROUTE_DASHBOARD_TEACHER_SHEET, title: 'Ведомость', icon: 'fa fa-user fa-lg', role: GlobalSettings.ROLE_TEACHER},
+        {id: GlobalSettings.ROUTE_DASHBOARD_TEACHER_EVENTS, title: 'События', icon: 'fa fa-user fa-lg', role: GlobalSettings.ROLE_TEACHER},
+        {id: GlobalSettings.ROUTE_DASHBOARD_TEACHER_TASKS, title: 'Задачи', icon: 'fa fa-user fa-lg', role: GlobalSettings.ROLE_TEACHER},
+
+        {id: GlobalSettings.ROUTE_DASHBOARD_PARENT_PROFILE, title: 'Профайл', icon: 'fa fa-user fa-lg', role: GlobalSettings.ROLE_PARENT},
+        {id: GlobalSettings.ROUTE_DASHBOARD_PARENT_SCHEDULE, title: 'Расписание', icon: 'fa fa-user fa-lg', role: GlobalSettings.ROLE_PARENT,
             elms: [
                 {id: 'child1', title: 'Расписание', icon: 'fa fa-user fa-lg'},
                 {id: 'child2', title: 'Расписание', icon: 'fa fa-user fa-lg'}
             ]
         },
-        {id: 'hometask', title: 'Домашнее задание', icon: 'fa fa-user fa-lg'},
-        {id: 'list', title: 'Ведомость', icon: 'fa fa-user fa-lg'},
-        {id: 'events', title: 'События', icon: 'fa fa-user fa-lg'},
-        {id: 'tasks', title: 'Задачи', icon: 'fa fa-user fa-lg'}
+        {id: GlobalSettings.ROUTE_DASHBOARD_PARENT_HOMETASK, title: 'Домашнее задание', icon: 'fa fa-user fa-lg', role: GlobalSettings.ROLE_PARENT},
+        {id: GlobalSettings.ROUTE_DASHBOARD_PARENT_SHEET, title: 'Ведомость', icon: 'fa fa-user fa-lg', role: GlobalSettings.ROLE_PARENT},
+        {id: GlobalSettings.ROUTE_DASHBOARD_PARENT_EVENTS, title: 'События', icon: 'fa fa-user fa-lg', role: GlobalSettings.ROLE_PARENT},
+        {id: GlobalSettings.ROUTE_DASHBOARD_PARENT_TASKS, title: 'Задачи', icon: 'fa fa-user fa-lg', role: GlobalSettings.ROLE_PARENT}
+
     ]
 
 };
