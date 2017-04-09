@@ -12,21 +12,21 @@ import { DashParentHometaskComponent } from './dash-parent/hometask/dash-parent-
 import { DashParentSheetComponent } from './dash-parent/sheet/dash-parent-sheet.component';
 import { DashParentEventsComponent } from './dash-parent/events/dash-parent-events.component';
 import { DashParentTasksComponent } from './dash-parent/tasks/dash-parent-tasks.component';
-import {DashChiefProfileComponent} from "./dash-chief/profile/dash-chief-profile.component";
-import {DashChiefPlanComponent} from "./dash-chief/plan/dash-chief-plan.component";
-import {DashChiefScheduleComponent} from "./dash-chief/schedule/dash-chief-schedule.component";
-import {DashChiefCoursesComponent} from "./dash-chief/courses/dash-chief-courses.component";
-import {DashChiefTeachersComponent} from "./dash-chief/teachers/dash-chief-teachers.component";
-import {DashChiefStudentsComponent} from "./dash-chief/students/dash-chief-students.component";
-import {DashChiefParentsComponent} from "./dash-chief/parents/dash-chief-parents.component";
-import {DashChiefEventsComponent} from "./dash-chief/events/dash-chief-events.component";
-import {DashChiefTasksComponent} from "./dash-chief/tasks/dash-chief-tasks.component";
-import {DashChiefMealsComponent} from "./dash-chief/meals/dash-chief-meals.component";
-import {DashTeacherEventsComponent} from "./dash-teacher/events/dash-teacher-events.component";
-import {DashTeacherHometaskComponent} from "./dash-teacher/hometask/dash-teacher-hometask.component";
-import {DashTeacherScheduleComponent} from "./dash-teacher/schedule/dash-teacher-schedule.component";
-import {DashTeacherSheetComponent} from "./dash-teacher/sheet/dash-teacher-sheet.component";
-import {DashTeacherTasksComponent} from "./dash-teacher/tasks/dash-teacher-tasks.component";
+import { DashChiefProfileComponent } from './dash-chief/profile/dash-chief-profile.component';
+import { DashChiefPlanComponent } from './dash-chief/plan/dash-chief-plan.component';
+import { DashChiefScheduleComponent } from './dash-chief/schedule/dash-chief-schedule.component';
+import { DashChiefCoursesComponent } from './dash-chief/courses/dash-chief-courses.component';
+import { DashChiefTeachersComponent } from './dash-chief/teachers/dash-chief-teachers.component';
+import { DashChiefStudentsComponent } from './dash-chief/students/dash-chief-students.component';
+import { DashChiefParentsComponent } from './dash-chief/parents/dash-chief-parents.component';
+import { DashChiefEventsComponent } from './dash-chief/events/dash-chief-events.component';
+import { DashChiefTasksComponent } from './dash-chief/tasks/dash-chief-tasks.component';
+import { DashChiefMealsComponent } from './dash-chief/meals/dash-chief-meals.component';
+import { DashTeacherEventsComponent } from './dash-teacher/events/dash-teacher-events.component';
+import { DashTeacherHometaskComponent } from './dash-teacher/hometask/dash-teacher-hometask.component';
+import { DashTeacherScheduleComponent } from './dash-teacher/schedule/dash-teacher-schedule.component';
+import { DashTeacherSheetComponent } from './dash-teacher/sheet/dash-teacher-sheet.component';
+import { DashTeacherTasksComponent } from './dash-teacher/tasks/dash-teacher-tasks.component';
 
 @NgModule({
     imports: [

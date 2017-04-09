@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {DashboardMenuModule} from "../../menu/dashboard.menu.module";
-import {DashChiefParentsComponent} from "./dash-chief-parents.component";
+import { DashboardMenuModule } from '../../menu/dashboard.menu.module';
+import { DashChiefParentsComponent } from './dash-chief-parents.component';
 
 @NgModule({
     imports: [CommonModule, DashboardMenuModule],

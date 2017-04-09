@@ -1,10 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
-import {Router, ActivatedRoute} from '@angular/router';
-import {UserService} from "../../shared/services/user.service";
-import {DashboardMenu} from "../../shared/data/dashboard-menu-data";
-import {GlobalSettings} from "../../shared/data/global-settings";
-import {User} from "../../shared/models/user";
-import {GlobalEventsManager} from "../../shared/events/global-events.manager";
+import { Router, ActivatedRoute } from '@angular/router';
+import { UserService } from '../../shared/services/user.service';
+import { DashboardMenu } from '../../shared/data/dashboard-menu-data';
+import { GlobalSettings } from '../../shared/data/global-settings';
+import { User } from '../../shared/models/user';
+import { GlobalEventsManager } from '../../shared/events/global-events.manager';
 
 @Component({
     moduleId: module.id,

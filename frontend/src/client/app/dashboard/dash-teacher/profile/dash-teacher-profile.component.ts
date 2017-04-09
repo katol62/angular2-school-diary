@@ -1,9 +1,8 @@
 import { Component, OnInit, ElementRef, Input } from '@angular/core';
 import { GlobalEventsManager } from '../../../shared/index';
-import {User} from "../../../shared/models/user";
-import {DashboardUsers} from "../../../shared/data/dashboard-menu-data";
-import {UserService} from "../../../shared/services/user.service";
-import {GlobalSettings} from "../../../shared/data/global-settings";
+import { User } from '../../../shared/models/user';
+import { UserService } from '../../../shared/services/user.service';
+import { GlobalSettings } from '../../../shared/data/global-settings';
 
 @Component({
     moduleId: module.id,

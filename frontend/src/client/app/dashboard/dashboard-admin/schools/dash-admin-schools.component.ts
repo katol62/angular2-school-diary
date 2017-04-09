@@ -1,9 +1,9 @@
 import { Component, OnInit, ElementRef, Input } from '@angular/core';
 import {Router} from '@angular/router';
 import { User } from '../../../shared/models/user';
-import {DashboardSchools} from "../../../shared/data/dashboard-menu-data";
-import {GlobalSettings} from "../../../shared/data/global-settings";
-import {GlobalEventsManager} from "../../../shared/events/global-events.manager";
+import { DashboardSchools } from '../../../shared/data/dashboard-menu-data';
+import { GlobalSettings } from '../../../shared/data/global-settings';
+import { GlobalEventsManager } from '../../../shared/events/global-events.manager';
 
 @Component({
     moduleId: module.id,
