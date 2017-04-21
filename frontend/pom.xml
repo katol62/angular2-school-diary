@@ -2,29 +2,39 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>org.victor</groupId>
+
+    <groupId>ru.schoolarlife</groupId>
     <artifactId>schoolarlife</artifactId>
     <version>1.0.0-SNAPSHOT</version>
+
+
     <packaging>jar</packaging>
+
     <name>ScoolarLife</name>
-    <description>ScoolarLife</description>
+    <description>ScoolarLife web application's REST service</description>
     <url>http://schoolarlife.ru/</url>
     <organization>
-        <name>MyCompany Inc.</name>
-        <url>http://mc.org</url>
+        <name>Innovation Development Ltd.</name>
+        <url>http://inrazvitie.ru</url>
     </organization>
+
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>1.4.2.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
+
+
     <properties>
+        <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <main.basedir>${basedir}/../..</main.basedir>
         <m2eclipse.wtp.contextRoot>/</m2eclipse.wtp.contextRoot>
         <hibernate.version>4.3.8.Final</hibernate.version>
     </properties>
+
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -120,6 +130,8 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+
+
     <build>
         <plugins>
             <plugin>
@@ -152,4 +164,19 @@
             </plugin>
         </plugins>
     </build>
+
+    <repositories>
+        <repository>
+            <id>spring-releases</id>
+            <url>https://repo.spring.io/libs-release</url>
+        </repository>
+    </repositories>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>spring-releases</id>
+            <url>https://repo.spring.io/libs-release</url>
+        </pluginRepository>
+    </pluginRepositories>
+
 </project>
