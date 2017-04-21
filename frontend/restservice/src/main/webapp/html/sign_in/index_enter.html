@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<title>Страница входа</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Neucha" rel="stylesheet">
+
+	<link rel="stylesheet" href="css/animate.css">
+	<!-- Custom Stylesheet -->
+	<link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+	<div class="container animated bounceInLeft">
+		<div class="login-box">
+			<div class="box-header">
+				<h2>Вход</h2>
+			</div>
+			<label for="cemail">Email</label>
+			<br/>
+			<input id="cemail" type="email" name="email" required>
+			<br/>
+			<label for="password">Пароль</label>
+			<br/>
+			<input type="password" id="password">
+			<br/>
+			<button id="enter" type="submit" value="Submit" onclick="btn()">Войти</button>
+			<br/>			
+			<p class="small"><a href="#">Забыли пароль?</a></p>
+			<p class="reg"><a href="#">Регистрация</a><a id="home_log" href="../index.html">На главную</a></p>
+			<br/>
+			
+		</div>
+	</div>
+	<div class="reg_field animated hide">
+		<div class="login-box reg-box registration">
+				<div class="box-header">
+					<h2>Регистрация</h2>
+				</div>
+				<input id="name" placeholder="Имя">
+				<br/>
+				<input id="sacondName" placeholder="Фамилия">
+				<br/>
+				<input id="fatherName" placeholder="Отчество">
+				<br/>
+				<input id="email" placeholder="Email">
+				<br/>
+				<input id="password" placeholder="Пароль">
+				<br/>
+				<input id="password" placeholder="Повторите пароль">
+				<br/>
+				<label for="sex">Пол</label>
+				<div class="radio">
+	    			<input id="male" type="radio" name="gender" value="male">
+					<label class="gender" for="male">Мужской</label>
+					<input id="female" type="radio" name="gender" value="female">
+					<label class="gender" for="female">Женский</label>
+				</div>
+				<br/>
+				<input id="age" type="date" min="1920-01-01" max="2000-01-01" placeholder="Дата рождения">
+				<br/>
+				<div class="g-recaptcha" data-sitekey="my_key"></div>
+				<br/>
+				<button id="enter1" type="submit" value="Submit">Зарегистрироваться</button>
+				<button id="back" type="submit" value="Submit">Назад</button>
+				<br/>
+				<a href="../index.html" id="home">На главную</a>
+			</div>
+	</div>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+	<script src="js/common.js"></script>
+	<script src="js/jquery.validate.min.js"></script>
+	<script src='https://www.google.com/recaptcha/api.js'></script>
+	<script>
+		function btn()
+		{
+		     window.location = "../user/index_user.html"
+		}
+	</script>
+</body>
+</html>
