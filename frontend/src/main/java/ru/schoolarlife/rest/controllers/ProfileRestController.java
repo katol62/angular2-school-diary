@@ -12,10 +12,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.util.UriComponentsBuilder;
 import ru.schoolarlife.logic.bo.person.Parent;
 import ru.schoolarlife.logic.bo.security.User;
-import ru.schoolarlife.logic.model.Auth;
 import ru.schoolarlife.logic.model.dao.repositories.security.UserRepository;
 import ru.schoolarlife.util.CustomErrorType;
-
 
 import java.io.BufferedOutputStream;
 import java.io.File;

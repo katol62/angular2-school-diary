@@ -9,13 +9,9 @@ import ru.schoolarlife.logic.bo.security.Role;
 import ru.schoolarlife.logic.bo.security.User;
 import ru.schoolarlife.logic.model.dao.repositories.security.RoleRepository;
 import ru.schoolarlife.logic.model.dao.repositories.security.UserRepository;
-import ru.schoolarlife.rest.controllers.ProfileRestController;
 
 import javax.annotation.PostConstruct;
-import java.util.Collection;
 import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Set;
 
 
 @SpringBootApplication(scanBasePackages={"ru.schoolarlife"})// same as @Configuration @EnableAutoConfiguration @ComponentScan combined
