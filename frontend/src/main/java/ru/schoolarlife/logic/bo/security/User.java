@@ -1,4 +1,8 @@
 package ru.schoolarlife.logic.bo.security;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonView;
+import ru.schoolarlife.rest.controllers.json.View;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -14,29 +18,37 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @JsonView(View.Summary.class)
     private Long id;
 
     @NotNull
     @Size(min = 3, max = 80)
+    @JsonView(View.Summary.class)
     private String email;
 
     @NotNull
     @Size(min = 2, max = 80)
+    @JsonView(View.Summary.class)
     private String name;
 
+    @JsonIgnore
     private String password;
 
     @Transient
+    @JsonIgnore
     private String passwordConfirm;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id", referencedColumnName="ID"),
                             inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName="ID"))
-    private Set<Role> roles = new HashSet<Role>();;
+    @JsonIgnore
+    private Set<Role> roles = new HashSet<Role>();
 
+    @JsonView(View.Summary.class)
     private boolean active = false;
 
     @OneToOne(fetch=FetchType.LAZY, mappedBy="user")
+    @JsonIgnore
     private UserActivation owner;
 
     public User() {

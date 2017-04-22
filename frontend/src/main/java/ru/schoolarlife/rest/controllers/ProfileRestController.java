@@ -1,29 +1,27 @@
 package ru.schoolarlife.rest.controllers;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartResolver;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.util.UriComponentsBuilder;
 import ru.schoolarlife.logic.bo.person.Parent;
-import ru.schoolarlife.logic.bo.person.Student;
-import ru.schoolarlife.logic.bo.person.Teacher;
 import ru.schoolarlife.logic.bo.security.User;
+import ru.schoolarlife.logic.model.Auth;
+import ru.schoolarlife.logic.model.dao.repositories.security.UserRepository;
+import ru.schoolarlife.util.CustomErrorType;
 
 
-import javax.validation.Valid;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.nio.file.Paths;
-import java.util.Date;
-import java.util.Random;
+import java.util.List;
 
 /**
  * Created by victor on 22.11.16.
@@ -33,35 +31,70 @@ import java.util.Random;
 @RequestMapping("/api/profile")
 public class ProfileRestController {
 
-    @GetMapping("/addprofile/{profileType}")
-    public String editProfile(@PathVariable("profileType") Integer profileType, Model model) {
-        switch (profileType)
-        {
-            case 0:
-            {
-                model.addAttribute("userProfile", new Parent());
-            }
-            case 1:
-            {
-                model.addAttribute("userProfile", new Teacher());
-            }
-            case 2:
-            {
-                model.addAttribute("userProfile", new Student());
-            }
-            default:
-            {
-                model.addAttribute("userProfile", new Parent());
-            }
-        }
+    public static final Logger logger = LoggerFactory.getLogger(ProfileRestController.class);
 
-        return "person/editprofile";
+    @Autowired
+    UserRepository userRepository;
+
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public ResponseEntity<List<User>> getAllUsers() {
+        List<User> users = userRepository.findAll();
+        if (users.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            // You many decide to return HttpStatus.NOT_FOUND
+        }
+        return new ResponseEntity<List<User>>(users, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/addprofile", method = RequestMethod.POST)
-    public String registration(@ModelAttribute("userProfile") User userProfile, BindingResult bindingResult, Model model)
-    {
-        return "redirect:/addprofile/0";
+    @GetMapping("/{profileId}")
+    public ResponseEntity<?> getProfile(@PathVariable("profileId") Integer profileId) {
+        logger.info("Fetching User with ID {}", profileId);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Access-Control-Allow-Origin", "*");
+
+        User user = userRepository.findById(profileId);
+
+        if (user == null) {
+            logger.error("User with ID {} not found.", profileId);
+            return new ResponseEntity<>(new CustomErrorType("User with ID " + profileId + " not found"), headers, HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<User>(user, headers, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/", method = RequestMethod.POST)
+    public ResponseEntity<?> createUser(@RequestBody User user, UriComponentsBuilder ucBuilder) {
+        logger.info("Creating User : {}", user);
+
+        if (userRepository.findByEmail(user.getEmail()) != null) {
+            logger.error("Unable to create. A User with email {} already exist", user.getEmail());
+            return new ResponseEntity<>(new CustomErrorType("Unable to create. A User with email " +
+                    user.getEmail() + " already exist."), HttpStatus.CONFLICT);
+        }
+
+        userRepository.save(user);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setLocation(ucBuilder.path("/api/user/{id}").buildAndExpand(user.getId()).toUri());
+        return new ResponseEntity<String>(HttpStatus.CREATED);
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    public ResponseEntity<?> updateUser(@PathVariable("id") long id, @RequestBody User user) {
+        logger.info("Updating User with id {}", id);
+
+        User currentUser = userRepository.findById(id);
+
+        if (currentUser == null) {
+            logger.error("Unable to update. User with id {} not found.", id);
+            return new ResponseEntity<>(new CustomErrorType("Unable to upate. User with id " + id + " not found."),
+                    HttpStatus.NOT_FOUND);
+        }
+
+        user.setId(id);
+
+        userRepository.save(user);
+        return new ResponseEntity<User>(HttpStatus.OK);
     }
 
     @RequestMapping(value = "/uploadFile", method = RequestMethod.POST)
@@ -87,6 +120,20 @@ public class ProfileRestController {
         }
         model.addAttribute("userProfile", new Parent());
         return "person/editprofile";
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity<?> deleteUser(@PathVariable("id") long id) {
+        logger.info("Fetching & Deleting User with id {}", id);
+
+        User user = userRepository.findById(id);
+        if (user == null) {
+            logger.error("Unable to delete. User with id {} not found.", id);
+            return new ResponseEntity<>(new CustomErrorType("Unable to delete. User with id " + id + " not found."),
+                    HttpStatus.NOT_FOUND);
+        }
+        userRepository.delete(user);
+        return new ResponseEntity<User>(HttpStatus.NO_CONTENT);
     }
 
 }
