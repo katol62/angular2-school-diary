@@ -10,15 +10,15 @@ export class AuthService {
     constructor(private http: Http) {}
 
     login(username: string, password: string) {
-
-        let prodRest = 'http://staging.schoolarlife.ru:3003/rest/api/login/';
-        let testTest = '/rest/api/login/';
+        debugger;
+        let prodRest = 'http://staging.schoolarlife.ru:3003/rest/api/auth/login/';
+        let testTest = '/rest/api/auth/login/';
         //change
         let host = location.hostname;
         let restUrl = host == 'localhost' ? testTest : prodRest;
 
-        let params = {login: username, password: password};
-        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let params = {email: username, password: password};
+        let headers = new Headers({ 'Content-Type': 'application/json', 'X-Auth-Token': username+':'+password });
         let options = new RequestOptions({ headers: headers });
 
         return this.http.post(restUrl, params, options)
@@ -75,7 +75,7 @@ export class AuthService {
         // We'd also dig deeper into the error to get a better message
         let errMsg = (error.message) ? error.message :
             error.status ? `${error.status} - ${error.statusText}` : 'Server error';
-        console.error(errMsg); // log to console instead
+        console.log(errMsg);
         return Observable.throw(errMsg);
     }
 
