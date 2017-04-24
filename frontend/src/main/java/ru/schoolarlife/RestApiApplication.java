@@ -14,7 +14,7 @@ import javax.annotation.PostConstruct;
 import java.util.HashSet;
 
 
-@SpringBootApplication(scanBasePackages={"ru.schoolarlife"})// same as @Configuration @EnableAutoConfiguration @ComponentScan combined
+@SpringBootApplication//(scanBasePackages={"ru.schoolarlife"})// same as @Configuration @EnableAutoConfiguration @ComponentScan combined
 public class RestApiApplication {
 
 	public static final Logger logger = LoggerFactory.getLogger(RestApiApplication.class);

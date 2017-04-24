@@ -2,6 +2,8 @@ package ru.schoolarlife.logic.bl.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationCredentialsNotFoundException;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -35,11 +37,14 @@ public class CustomUserDetailsService implements UserDetailsService {
         }else{
             if(user.getRoles().size() > 0)
             {
-                List<String> userRoles = new ArrayList<String>();
-                for (Role role : user.getRoles()) {
-                    userRoles.add(role.getName());
+                Collection<GrantedAuthority> grantedAuthorities = new ArrayList<>();
+                for (Role authority : user.getRoles()) {
+                    GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(authority.getName());
+                    grantedAuthorities.add(grantedAuthority);
                 }
-                return new CustomUserDetails(user,userRoles);
+
+                return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), grantedAuthorities);
+
             }
             else
             {

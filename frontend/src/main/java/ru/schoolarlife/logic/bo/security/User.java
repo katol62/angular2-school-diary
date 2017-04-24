@@ -52,6 +52,7 @@ public class User {
     private UserActivation owner;
 
     public User() {
+        int i = 0;
     }
 
     public User(String name) {

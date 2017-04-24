@@ -1,20 +1,19 @@
 package ru.schoolarlife.mail.service;
 
-import freemarker.template.Configuration;
+/*import freemarker.template.Configuration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.freemarker.FreeMarkerTemplateUtils;
 import ru.schoolarlife.logic.bo.security.User;
 import ru.schoolarlife.mail.interfaces.MailComposer;
 
-
 import java.util.HashMap;
 import java.util.Map;
 
 
-/**
+*//**
  * Created by victor on 14.11.16.
- */
+ *//*
 @Service
 public class MailComposerImpl implements MailComposer {
 
@@ -38,4 +37,4 @@ public class MailComposerImpl implements MailComposer {
         }
         return "";
     }
-}
+}*/
