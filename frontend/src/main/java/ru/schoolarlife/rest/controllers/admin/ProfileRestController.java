@@ -27,7 +27,7 @@ import java.util.List;
 @CrossOrigin(maxAge = 3600)
 @RestController
 @RequestMapping("/api/profile")
-public class ProfileRestController {
+public class ProfileRestController extends BaseAdminRestController {
 
     public static final Logger logger = LoggerFactory.getLogger(ProfileRestController.class);
 
@@ -36,12 +36,16 @@ public class ProfileRestController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ResponseEntity<List<Person>> getAllProfiles() {
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Access-Control-Allow-Origin", "*");
+
         List<Person> profiles = profileService.getAllProfiles();
         if (profiles.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>(headers, HttpStatus.NO_CONTENT);
             // You many decide to return HttpStatus.NOT_FOUND
         }
-        return new ResponseEntity<List<Person>>(profiles, HttpStatus.OK);
+        return new ResponseEntity<List<Person>>(profiles, headers, HttpStatus.OK);
     }
 
     @GetMapping("/{profileId}")
