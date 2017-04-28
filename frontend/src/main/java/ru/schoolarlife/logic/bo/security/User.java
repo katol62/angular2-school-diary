@@ -1,7 +1,12 @@
 package ru.schoolarlife.logic.bo.security;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonView;
-import ru.schoolarlife.rest.controllers.json.View;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import ru.schoolarlife.logic.util.enums.EnUserRole;
+import ru.schoolarlife.logic.util.json.coders.UserRoleDeserializer;
+import ru.schoolarlife.logic.util.json.coders.UserRoleSerializer;
+import ru.schoolarlife.logic.util.json.View;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -26,22 +31,28 @@ public class User {
     @JsonView(View.Summary.class)
     private String email;
 
+    @JsonView(View.Summary.class)
+    @JsonSerialize(using = UserRoleSerializer.class)
+    @JsonDeserialize(using = UserRoleDeserializer.class)
+    private EnUserRole primeRole;
+
     @NotNull
     @Size(min = 2, max = 80)
     @JsonView(View.Summary.class)
     private String name;
 
-    @JsonIgnore
+    @JsonView(View.Summary.class)
     private String password;
 
     @Transient
-    @JsonIgnore
+    @JsonView(View.Summary.class)
     private String passwordConfirm;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id", referencedColumnName="ID"),
                             inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName="ID"))
-    @JsonIgnore
+
+    @JsonView(View.Summary.class)
     private Set<Role> roles = new HashSet<Role>();
 
     @JsonView(View.Summary.class)
@@ -124,5 +135,13 @@ public class User {
 
     public void setActive(boolean active) {
         this.active = active;
+    }
+
+    public EnUserRole getPrimeRole() {
+        return primeRole;
+    }
+
+    public void setPrimeRole(EnUserRole primeRole) {
+        this.primeRole = primeRole;
     }
 }

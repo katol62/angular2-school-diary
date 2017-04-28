@@ -1,0 +1,10 @@
+{
+  "id":"-1",
+  "email":"admin@schoolarlife.ru",
+  "primeRole":"0",
+  "name":"Adminenko Admin Adminovich",
+  "password":"blahblahblah",
+  "passwordConfirm":"blahblahblah",
+  "roles":[{"id":1, "name":"ROLE_ADMIN"}],
+  "active":"false"
+}

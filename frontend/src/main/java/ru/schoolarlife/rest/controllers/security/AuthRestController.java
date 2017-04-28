@@ -1,4 +1,4 @@
-package ru.schoolarlife.rest.controllers;
+package ru.schoolarlife.rest.controllers.security;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.schoolarlife.logic.bo.security.User;
 import ru.schoolarlife.logic.model.dao.repositories.security.UserRepository;
-import ru.schoolarlife.util.CustomErrorType;
+import ru.schoolarlife.logic.util.CustomErrorType;
 
 import java.util.Map;
 

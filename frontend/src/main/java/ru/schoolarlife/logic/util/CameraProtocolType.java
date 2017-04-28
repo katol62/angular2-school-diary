@@ -1,4 +1,4 @@
-package ru.schoolarlife.logic.helpers;
+package ru.schoolarlife.logic.util;
 
 /**
  * Created by victor on 16.11.16.

@@ -1,6 +1,6 @@
 package ru.schoolarlife.logic.bo.school;
 
-import ru.schoolarlife.logic.helpers.CameraProtocolType;
+import ru.schoolarlife.logic.util.CameraProtocolType;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;

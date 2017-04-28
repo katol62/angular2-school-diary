@@ -1,4 +1,4 @@
-package ru.schoolarlife.util;
+package ru.schoolarlife.logic.util;
 
 
 public class CustomErrorType {

@@ -9,6 +9,7 @@ import ru.schoolarlife.logic.bo.security.Role;
 import ru.schoolarlife.logic.bo.security.User;
 import ru.schoolarlife.logic.model.dao.repositories.security.RoleRepository;
 import ru.schoolarlife.logic.model.dao.repositories.security.UserRepository;
+import ru.schoolarlife.logic.util.enums.EnUserRole;
 
 import javax.annotation.PostConstruct;
 import java.util.HashSet;
@@ -44,6 +45,7 @@ public class RestApiApplication {
 			user.setPassword("demo1234");
 			user.setPasswordConfirm("demo1234");
 			user.setActive(true);
+			user.setPrimeRole(EnUserRole.ROLE_GLOGAL_ADMIN);
 
 			Role role = roleRepository.findByName("ROLE_ADMIN");
 			if(role == null) {

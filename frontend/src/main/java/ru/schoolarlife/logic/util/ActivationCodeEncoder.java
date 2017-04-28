@@ -1,4 +1,4 @@
-package ru.schoolarlife.logic.helpers;
+package ru.schoolarlife.logic.util;
 
 import org.springframework.stereotype.Component;
 

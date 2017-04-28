@@ -2,7 +2,7 @@ package ru.schoolarlife.logic.bo.security;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonView;
-import ru.schoolarlife.rest.controllers.json.View;
+import ru.schoolarlife.logic.util.json.View;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;

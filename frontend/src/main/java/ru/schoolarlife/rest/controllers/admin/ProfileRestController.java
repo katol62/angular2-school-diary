@@ -1,4 +1,4 @@
-package ru.schoolarlife.rest.controllers;
+package ru.schoolarlife.rest.controllers.admin;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.util.UriComponentsBuilder;
 import ru.schoolarlife.logic.bo.person.Parent;
-import ru.schoolarlife.logic.bo.security.User;
-import ru.schoolarlife.logic.model.dao.repositories.security.UserRepository;
-import ru.schoolarlife.util.CustomErrorType;
+import ru.schoolarlife.logic.bo.person.Person;
+import ru.schoolarlife.logic.model.dao.services.ProfileService;
+import ru.schoolarlife.logic.util.CustomErrorType;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -32,67 +32,72 @@ public class ProfileRestController {
     public static final Logger logger = LoggerFactory.getLogger(ProfileRestController.class);
 
     @Autowired
-    UserRepository userRepository;
+    ProfileService profileService;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ResponseEntity<List<User>> getAllUsers() {
-        List<User> users = userRepository.findAll();
-        if (users.isEmpty()) {
+    public ResponseEntity<List<Person>> getAllProfiles() {
+        List<Person> profiles = profileService.getAllProfiles();
+        if (profiles.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             // You many decide to return HttpStatus.NOT_FOUND
         }
-        return new ResponseEntity<List<User>>(users, HttpStatus.OK);
+        return new ResponseEntity<List<Person>>(profiles, HttpStatus.OK);
     }
 
     @GetMapping("/{profileId}")
-    public ResponseEntity<?> getProfile(@PathVariable("profileId") Integer profileId) {
+    public ResponseEntity<?> getProfile(@PathVariable("profileId") Long profileId) {
         logger.info("Fetching User with ID {}", profileId);
 
         HttpHeaders headers = new HttpHeaders();
         headers.add("Access-Control-Allow-Origin", "*");
 
-        User user = userRepository.findById(profileId);
+        Person person = profileService.getOneById(profileId);
 
-        if (user == null) {
-            logger.error("User with ID {} not found.", profileId);
-            return new ResponseEntity<>(new CustomErrorType("User with ID " + profileId + " not found"), headers, HttpStatus.NOT_FOUND);
+        if (person == null) {
+            logger.error("Profile with ID {} not found.", profileId);
+            return new ResponseEntity<>(new CustomErrorType("Profile with ID " + profileId + " not found"), headers, HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<User>(user, headers, HttpStatus.OK);
+        return new ResponseEntity<Person>(person, headers, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
-    public ResponseEntity<?> createUser(@RequestBody User user, UriComponentsBuilder ucBuilder) {
-        logger.info("Creating User : {}", user);
+    public ResponseEntity<?> createUser(@RequestBody Person person, UriComponentsBuilder ucBuilder) {
+        logger.info("Creating User : {}", person);
 
-        if (userRepository.findByEmail(user.getEmail()) != null) {
-            logger.error("Unable to create. A User with email {} already exist", user.getEmail());
+        if (profileService.findByEmail(person.getEmail()) != null) {
+            logger.error("Unable to create. A Profile with email {} already exist", person.getEmail());
             return new ResponseEntity<>(new CustomErrorType("Unable to create. A User with email " +
-                    user.getEmail() + " already exist."), HttpStatus.CONFLICT);
+                    person.getEmail() + " already exist."), HttpStatus.CONFLICT);
         }
 
-        userRepository.save(user);
+        person = profileService.save(person);
 
         HttpHeaders headers = new HttpHeaders();
-        headers.setLocation(ucBuilder.path("/api/user/{id}").buildAndExpand(user.getId()).toUri());
-        return new ResponseEntity<String>(HttpStatus.CREATED);
+        headers.add("Access-Control-Allow-Origin", "*");
+
+        return new ResponseEntity<Person>(person, headers, HttpStatus.CREATED);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<?> updateUser(@PathVariable("id") long id, @RequestBody User user) {
-        logger.info("Updating User with id {}", id);
+    public ResponseEntity<?> updateUser(@PathVariable("id") long id, @RequestBody Person person) {
+        logger.info("Updating Profile with id {}", id);
 
-        User currentUser = userRepository.findById(id);
+        Person currentUser = profileService.getOneById(id);
 
         if (currentUser == null) {
-            logger.error("Unable to update. User with id {} not found.", id);
-            return new ResponseEntity<>(new CustomErrorType("Unable to upate. User with id " + id + " not found."),
+            logger.error("Unable to update. Profile with id {} not found.", id);
+            return new ResponseEntity<>(new CustomErrorType("Unable to update. Profile with id " + id + " not found."),
                     HttpStatus.NOT_FOUND);
         }
 
-        user.setId(id);
+        //person.setId(id);
 
-        userRepository.save(user);
-        return new ResponseEntity<User>(HttpStatus.OK);
+        person = profileService.save(person);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Access-Control-Allow-Origin", "*");
+
+        return new ResponseEntity<Person>(person, headers, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/uploadFile", method = RequestMethod.POST)
@@ -122,16 +127,20 @@ public class ProfileRestController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<?> deleteUser(@PathVariable("id") long id) {
-        logger.info("Fetching & Deleting User with id {}", id);
+        logger.info("Fetching & Deleting Profile with id {}", id);
 
-        User user = userRepository.findById(id);
-        if (user == null) {
-            logger.error("Unable to delete. User with id {} not found.", id);
-            return new ResponseEntity<>(new CustomErrorType("Unable to delete. User with id " + id + " not found."),
-                    HttpStatus.NOT_FOUND);
+        Person person = profileService.getOneById(id);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Access-Control-Allow-Origin", "*");
+
+        if (person == null) {
+            logger.error("Unable to delete. Profile with id {} not found.", id);
+            return new ResponseEntity<>(new CustomErrorType("Unable to delete. Profile with id " + id + " not found."),
+                    headers, HttpStatus.NOT_FOUND);
         }
-        userRepository.delete(user);
-        return new ResponseEntity<User>(HttpStatus.NO_CONTENT);
+        profileService.delete(person);
+        return new ResponseEntity<>(headers, HttpStatus.NO_CONTENT);
     }
 
 }
