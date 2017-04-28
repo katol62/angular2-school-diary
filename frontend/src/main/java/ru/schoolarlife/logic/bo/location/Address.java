@@ -23,12 +23,12 @@ public class Address {
     @JsonView(View.Summary.class)
     private String zip;
 
-    @OneToOne(fetch=FetchType.LAZY)
+    @OneToOne(fetch=FetchType.EAGER)
     @JoinColumn(name="country_id")
     @JsonView(View.Summary.class)
     private Country country;
 
-    @OneToOne(fetch=FetchType.LAZY)
+    @OneToOne(fetch=FetchType.EAGER)
     @JoinColumn(name="city_id")
     @JsonView(View.Summary.class)
     private City city;

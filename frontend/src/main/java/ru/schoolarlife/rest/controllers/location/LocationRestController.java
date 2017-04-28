@@ -198,7 +198,7 @@ public class LocationRestController extends BaseAdminRestController {
         return new ResponseEntity<Country>(country, headers, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/country/{id}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/city/{id}", method = RequestMethod.PUT)
     public ResponseEntity<?> updateCity(@PathVariable("id") long id, @RequestBody City city) {
         logger.info("Updating City with id {}", id);
 
@@ -258,7 +258,7 @@ public class LocationRestController extends BaseAdminRestController {
         return new ResponseEntity<>(headers, HttpStatus.NO_CONTENT);
     }
 
-    @RequestMapping(value = "/country/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/city/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<?> deleteCity(@PathVariable("id") long id) {
         logger.info("Fetching & Deleting City with id {}", id);
 

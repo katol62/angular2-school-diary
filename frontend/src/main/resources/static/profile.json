@@ -1,16 +1,18 @@
 {
   "id":-1,
-  "userId":11,
-  "firstName":"Admin",
-  "middleName":"Adminovich",
-  "lastName":"Adminenko",
-  "logoImage":"/avatars/11.png",
+  "userId":12,
+  "firstName":"Bill",
+  "middleName":"Ivanovich",
+  "lastName":"Gates",
+  "logoImage":"/avatars/12.png",
   "gender":0,
-  "birthDate":"05-02-1978"
+  "birthDate":"05-02-1978",
   "age":40,
-  "email":"admin@schoolarlife.ru"
+  "email":"principal@garvard.com",
   "address":
   {
+    "id":1,
+    "zip":"295000",
     "country":
     {
       "id":1,

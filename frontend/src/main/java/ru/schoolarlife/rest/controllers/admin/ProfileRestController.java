@@ -12,8 +12,13 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.util.UriComponentsBuilder;
 import ru.schoolarlife.logic.bo.person.Parent;
 import ru.schoolarlife.logic.bo.person.Person;
+import ru.schoolarlife.logic.bo.person.Student;
+import ru.schoolarlife.logic.bo.person.Teacher;
+import ru.schoolarlife.logic.bo.security.User;
 import ru.schoolarlife.logic.model.dao.services.ProfileService;
+import ru.schoolarlife.logic.model.dao.services.UserService;
 import ru.schoolarlife.logic.util.CustomErrorType;
+import ru.schoolarlife.logic.util.enums.EnUserRole;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -33,6 +38,9 @@ public class ProfileRestController extends BaseAdminRestController {
 
     @Autowired
     ProfileService profileService;
+
+    @Autowired
+    UserService userService;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ResponseEntity<List<Person>> getAllProfiles() {
@@ -65,16 +73,39 @@ public class ProfileRestController extends BaseAdminRestController {
     }
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
-    public ResponseEntity<?> createUser(@RequestBody Person person, UriComponentsBuilder ucBuilder) {
-        logger.info("Creating User : {}", person);
+    public ResponseEntity<?> createProfile(@RequestBody Person person, UriComponentsBuilder ucBuilder) {
+        logger.info("Creating Profile : {}", person);
 
         if (profileService.findByEmail(person.getEmail()) != null) {
             logger.error("Unable to create. A Profile with email {} already exist", person.getEmail());
-            return new ResponseEntity<>(new CustomErrorType("Unable to create. A User with email " +
+            return new ResponseEntity<>(new CustomErrorType("Unable to create. A Profile with email " +
                     person.getEmail() + " already exist."), HttpStatus.CONFLICT);
         }
 
-        person = profileService.save(person);
+        User user = userService.getOneById(person.getUserId());
+        if(user == null)
+        {
+            logger.error("Unable to create. There isn't User instance for Profile with email {}", person.getEmail());
+            return new ResponseEntity<>(new CustomErrorType("Unable to create. There isn't User instance for Profile with email " +
+                    person.getEmail()), HttpStatus.CONFLICT);
+        }
+
+        if (user.getPrimeRole() == EnUserRole.ROLE_GLOGAL_ADMIN || user.getPrimeRole() == EnUserRole.ROLE_LOCAL_ADMIN)
+        {
+            person = profileService.save(person);
+        }
+        else if (user.getPrimeRole() == EnUserRole.ROLE_PRINCIPAL || user.getPrimeRole() == EnUserRole.ROLE_TEACHER)
+        {
+            person = profileService.saveTeacher(new Teacher(person));
+        }
+        else if (user.getPrimeRole() == EnUserRole.ROLE_PARENT)
+        {
+            person = profileService.saveParent(new Parent(person));
+        }
+        else if (user.getPrimeRole() == EnUserRole.ROLE_STUDENT)
+        {
+            person = profileService.saveStudent(new Student(person));
+        }
 
         HttpHeaders headers = new HttpHeaders();
         headers.add("Access-Control-Allow-Origin", "*");

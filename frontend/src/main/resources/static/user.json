@@ -1,10 +1,10 @@
 {
   "id":"-1",
-  "email":"admin@schoolarlife.ru",
-  "primeRole":"0",
-  "name":"Adminenko Admin Adminovich",
+  "email":"principal@garvard.com",
+  "primeRole":"2",
+  "name":"Gates Bill Ivanovich",
   "password":"blahblahblah",
   "passwordConfirm":"blahblahblah",
-  "roles":[{"id":1, "name":"ROLE_ADMIN"}],
+  "roles":[{"id":1, "name":"ROLE_USER"}],
   "active":"false"
 }

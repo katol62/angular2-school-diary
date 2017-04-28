@@ -66,7 +66,7 @@ public class Person {
 
 
     @NotNull
-    @OneToOne(fetch=FetchType.LAZY)
+    @OneToOne(fetch=FetchType.EAGER)
     @JoinColumn(name="address_id")
     @JsonView(View.Summary.class)
     private Address address;
