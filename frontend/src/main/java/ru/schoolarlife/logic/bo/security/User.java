@@ -4,8 +4,8 @@ import com.fasterxml.jackson.annotation.JsonView;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import ru.schoolarlife.logic.util.enums.EnUserRole;
-import ru.schoolarlife.logic.util.json.coders.UserRoleDeserializer;
-import ru.schoolarlife.logic.util.json.coders.UserRoleSerializer;
+import ru.schoolarlife.logic.util.json.coders.EnumDeserializer;
+import ru.schoolarlife.logic.util.json.coders.EnumSerializer;
 import ru.schoolarlife.logic.util.json.View;
 
 import javax.persistence.*;
@@ -32,8 +32,8 @@ public class User {
     private String email;
 
     @JsonView(View.Summary.class)
-    @JsonSerialize(using = UserRoleSerializer.class)
-    @JsonDeserialize(using = UserRoleDeserializer.class)
+    @JsonSerialize(using = EnumSerializer.class)
+    @JsonDeserialize(using = EnumDeserializer.class)
     private EnUserRole primeRole;
 
     @NotNull

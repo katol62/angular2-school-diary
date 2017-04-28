@@ -15,7 +15,7 @@ import java.io.IOException;
 /**
  * Created by victor on 28.04.17.
  */
-public class UserRoleDeserializer<E extends JSONEnum<E>> extends JsonDeserializer<E> implements ContextualDeserializer {
+public class EnumDeserializer<E extends JSONEnum<E>> extends JsonDeserializer<E> implements ContextualDeserializer {
 
     private E target;
 
@@ -30,17 +30,4 @@ public class UserRoleDeserializer<E extends JSONEnum<E>> extends JsonDeserialize
         target = clazz.getEnumConstants()[0];
         return this;
     }
-//    @Override
-//    public EnUserRole deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException, JsonProcessingException {
-//        final String jsonValue = jsonParser.getText();
-//        for (final EnUserRole enumValue : EnUserRole.values())
-//        {
-//            if (enumValue.toString().equals(jsonValue))
-//            {
-//                return enumValue;
-//            }
-//        }
-//        return null;
-//
-//    }
 }

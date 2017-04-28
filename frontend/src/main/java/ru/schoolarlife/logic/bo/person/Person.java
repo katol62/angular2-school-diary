@@ -1,7 +1,14 @@
 package ru.schoolarlife.logic.bo.person;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonView;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import ru.schoolarlife.logic.bo.location.Address;
-import ru.schoolarlife.logic.util.Gender;
+import ru.schoolarlife.logic.util.enums.Gender;
+import ru.schoolarlife.logic.util.json.View;
+import ru.schoolarlife.logic.util.json.coders.EnumDeserializer;
+import ru.schoolarlife.logic.util.json.coders.EnumSerializer;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -15,42 +22,56 @@ import java.util.Date;
 @SuppressWarnings("PMD")
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class Person {
+public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @JsonView(View.Summary.class)
     private long id;
 
+    @JsonView(View.Summary.class)
     private long userId;
 
     @NotNull
+    @JsonView(View.Summary.class)
     private String firstName;
 
+    @JsonView(View.Summary.class)
     private String middleName;
 
     @NotNull
+    @JsonView(View.Summary.class)
     private String lastName;
 
+    @JsonView(View.Summary.class)
     private String logoImage;
 
+    @JsonView(View.Summary.class)
+    @JsonSerialize(using = EnumSerializer.class)
+    @JsonDeserialize(using = EnumDeserializer.class)
     private Gender gender;
 
     @NotNull
+    @JsonFormat(pattern="dd-mm-yyyy")
+    @JsonView(View.Summary.class)
     private Date birthDate;
 
     @NotNull
+    @JsonView(View.Summary.class)
     private int age;
 
     @NotNull
     @JoinColumn(name="address_id")
+    @JsonView(View.Summary.class)
     private String email;
 
 
     @NotNull
     @OneToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="address_id")
+    @JsonView(View.Summary.class)
     private Address address;
 
-
+    @JsonView(View.Summary.class)
     private String phone;
 
     public long getId() {

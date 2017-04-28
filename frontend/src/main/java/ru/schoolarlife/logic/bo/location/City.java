@@ -1,5 +1,9 @@
 package ru.schoolarlife.logic.bo.location;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonView;
+import ru.schoolarlife.logic.util.json.View;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
@@ -11,12 +15,15 @@ import javax.validation.constraints.NotNull;
 public class City {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @JsonView(View.Summary.class)
     private long id;
 
     @NotNull
+    @JsonView(View.Summary.class)
     private String name;
 
     @OneToOne(fetch=FetchType.LAZY, mappedBy="city")
+    @JsonIgnore
     private Address owner;
 
     public City() {

@@ -12,16 +12,9 @@ import java.io.IOException;
 /**
  * Created by victor on 28.04.17.
  */
-public class UserRoleSerializer<E extends JSONEnum<E>> extends JsonSerializer<JSONEnum<E>> {
+public class EnumSerializer<E extends JSONEnum<E>> extends JsonSerializer<JSONEnum<E>> {
     @Override
     public void serialize(JSONEnum<E> ejsonEnum, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException, JsonProcessingException {
         jsonGenerator.writeObject(ejsonEnum.toJSON());
     }
-    /*@Override
-    public void serialize(EnUserRole enUserRole, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException, JsonProcessingException {
-        jsonGenerator.writeStartObject();
-    //    jsonGenerator.writeFieldName("primeRole");
-        jsonGenerator.writeNumber(enUserRole.getRole());
-        jsonGenerator.writeEndObject();
-    }*/
 }

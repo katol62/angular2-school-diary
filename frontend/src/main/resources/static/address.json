@@ -1,0 +1,14 @@
+{
+  "country":
+  {
+    "id":1,
+    "name":"Russian Federation"
+  },
+  "city":
+  {
+    "id":1,
+    "name":"Simferopol"
+  },
+  "addressLine":"Muhosranskaya 39",
+  "comment":"Prosto comment"
+}

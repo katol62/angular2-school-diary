@@ -1,0 +1,28 @@
+{
+  "id":-1,
+  "userId":11,
+  "firstName":"Admin",
+  "middleName":"Adminovich",
+  "lastName":"Adminenko",
+  "logoImage":"/avatars/11.png",
+  "gender":0,
+  "birthDate":"05-02-1978"
+  "age":40,
+  "email":"admin@schoolarlife.ru"
+  "address":
+  {
+    "country":
+    {
+      "id":1,
+      "name":"Russian Federation"
+    },
+    "city":
+    {
+      "id":1,
+      "name":"Simferopol"
+    },
+    "addressLine":"Muhosranskaya 39",
+    "comment":"Prosto comment"
+  },
+  "phone":"+79787745125"
+}
