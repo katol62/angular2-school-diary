@@ -51,7 +51,7 @@ public class Person {
     private Gender gender;
 
     @NotNull
-    @JsonFormat(pattern="dd-mm-yyyy")
+    @JsonFormat(pattern="dd-MM-yyyy")
     @JsonView(View.Summary.class)
     private Date birthDate;
 

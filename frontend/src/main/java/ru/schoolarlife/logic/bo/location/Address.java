@@ -40,9 +40,9 @@ public class Address {
     @JsonView(View.Summary.class)
     private String comment;
 
-    @OneToOne(fetch=FetchType.LAZY, mappedBy="address")
-    @JsonIgnore
-    private Person owner;
+   // @OneToOne(fetch=FetchType.LAZY, mappedBy="address")
+   // @JsonIgnore
+   // private Person owner;
 
     public Address() {
     }
@@ -103,11 +103,11 @@ public class Address {
         this.id = id;
     }
 
-    public Person getOwner() {
-        return owner;
-    }
+   // public Person getOwner() {
+     //   return owner;
+    //}
 
-    public void setOwner(Person owner) {
-        this.owner = owner;
-    }
+    //public void setOwner(Person owner) {
+      //  this.owner = owner;
+   // }
 }
