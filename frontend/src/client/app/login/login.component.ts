@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Account, User, GlobalEventsManager, AuthService } from '../shared/index';
+import {UserService} from "../shared/services/user.service";
 
 /**
  * This class represents the lazy loaded LoginComponent.
@@ -24,7 +25,7 @@ export class LoginComponent implements OnInit {
     ngOnInit() {
         // reset login status
 
-        this.authService.logout();
+        //this.authService.logout();
 
         this.globalEventsManager.showToolBar(false);
 
@@ -35,14 +36,13 @@ export class LoginComponent implements OnInit {
     constructor(public router:Router,
                 public authService:AuthService,
                 private route: ActivatedRoute,
+                private userService:UserService,
                 private globalEventsManager: GlobalEventsManager ) {
     }
 
     login() {
-
         this.authSend = true;
-
-        this.authService.login(this.model.username, this.model.password)
+        this.authService.login(this.model.email, this.model.password)
             .subscribe(
                 data => {
                     this.afterSignIn(data);
@@ -53,14 +53,33 @@ export class LoginComponent implements OnInit {
             );
     }
 
-    afterSignIn(user:any) {
+    afterSignIn(auth:any) {
+        if (auth === null) {
+            this.authFailed = true;
+            this.authService.logout();
+        } else {
+            this.authService.updateToken(auth);
+
+            this.userService.getMe()
+                .subscribe(
+                    data => {
+                        this.afterUserGet(data);
+                    },
+                    error => {
+                        this.afterUserGet(null)
+                    }
+                );
+        }
+    }
+
+    afterUserGet(user:any) {
         if (user === null) {
             this.authFailed = true;
-            this.globalEventsManager.isLoggedIn(false);
+            console.log('user null')
         } else {
+            this.userService.setCurrentUser(user);
             this.globalEventsManager.isLoggedIn(true);
             this.router.navigateByUrl(this.returnUrl);
-            //this.globalEventsManager.selectedMenuItem('network');
         }
     }
 }

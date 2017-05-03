@@ -48,6 +48,7 @@ export class CustomToolbarComponent {
                 this.showToolBar = mode;
             }
         });
+        
         this.globalEventsManager.setSelectedMenuItemEmitter.subscribe((mode)=> {
             if (mode !== null) {
                 this.selectedTab = mode;

@@ -32,7 +32,7 @@ export class DashboardComponent implements OnInit {
         console.log('init');
         this.currentUser = this.userService.getCurrentUser();
 
-        this.panels = DashboardMenu[this.currentUser.type];
+        this.panels = DashboardMenu[this.currentUser.primeRole];
 
         this.currentPanel = this.panels[0].id;
         this.currentTitle = this.panels[0].title;

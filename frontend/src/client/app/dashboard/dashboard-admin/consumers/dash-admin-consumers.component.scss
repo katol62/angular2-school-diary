@@ -1,5 +1,17 @@
 .consumers-panel {
+
+  ul {
+    &.thumbnails {
+      margin-top: 0;
+      -webkit-padding-start: 0;
+    }
+  }
+
+
   li {
     list-style: none;
+    .thumbnail {
+      padding: 10px;
+    }
   }
 }

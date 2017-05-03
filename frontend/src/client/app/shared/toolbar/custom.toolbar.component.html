@@ -19,7 +19,7 @@
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right" *ngIf="isLoggedIn">
-                <li><a (click)="profile()"><span class="glyphicon glyphicon-user"></span> {{currentUser?.firstName}} {{currentUser?.lastName}}</a></li>
+                <li><a (click)="profile()"><span class="glyphicon glyphicon-user"></span> {{currentUser?.name}}</a></li>
                 <li><a (click)="onLogout()"><span class="glyphicon glyphicon-log-out"></span> Выйти</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right" *ngIf="!isLoggedIn">

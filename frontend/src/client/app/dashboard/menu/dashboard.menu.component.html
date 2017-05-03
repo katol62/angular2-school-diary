@@ -1,5 +1,5 @@
 <div class="list-group">
     <span *ngFor="let elm of panels">
-        <a *ngIf="elm.role==currentUser.type" class="list-group-item" (click)="selectPanel(elm.id)" [class.active]="selectedPanel==elm.id"><i class="fa {{elm.icon}}" aria-hidden="true"></i> {{elm.title}}</a>
+        <a *ngIf="elm.role==currentUser.primeRole" class="list-group-item" (click)="selectPanel(elm.id)" [class.active]="selectedPanel==elm.id"><i class="fa {{elm.icon}}" aria-hidden="true"></i> {{elm.title}}</a>
     </span>
 </div>
