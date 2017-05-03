@@ -28,7 +28,6 @@ import {SvideoModule} from "./shared/simple-video/svideo.module";
 import {BreadcrumbsModule} from "./shared/breadcrumbs/breadcrumbs.module";
 import {HlsPlayerModule} from "./shared/hls-video/hls-player.module";
 
-
 @NgModule({
   imports: [BrowserModule,
       HttpModule,
@@ -48,6 +47,7 @@ import {HlsPlayerModule} from "./shared/hls-video/hls-player.module";
       RegisterModule,
       SvideoModule,
       HlsPlayerModule,
+      HttpModule,
       BreadcrumbsModule,
       SharedModule.forRoot()],
   declarations: [AppComponent],

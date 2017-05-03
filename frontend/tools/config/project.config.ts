@@ -82,7 +82,7 @@ export class ProjectConfig extends SeedConfig {
 
     /* Add proxy middlewar */
     this.PROXY_MIDDLEWARE = [
-      require('http-proxy-middleware')('/rest/api',{ ws: true, target: 'http://localhost:3003', changeOrigin: false })
+      require('http-proxy-middleware')('/rest/oauth',{ ws: true, target: 'http://localhost:3003', changeOrigin: false })
     ];
 
     /* Add to or override NPM module configurations: */

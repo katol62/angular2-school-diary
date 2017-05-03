@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Config } from './shared/config/env.config';
+
 import './operators';
 
 /**
@@ -16,6 +17,7 @@ export class AppComponent {
   public isLoggedIn : boolean;
 
   constructor() {
-    console.log('Environment config', Config);
+      console.log('Environment config', Config);
   }
+
 }

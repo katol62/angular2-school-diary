@@ -1,9 +1,25 @@
 export class GlobalSettings {
 
-    public static ROLE_ADMIN = 'admin';
-    public static ROLE_CHIEF = 'chief';
-    public static ROLE_TEACHER = 'teacher';
-    public static ROLE_PARENT = 'parent';
+    // public static ROLE_ADMIN = 'admin';
+    // public static ROLE_CHIEF = 'chief';
+    // public static ROLE_TEACHER = 'teacher';
+    // public static ROLE_PARENT = 'parent';
+
+    public static ROLE_GLOGAL_ADMIN = 0;
+    public static ROLE_LOCAL_ADMIN = 1;
+    public static ROLE_PRINCIPAL = 2;
+    public static ROLE_TEACHER = 3;
+    public static ROLE_PARENT = 4;
+    public static ROLE_STUDENT = 5;
+
+    public static ROLES:any = {
+        0: 'Администратор',
+        1: 'Локальный админитистратор',
+        2: 'Директор',
+        3: 'Учитель',
+        4: 'Родитель',
+        5: 'Ученик'
+    };
 
     //routes
     public static ROUTE_HOME = 'home';
@@ -46,5 +62,9 @@ export class GlobalSettings {
     public static ROUTE_DASHBOARD_PARENT_SHEET = 'parent-sheet';
     public static ROUTE_DASHBOARD_PARENT_EVENTS = 'parent-events';
     public static ROUTE_DASHBOARD_PARENT_TASKS = 'parent-tasks';
+
+    //local storage data
+    public static STORAGE_USER = 'currentUser';
+    public static STORAGE_TOKEN = 'app_token';
     
 }

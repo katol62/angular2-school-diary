@@ -3,81 +3,119 @@ import { Http, Headers, Response, Request, RequestOptions, RequestOptionsArgs, R
 import { User, Account } from '../index';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
+import {GlobalEventsManager} from "../events/global-events.manager";
+import {GlobalSettings} from "../data/global-settings";
 
 @Injectable()
 export class AuthService {
 
-    constructor(private http: Http) {}
+    private tokenKey:string = GlobalSettings.STORAGE_TOKEN;
+    private userKey:string = GlobalSettings.STORAGE_USER;
+    private ttl:number = 1000; //3 hours
+
+    constructor(private http: Http, private globalEventsManager:GlobalEventsManager) {}
 
     login(username: string, password: string) {
-        debugger;
-        let prodRest = 'http://staging.schoolarlife.ru:3003/rest/api/auth/login/';
-        let testTest = '/rest/api/auth/login/';
-        //change
-        let host = location.hostname;
-        let restUrl = host == 'localhost' ? testTest : prodRest;
+        let restUrl = this.getAuthUrl();
+        let headers = new Headers({
+            "Content-Type": "application/x-www-form-urlencoded",
+            "Accept": "application/json",
+            "Authorization": "Basic " + btoa("gigy" + ':' + "secret")
+        });
+        let options = new RequestOptions({ headers: headers});
+        let data = "grant_type=password&username="+username+"&password="+password;
 
-        let params = {email: username, password: password};
-        let headers = new Headers({ 'Content-Type': 'application/json', 'X-Auth-Token': username+':'+password });
-        let options = new RequestOptions({ headers: headers });
-
-        return this.http.post(restUrl, params, options)
+        return this.http.post(restUrl, data, options)
             .map(this.handleLogin)
             .catch(this.handleLoginError);
     }
 
+    refresh() {
+        if (this.retrieveToken()) {
+
+            let tokenObj = this.retrieveToken();
+            let refreshToken = tokenObj.token.refresh_token;
+
+            let restUrl = this.getAuthUrl();
+            let headers = new Headers({
+                "Content-Type": "application/x-www-form-urlencoded",
+                "Accept": "application/json",
+                "Authorization": "Basic " + btoa("gigy" + ':' + "secret")
+            });
+            let options = new RequestOptions({ headers: headers});
+            let data = 'grant_type=refresh_token&refresh_token=' + refreshToken;
+
+            return this.http.post(restUrl, data, options)
+                .map(this.handleLogin)
+                .catch(this.handleLoginError);
+        } else {
+            return null;
+        }
+    }
+
     logout() {
-        // remove user from local storage to log user out
-        localStorage.removeItem('currentUser');
+        localStorage.removeItem(this.tokenKey);
+        localStorage.removeItem(this.userKey);
+        this.globalEventsManager.isLoggedIn(false);
     }
 
     isLoggedIn() {
-
-        if (localStorage.getItem('currentUser')) {
-            let auth:any = JSON.parse(localStorage.getItem('currentUser'));
-            return (auth.user && auth.user.username !== null);
-        }
-        return false;
+        return this.retrieveToken() !== null;
     }
 
-    getLoggedInUser() {
-        if (localStorage.getItem('currentUser')) {
-            let auth:any = JSON.parse(localStorage.getItem('currentUser'));
-            return auth.user;
-        }
-        return null;
+    //storing token
+    public updateToken(token:any) {
+        let expireTime:number = (new Date()).getTime() + token.expires_in*1000;
+        this.store({ttl: expireTime, token: token});
     }
 
-    isLoggedInWithRole(role:string) {
+    private store(content:Object) {
+        this.globalEventsManager.isLoggedIn(true);
+        localStorage.setItem(this.tokenKey, JSON.stringify(content));
+    }
 
-        if (localStorage.getItem('currentUser')) {
-            let auth:any = JSON.parse(localStorage.getItem('currentUser'));
-            if (role) {
-                return (auth.user && auth.user.userName !== null && auth.user.type !== null && auth.user.type === role );
-            }
-            return (auth.user && auth.user.userName !== null);
+    private retrieve() {
+        let storedToken:string = localStorage.getItem(this.tokenKey);
+        if(!storedToken) throw 'no token found';
+        return storedToken;
+    }
+
+    public retrieveToken() {
+
+        let currentTime:number = (new Date()).getTime(), token = null;
+        try {
+            let storedToken = JSON.parse(this.retrieve());
+            if(storedToken.ttl < currentTime) throw 'invalid token found';
+            token = storedToken.token;
         }
-        return false;
+        catch(err) {
+            console.log(err);
+        }
+        return token;
+
     }
 
     //service
     private handleLogin(response: Response) {
         let auth = response.json();
-        if (auth && auth.token) {
-            // store user details and jwt token in local storage to keep user logged in between page refreshes
-            localStorage.setItem('currentUser', JSON.stringify(auth));
-        }
         return auth;
     }
 
     private handleLoginError (error: any) {
-        // In a real world app, we might use a remote logging infrastructure
-        // We'd also dig deeper into the error to get a better message
         let errMsg = (error.message) ? error.message :
             error.status ? `${error.status} - ${error.statusText}` : 'Server error';
         console.log(errMsg);
         return Observable.throw(errMsg);
     }
 
+    //service
+    getAuthUrl() {
+        let prodRest = 'http://staging.schoolarlife.ru:3003/rest/api/auth/login/';
+        //let testTest = '/rest/api/auth/login/';
+        let testTest = 'http://localhost:3003/rest/oauth/token';
+        let host = location.hostname;
+        let restUrl = host == 'localhost' ? testTest : prodRest;
+        return restUrl;
+    }
 
 }
