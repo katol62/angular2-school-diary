@@ -26,6 +26,21 @@ public class UserRestController extends BaseAdminRestController {
     @Autowired
     UserService userService;
 
+    @RequestMapping(value = "/me", method = RequestMethod.GET)
+    public ResponseEntity<User> getSelf() {
+        super.isCurrentUsersAllowed();
+        User user = super.getCurrentUser();
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Access-Control-Allow-Origin", "*");
+
+        if (user == null) {
+            return new ResponseEntity<>(headers, HttpStatus.NO_CONTENT);
+            // You many decide to return HttpStatus.NOT_FOUND
+        }
+        return new ResponseEntity<User>(user, headers, HttpStatus.OK);
+    }
+
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ResponseEntity<List<User>> getAllUsers() {
         super.isCurrentUsersAllowed();
