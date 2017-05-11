@@ -32,6 +32,8 @@ import { DashTeachersHometaskModule } from './dash-teacher/hometask/dash-teacher
 import { DashTeacherScheduleModule } from './dash-teacher/schedule/dash-teacher-schedule.module';
 import { DashTeacherSheetModule } from './dash-teacher/sheet/dash-teacher-sheet.module';
 import { DashTeacherTasksModule } from './dash-teacher/tasks/dash-teacher-tasks.module';
+import {DashAdminConsumersDetailsModule} from "./dashboard-admin/consumers/details/dash-admin-consumers-details.module";
+import {DashAdminConsumersProfileModule} from "./dashboard-admin/consumers/details/dash-admin-consumers-profile.module";
 
 @NgModule({
     imports: [CommonModule,
@@ -41,6 +43,7 @@ import { DashTeacherTasksModule } from './dash-teacher/tasks/dash-teacher-tasks.
         BreadcrumbsModule,
         DashboardMenuModule,
         DashAdminConsumersModule,
+        DashAdminConsumersDetailsModule,
         DashAdminSchoolsModule,
         DashAdminSystemModule,
         DashAdminReportsModule,
@@ -51,6 +54,7 @@ import { DashTeacherTasksModule } from './dash-teacher/tasks/dash-teacher-tasks.
         DashParentSheetModule,
         DashParentEventsModule,
         DashParentTasksModule,
+        DashAdminConsumersProfileModule,
         DashChiefProfileModule,
         DashChiefPlanModule,
         DashChiefScheduleModule,

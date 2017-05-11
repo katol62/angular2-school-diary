@@ -1,6 +1,6 @@
 import { Component, OnInit, ElementRef, Input, NgModule } from '@angular/core';
 import {User} from '../../../shared/models/user';
-import { DashboardUsers } from '../../../shared/data/dashboard-menu-data';
+import { Router } from '@angular/router';
 import { GlobalSettings } from '../../../shared/data/global-settings';
 import { GlobalEventsManager } from '../../../shared/events/global-events.manager';
 import {UserService} from "../../../shared/services/user.service";
@@ -18,8 +18,9 @@ export class DashAdminConsumersComponent implements OnInit {
     selected:User = null;
     users:any[] = [];
     selectedPanel:string = GlobalSettings.ROUTE_DASHBOARD_ADMIN_CONSUMERS;
+    detailsLink:string = GlobalSettings.ROUTE_DASHBOARD+'/'+GlobalSettings.ROUTE_DASHBOARD_ADMIN_CONSUMERS;
 
-    constructor(private globalEventsManager:GlobalEventsManager, private userService:UserService) { }
+    constructor(private globalEventsManager:GlobalEventsManager, private userService:UserService, private router:Router) { }
 
     ngOnInit() {
         this.userService.getAll()
@@ -43,20 +44,15 @@ export class DashAdminConsumersComponent implements OnInit {
     }
 
     select(elm:any) {
-        this.selected = elm;
+        this.router.navigate([this.detailsLink, elm.id]);
     }
 
     back() {
-        this.selected = null;
     }
 
     getRole(user:User) {
-        return GlobalSettings.ROLES[user.primeRole];
+        return GlobalSettings.GET_ROLE(user.primeRole);
     }
 
-    update() {
-        debugger;
-        console.log();
-    }
 
 }

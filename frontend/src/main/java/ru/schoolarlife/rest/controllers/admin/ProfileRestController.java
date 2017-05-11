@@ -72,6 +72,22 @@ public class ProfileRestController extends BaseAdminRestController {
         return new ResponseEntity<Person>(person, headers, HttpStatus.OK);
     }
 
+    @GetMapping("/user/{userId}")
+    public ResponseEntity<?> getProfileByUser(@PathVariable("userId") Long userId) {
+        logger.info("Fetching Person with UserID {}", userId);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Access-Control-Allow-Origin", "*");
+
+        Person person = profileService.getOneByUserId(userId);
+
+        if (person == null) {
+            logger.error("Profile with ID {} not found.", userId);
+            return new ResponseEntity<>(new CustomErrorType("Profile with UserID " + userId + " not found"), headers, HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<Person>(person, headers, HttpStatus.OK);
+    }
+
     @RequestMapping(value = "/", method = RequestMethod.POST)
     public ResponseEntity<?> createProfile(@RequestBody Person person, UriComponentsBuilder ucBuilder) {
         logger.info("Creating Profile : {}", person);
@@ -80,6 +96,12 @@ public class ProfileRestController extends BaseAdminRestController {
             logger.error("Unable to create. A Profile with email {} already exist", person.getEmail());
             return new ResponseEntity<>(new CustomErrorType("Unable to create. A Profile with email " +
                     person.getEmail() + " already exist."), HttpStatus.CONFLICT);
+        }
+
+        if (profileService.getOneByUserId(person.getUserId()) != null) {
+            logger.error("Unable to create. A Profile with userid {} already exist", person.getUserId());
+            return new ResponseEntity<>(new CustomErrorType("Unable to create. A Profile with userId " +
+                    person.getUserId() + " already exist."), HttpStatus.CONFLICT);
         }
 
         User user = userService.getOneById(person.getUserId());

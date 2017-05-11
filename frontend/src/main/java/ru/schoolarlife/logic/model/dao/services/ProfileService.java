@@ -41,6 +41,11 @@ public class ProfileService {
         return personRepository.findOne(id);
     }
 
+    public Person getOneByUserId(Long id)
+    {
+        return personRepository.findByUserId(id);
+    }
+
     public Person findByEmail(String email)
     {
         return personRepository.findByEmail(email);

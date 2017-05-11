@@ -27,6 +27,8 @@ import { DashTeacherHometaskComponent } from './dash-teacher/hometask/dash-teach
 import { DashTeacherScheduleComponent } from './dash-teacher/schedule/dash-teacher-schedule.component';
 import { DashTeacherSheetComponent } from './dash-teacher/sheet/dash-teacher-sheet.component';
 import { DashTeacherTasksComponent } from './dash-teacher/tasks/dash-teacher-tasks.component';
+import {DashAdminConsumersDetailsComponent} from "./dashboard-admin/consumers/details/dash-admin-consumers-details.component";
+import {DashAdminConsumersProfileComponent} from "./dashboard-admin/consumers/details/dash-admin-consumers-profile.component";
 
 @NgModule({
     imports: [
@@ -36,6 +38,8 @@ import { DashTeacherTasksComponent } from './dash-teacher/tasks/dash-teacher-tas
                 children: [
                     {path: '', component: DashAdminSchoolsComponent, canActivate:[AuthGuard] },
                     {path: GlobalSettings.ROUTE_DASHBOARD_ADMIN_CONSUMERS, component: DashAdminConsumersComponent, canActivate:[AuthGuard]},
+                    {path: GlobalSettings.ROUTE_DASHBOARD_ADMIN_CONSUMERS+'/:id', component: DashAdminConsumersDetailsComponent, canActivate:[AuthGuard]},
+                    {path: GlobalSettings.ROUTE_DASHBOARD_ADMIN_CONSUMERS+'/:id/profile', component: DashAdminConsumersProfileComponent, canActivate:[AuthGuard]},
                     {path: GlobalSettings.ROUTE_DASHBOARD_ADMIN_SCHOOLS, component: DashAdminSchoolsComponent, canActivate:[AuthGuard]},
                     {path: GlobalSettings.ROUTE_DASHBOARD_ADMIN_SYSTEM, component: DashAdminSystemComponent, canActivate:[AuthGuard]},
                     {path: GlobalSettings.ROUTE_DASHBOARD_ADMIN_REPORTS, component: DashAdminReportsComponent, canActivate:[AuthGuard]},

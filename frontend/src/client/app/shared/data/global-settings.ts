@@ -12,14 +12,29 @@ export class GlobalSettings {
     public static ROLE_PARENT = 4;
     public static ROLE_STUDENT = 5;
 
-    public static ROLES:any = {
-        0: 'Администратор',
-        1: 'Локальный админитистратор',
-        2: 'Директор',
-        3: 'Учитель',
-        4: 'Родитель',
-        5: 'Ученик'
-    };
+    public static ROLES:any = [
+        {value: 0, display: 'Администратор'},
+        {value: 1, display: 'Локальный админитистратор'},
+        {value: 2, display: 'Директор'},
+        {value: 3, display: 'Учитель'},
+        {value: 4, display: 'Родитель'},
+        {value: 5, display: 'Ученик'},
+    ];
+
+    public static GET_ROLE(value:any) {
+        for (let i=0; i<this.ROLES.length; i++) {
+            if (this.ROLES[i].value == value) {
+                return this.ROLES[i].display;
+            }
+        }
+        return 'No Role';
+    }
+
+    public roles = [
+        { value: 'admin', display: 'Administrator' },
+        { value: 'guest', display: 'Guest' },
+        { value: 'custom', display: 'Custom' }
+    ];
 
     //routes
     public static ROUTE_HOME = 'home';

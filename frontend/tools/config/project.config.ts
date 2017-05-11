@@ -51,9 +51,15 @@ export class ProjectConfig extends SeedConfig {
           // { src: 'primeng/resources/themes/omega/theme.css', inject: true },
         { src: 'video.js/dist/video-js.css', inject: true },
         { src: 'font-awesome/css/font-awesome.min.css', inject: true },
-        { src: 'bootstrap/dist/js/bootstrap.min.js', inject: 'libs'},
+        //{ src: 'bootstrap/dist/js/bootstrap.min.js', inject: 'libs'},
+        { src: 'bootstrap/dist/js/bootstrap.min.js', inject: 'libs' },
+        { src: 'bootstrap/dist/css/bootstrap.min.css', inject: true }, // inject into css section
+        { src: 'bootstrap/dist/css/bootstrap-theme.min.css', inject: true }, // inject into css section
+        { src: 'bootstrap/dist/css/bootstrap-theme.min.css.map', inject: true }, // inject into css section
+        //{ src: 'ngx-bootstrap/index.js', inject: 'libs'},
+        //{ src: 'ngx-bootstrap/bundles/ngx-bootstrap.umd.js', inject: 'libs'},
         { src: 'hls.js/dist/hls.min.js', inject: 'libs'},
-      { src: 'bootstrap/dist/css/bootstrap.min.css', inject: true},
+      //{ src: 'bootstrap/dist/css/bootstrap.min.css', inject: true},
       // {src: 'jquery/dist/jquery.min.js', inject: 'libs'},
       // {src: 'lodash/lodash.min.js', inject: 'libs'},
     ];
@@ -70,7 +76,28 @@ export class ProjectConfig extends SeedConfig {
       name: 'videojs',
       // Path to the package's bundle
       path: 'node_modules/video.js/dist/video.js'
-    }];
+    },
+        // required for dev build
+        {
+            name:'ngx-bootstrap',
+            path:'node_modules/ngx-bootstrap/bundles/ngx-bootstrap.umd.min.js'
+        },
+
+// required for prod build
+        {
+            name:'ngx-bootstrap/*',
+            path:'node_modules/ngx-bootstrap/bundles/ngx-bootstrap.umd.min.js'
+        },
+        // mandatory dependency for ngx-bootstrap datepicker 
+        {
+            name:'moment',
+            path:'node_modules/moment',
+            packageMeta:{
+                main: 'moment.js',
+                defaultExtension: 'js'
+            }
+        }
+    ];
 
     // let additionalPackages: ExtendPackages[] = [{
     //   name: 'ng2-translate',

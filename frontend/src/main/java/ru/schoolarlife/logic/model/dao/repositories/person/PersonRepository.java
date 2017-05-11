@@ -8,4 +8,5 @@ import ru.schoolarlife.logic.bo.person.Person;
  */
 public interface PersonRepository extends JpaRepository<Person, Long> {
     Person findByEmail(String email);
+    Person findByUserId(long userId);
 }

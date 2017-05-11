@@ -27,6 +27,10 @@ import { UserService,AlertService}  from './shared/index';
 import {SvideoModule} from "./shared/simple-video/svideo.module";
 import {BreadcrumbsModule} from "./shared/breadcrumbs/breadcrumbs.module";
 import {HlsPlayerModule} from "./shared/hls-video/hls-player.module";
+import {ProfileService} from "./shared/services/profile.service";
+import {LocationService} from "./shared/services/location.service";
+import { Ng2BootstrapModule } from 'ngx-bootstrap';
+
 
 @NgModule({
   imports: [BrowserModule,
@@ -49,6 +53,7 @@ import {HlsPlayerModule} from "./shared/hls-video/hls-player.module";
       HlsPlayerModule,
       HttpModule,
       BreadcrumbsModule,
+      Ng2BootstrapModule.forRoot(),
       SharedModule.forRoot()],
   declarations: [AppComponent],
   providers: [
@@ -59,6 +64,8 @@ import {HlsPlayerModule} from "./shared/hls-video/hls-player.module";
     GlobalEventsManager,
       DataService,
       UserService,
+      ProfileService,
+      LocationService,
       AlertService
   ],
   bootstrap: [AppComponent]

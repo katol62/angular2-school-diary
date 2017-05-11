@@ -12,7 +12,7 @@
 
             <div class="container-fluid consumers-panel">
                 <div class="row" >
-                    <div class="span12" *ngIf="!selected">
+                    <div class="col-md-12">
                         <ul class="thumbnails">
                             <li class="span5 clearfix" *ngFor="let user of users">
                                 <div class="thumbnail clearfix">
@@ -32,57 +32,6 @@
                                 </div>
                             </li>
                         </ul>
-                    </div>
-                    <div class="span12" *ngIf="selected">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <form name="form" (ngSubmit)="f.form.valid && update()" #f="ngForm" novalidate>
-                                    <div class="form-group">
-                                        <label for="username">Username</label>
-                                        <!--<input type="text" class="form-control" name="username" [(ngModel)]="selected.name" required />-->
-                                        <input type="text" class="form-control" name="username" [ngModel]="selected.name"
-                                               required minlength="5" maxlength="8" #username="ngModel">
-                                        <small [hidden]="username.valid || (username.pristine &&
-                                               !f.submitted)">
-                                            Username is required (minimum 5 characters).
-                                        </small>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="email">Email</label>
-                                        <!--<input type="text" class="form-control" name="email" [(ngModel)]="selected.email" required />-->
-                                        <input type="email" class="form-control" name="email" [ngModel]="selected.email"
-                                               required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" #email="ngModel" >
-                                        <small [hidden]="email.valid || (email.pristine && !f.submitted)">
-                                            Email is required and format should be <i>john@doe.com</i>.
-                                        </small>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="password">Password</label>
-                                        <!--<input type="password" class="form-control" name="password" [(ngModel)]="selected.password" required />-->
-                                        <input type="password" class="form-control" name="password" [ngModel]="selected.password"
-                                               required #password="ngModel">
-                                        <small [hidden]="password.valid || (password.pristine &&
-                                               !f.submitted)">
-                                            Password is required
-                                        </small>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="passwordConfirm">Confirm Password</label>
-                                        <!--<input type="password" class="form-control" name="confirmpassword" [(ngModel)]="selected.password" required />-->
-                                        <input type="password" class="form-control" name="passwordConfirm"
-                                               [ngModel]="selected.passwordConfirm"
-                                               required validateEqualTo="password" #passwordConfirm="ngModel" #passwordControl="ngModel">
-                                        <small [hidden]="passwordConfirm.valid || !passwordControl.errors?.validateEqual ||
-                                               (confirmPassword.pristine && !f.submitted)">
-                                            Password mismatch
-                                        </small>
-                                    </div>
-                                    <div class="form-group">
-                                        <button class="btn btn-primary">Update</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
