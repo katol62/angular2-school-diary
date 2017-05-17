@@ -7,7 +7,6 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { NameListService } from './name-list/name-list.service';
 import { AuthService, AuthGuard } from './index';
 import {FooterModule} from "./footer/footer.module";
-import {SvideoModule} from "./simple-video/svideo.module";
 import {HlsPlayerModule} from "./hls-video/hls-player.module";
 
 /**
@@ -15,7 +14,7 @@ import {HlsPlayerModule} from "./hls-video/hls-player.module";
  */
 
 @NgModule({
-  imports: [CommonModule, RouterModule, FooterModule, SvideoModule, HlsPlayerModule],
+  imports: [CommonModule, RouterModule, FooterModule, HlsPlayerModule],
   declarations: [NavbarComponent],
   exports: [NavbarComponent,
     CommonModule, FormsModule, RouterModule]

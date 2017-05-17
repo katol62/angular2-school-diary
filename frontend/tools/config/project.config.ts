@@ -12,7 +12,7 @@ const proxy = require('proxy-middleware');
 export class ProjectConfig extends SeedConfig {
 
     PROJECT_TASKS_DIR = join(process.cwd(), this.TOOLS_DIR, 'tasks', 'project');
-  //  PRIME_NG_THEME = 'omega';
+    PRIME_NG_THEME = 'omega';
   // //
     FONTS_DEST = `${this.APP_DEST}/fonts`;
     FONTS_SRC = [
@@ -20,15 +20,15 @@ export class ProjectConfig extends SeedConfig {
       'node_modules/bootstrap/dist/fonts/**'
     ];
   // //
-  //  THEME_FONTS_DEST = `${this.APP_DEST}/css/fonts`;
-  //  THEME_FONTS_SRC = [
-  //    'node_modules/primeng/resources/themes/' + this.PRIME_NG_THEME + '/fonts/**',
-  //  ];
+   THEME_FONTS_DEST = `${this.APP_DEST}/css/fonts`;
+   THEME_FONTS_SRC = [
+     'node_modules/primeng/resources/themes/' + this.PRIME_NG_THEME + '/fonts/**',
+   ];
   // //
-  //  CSS_IMAGE_DEST = `${this.CSS_DEST}/images`;
-  //  CSS_IMAGE_SRC = [
-  //    'node_modules/primeng/resources/themes/' + this.PRIME_NG_THEME + '/images/**'
-  //  ];
+    CSS_IMAGE_DEST = `${this.CSS_DEST}/images`;
+    CSS_IMAGE_SRC = [
+      'node_modules/primeng/resources/themes/' + this.PRIME_NG_THEME + '/images/**'
+    ];
 
   constructor() {
     super();
@@ -47,18 +47,21 @@ export class ProjectConfig extends SeedConfig {
         { src: 'videojs-ie8/dist/videojs-ie8.min.js', inject: 'libs' },
         { src: 'videojs-contrib-hls/dist/videojs-contrib-hls.min.js', inject: 'libs' },
           //{ src: 'videojs-swf/dist/video-js.swf', inject: 'libs' },
-          // { src: 'primeng/resources/primeng.css', inject: true },
-          // { src: 'primeng/resources/themes/omega/theme.css', inject: true },
-        { src: 'video.js/dist/video-js.css', inject: true },
+        { src: 'primeng/resources/primeng.css', inject: true },
+        { src: 'primeng/resources/themes/omega/theme.css', inject: true },
         { src: 'font-awesome/css/font-awesome.min.css', inject: true },
         //{ src: 'bootstrap/dist/js/bootstrap.min.js', inject: 'libs'},
+        { src: 'video.js/dist/video-js.css', inject: true },
         { src: 'bootstrap/dist/js/bootstrap.min.js', inject: 'libs' },
         { src: 'bootstrap/dist/css/bootstrap.min.css', inject: true }, // inject into css section
         { src: 'bootstrap/dist/css/bootstrap-theme.min.css', inject: true }, // inject into css section
         { src: 'bootstrap/dist/css/bootstrap-theme.min.css.map', inject: true }, // inject into css section
+        { src: 'moment/moment.js', inject: true }, // inject into css section
         //{ src: 'ngx-bootstrap/index.js', inject: 'libs'},
         //{ src: 'ngx-bootstrap/bundles/ngx-bootstrap.umd.js', inject: 'libs'},
         { src: 'hls.js/dist/hls.min.js', inject: 'libs'},
+        //{ src: 'angular-io-datepicker/src/datepicker/datePicker.js', inject: 'libs'},
+        //{ src: 'angular-io-overlay/src/overlay/index.js', inject: 'libs'},
       //{ src: 'bootstrap/dist/css/bootstrap.min.css', inject: true},
       // {src: 'jquery/dist/jquery.min.js', inject: 'libs'},
       // {src: 'lodash/lodash.min.js', inject: 'libs'},
@@ -72,11 +75,24 @@ export class ProjectConfig extends SeedConfig {
 
     // Add packages (e.g. ng2-translate)
 
-    let additionalPackages: ExtendPackages[] = [{
-      name: 'videojs',
-      // Path to the package's bundle
-      path: 'node_modules/video.js/dist/video.js'
-    },
+    let additionalPackages: ExtendPackages[] = [
+        {
+          name: 'videojs',
+          // Path to the package's bundle
+          path: 'node_modules/video.js/dist/video.js'
+        },
+        {
+            name:'@angular/animations',
+            path:'node_modules/@angular/animations/bundles/animations.umd.js'
+        },
+        {
+            name:'@angular/platform-browser/animations',
+            path:'node_modules/@angular/platform-browser/bundles/platform-browser-animations.umd.js'
+        },
+        {
+            name:'@angular/platform-browser/animations/testing',
+            path:'node_modules/@angular/platform-browser/bundles/platform-browser-animations-testing.umd.js'
+        },
         // required for dev build
         {
             name:'ngx-bootstrap',

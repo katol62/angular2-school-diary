@@ -1,3 +1,13 @@
 input[type='radio'] {
   height: auto !important;
 }
+
+.form-group {
+  .ui-state-default {
+    width: 400px !important;
+  }
+}
+
+.ui-widget {
+  width: 400px !important;
+}

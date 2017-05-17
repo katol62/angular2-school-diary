@@ -4,6 +4,8 @@ import {User} from "../../../../shared/models/user";
 import {GlobalSettings} from "../../../../shared/data/global-settings";
 import {GlobalEventsManager} from "../../../../shared/events/global-events.manager";
 import {UserService} from "../../../../shared/services/user.service";
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { EqualTextValidator } from "angular2-text-equality-validator";
 
 @Component({
     moduleId: module.id,
@@ -22,6 +24,9 @@ export class DashAdminConsumersDetailsComponent implements OnInit {
     updateResult:string = '';
 
     model:User = new User();
+
+    user:FormGroup;
+
     selectedPanel:string = GlobalSettings.ROUTE_DASHBOARD_ADMIN_CONSUMERS;
     profileLink:string = GlobalSettings.ROUTE_DASHBOARD+'/'+GlobalSettings.ROUTE_DASHBOARD_ADMIN_CONSUMERS+'/:id/profile';
 
@@ -30,6 +35,18 @@ export class DashAdminConsumersDetailsComponent implements OnInit {
     ngOnInit() {
         this.globalEventsManager.selectedMenuItem(GlobalSettings.ROUTE_DASHBOARD);
         this.roles = GlobalSettings.ROLES;
+
+        let emailRegex = '^[a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$';
+
+        this.user = new FormGroup({
+            id: new FormControl('-1'),
+            name: new FormControl('', [Validators.required, Validators.minLength(5)]),
+            email: new FormControl('', [Validators.required, Validators.pattern(emailRegex)]),
+            primeRole: new FormControl('', [Validators.required]),
+            password: new FormControl('', [Validators.required]),
+            passwordConfirm: new FormControl('', [Validators.required, Validators.minLength(1)]),
+            active: new FormControl('')
+        });
         this.initRequest();
     }
 
@@ -52,7 +69,7 @@ export class DashAdminConsumersDetailsComponent implements OnInit {
         if (data === null) {
             console.log('users null')
         } else {
-            this.model = data;
+            this.user.patchValue(data);
         }
     }
 
@@ -64,8 +81,8 @@ export class DashAdminConsumersDetailsComponent implements OnInit {
         this.sub.unsubscribe();
     }
 
-    update() {
-        this.userService.update(this.model)
+    update(user:User) {
+        this.userService.update(user)
             .subscribe(
                 data => {
                     this.afterUserUpdate(data);
@@ -83,7 +100,7 @@ export class DashAdminConsumersDetailsComponent implements OnInit {
         } else {
             console.log('update success');
             this.updateResult = 'Изменения успешно сохранены';
-            this.model = data;
+            this.user.patchValue(data);
         }
     }
 
@@ -93,10 +110,21 @@ export class DashAdminConsumersDetailsComponent implements OnInit {
     }
 
     updateProfile() {
-        debugger;
         let path = GlobalSettings.ROUTE_DASHBOARD+'/'+GlobalSettings.ROUTE_DASHBOARD_ADMIN_CONSUMERS+'/'+this.id+'/profile';
         this.router.navigateByUrl(path);
         //this.router.navigate([this.profileLink, {id: this.id}]);
+    }
+
+    onSubmit({ value, valid }: { value: User, valid: boolean }) {
+        console.log(value, valid);
+        if (valid) {
+            if (value.id.toString() == '-1') { //create
+                value.id = null;
+                //this.create(value);
+            } else {
+                this.update(value);
+            }
+        }
     }
 
 }

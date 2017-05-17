@@ -1,10 +1,11 @@
 import { Component, OnInit, ElementRef, Input, NgModule } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import {Profile, Address} from "../../../../shared/models/user";
+import {Profile, Address, Country} from "../../../../shared/models/user";
 import {GlobalSettings} from "../../../../shared/data/global-settings";
 import {GlobalEventsManager} from "../../../../shared/events/global-events.manager";
 import {ProfileService,LocationService} from "../../../../shared/services/index";
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import * as moment from 'moment';
 
 
 @Component({
@@ -21,8 +22,13 @@ export class DashAdminConsumersProfileComponent implements OnInit {
     private sub: any;
     roles:any[] = [];
 
-    countries:any[] = [];
+    countries:any[];
+    filteredCountries: any[];
+
     cities:any[] = [];
+    filteredCities: any[];
+
+    ru:any;
 
     updateResult = '';
 
@@ -41,6 +47,15 @@ export class DashAdminConsumersProfileComponent implements OnInit {
     }
 
     ngOnInit() {
+
+        this.ru = {
+            firstDayOfWeek: 0,
+            dayNames: ["Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота", "Воскресенье"],
+            dayNamesShort: ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"],
+            dayNamesMin: ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"],
+            monthNames: [ "Январь","Февраль","Март","Апрель","Май","Июнь","Июль","Август","Сентябрь","Октябрь","Ноябрь","Декабрь" ],
+            monthNamesShort: [ "Янв", "Фев", "Мар", "Апр", "Май", "Июн","Июл", "Авг", "Сен", "Окт", "Ноя", "Дек" ]
+        };
 
         let emailRegex = '^[a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$';
         let phonePatterm = '[0-9]+';
@@ -77,7 +92,7 @@ export class DashAdminConsumersProfileComponent implements OnInit {
 
         this.locationService.getAllCities().subscribe(
             data => {
-                this.cities = data;
+                this.cities = this.completeSelect(data);
             },
             error => {
 
@@ -85,12 +100,20 @@ export class DashAdminConsumersProfileComponent implements OnInit {
         );
         this.locationService.getAllCountries().subscribe(
             data => {
-                this.countries = data;
+                this.countries = this.completeSelect(data);
             },
             error => {
 
             }
         );
+    }
+
+    completeSelect(data:any[]) {
+        let tmpArray:any[] = [];
+        for (let entry of data) {
+            tmpArray.push({label:entry.name, value:entry});
+        }
+        return tmpArray;
     }
 
     initRequest() {
@@ -115,7 +138,7 @@ export class DashAdminConsumersProfileComponent implements OnInit {
         if (data === null) {
             console.log('users null')
         } else {
-            this.model = data;
+            this.profile = data;
         }
     }
 
@@ -123,7 +146,16 @@ export class DashAdminConsumersProfileComponent implements OnInit {
         this.sub.unsubscribe();
     }
 
-    create(profile:Profile) {
+    create(profileObj:any) {
+        let city:City = profileObj["address"]["city"] ? profileObj["address"]["city"]["id"] : null;
+        let country:Country = profileObj["address"]["country"] ? profileObj["address"]["country"]["id"] : null;
+        let birthdate:string = profileObj.birthDate ? moment(profileObj.birthDate).format('DD-MM-YYYY') : null;
+
+        let profile:Profile = profileObj;
+        profile.address.city = city;
+        profile.address.country = country;
+        profile.birthDate = birthdate;
+
         this.profileService.create(profile)
             .subscribe(
                 data => {
@@ -160,7 +192,7 @@ export class DashAdminConsumersProfileComponent implements OnInit {
             console.log('update fail')
         } else {
             console.log('update success');
-            this.model = data;
+            this.profile = data;
         }
     }
 

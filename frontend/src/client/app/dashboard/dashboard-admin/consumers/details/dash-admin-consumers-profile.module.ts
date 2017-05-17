@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import {DashboardMenuModule} from "../../../menu/dashboard.menu.module";
 import {DashAdminConsumersProfileComponent} from "./dash-admin-consumers-profile.component";
-import { DatepickerModule } from 'ngx-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {CalendarModule, AutoCompleteModule, DropdownModule} from 'primeng/primeng';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
-    imports: [CommonModule, DashboardMenuModule, FormsModule, ReactiveFormsModule, DatepickerModule.forRoot()],
+    imports: [CommonModule, DashboardMenuModule, FormsModule, ReactiveFormsModule, CalendarModule, BrowserAnimationsModule, AutoCompleteModule, DropdownModule],
     declarations: [DashAdminConsumersProfileComponent],
     exports: [DashAdminConsumersProfileComponent],
     providers: []

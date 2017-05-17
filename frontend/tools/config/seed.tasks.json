@@ -8,6 +8,7 @@
     "clean.once",
     "build.assets.dev",
     "build.fonts",
+    "build.theme_fonts",
     "build.html_css",
     "build.js.dev",
     "build.index.dev"
@@ -32,6 +33,8 @@
     "tslint",
     "build.assets.prod",
     "build.fonts",
+    "build.theme_fonts",
+    "build.css_images",
     "build.html_css",
     "copy.prod",
     "build.js.prod",
@@ -80,6 +83,7 @@
     "clean.dev",
     "build.assets.dev",
     "build.html_css",
+    "build.theme_fonts",
     "build.js.dev",
     "build.js.test",
     "build.index.dev"

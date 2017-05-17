@@ -24,52 +24,44 @@
                                     <button class="btn btn-primary" (click)="back()">Назад</button>
                                 </div>
 
-                                <form name="form" (ngSubmit)="f.form.valid && update()" #f="ngForm" novalidate>
+                                <form novalidate (ngSubmit)="onSubmit(user)" [formGroup]="user">
                                     <div class="form-group">
-                                        <label for="username">Username</label>
-                                        <input type="text" class="form-control" name="name" [(ngModel)]="model.name"
-                                               required minlength="5" maxlength="20" #name="ngModel">
-                                        <small [hidden]="name.valid || (name.pristine &&
-                                               !f.submitted)">
-                                            Username is required (minimum 5 characters).
+                                        <label for="username">Имя пользователя</label>
+                                        <input type="text" class="form-control" name="name" placeholder="Имя пользователя" formControlName="name">
+                                        <small *ngIf="!user.controls.name?.valid">
+                                            Обязательное поле (минимум 5 символов).
                                         </small>
                                     </div>
                                     <div class="form-group">
                                         <label for="email">Email</label>
-                                        <input type="email" class="form-control" name="email" [(ngModel)]="model.email"
-                                               required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" #email="ngModel" >
-                                        <small [hidden]="email.valid || (email.pristine && !f.submitted)">
-                                            Email is required and format should be <i>john@doe.com</i>.
+                                        <input type="email" class="form-control" name="email" placeholder="E-mail" formControlName="email">
+                                        <small *ngIf="!user.controls.email?.valid || (user.controls.email?.dirty || user.controls.email?.touched)">
+                                            Обязательное поле в формате <i>john@doe.com</i>.
                                         </small>
                                     </div>
                                     <div class="form-group">
-                                        <label for="password">Password</label>
-                                        <input type="password" class="form-control" name="password" [(ngModel)]="model.password"
-                                               required #password="ngModel">
-                                        <small [hidden]="password.valid || (password.pristine &&
-                                               !f.submitted)">
-                                            Password is required
+                                        <label for="password">Пароль</label>
+                                        <input type="password" class="form-control" name="password" placeholder="Пароль" formControlName="password" validateEqualTo="passwordConfirm">
+                                        <small *ngIf="!user.controls.password?.valid || (user.controls.password?.dirty || user.controls.password?.touched)">
+                                            Обязательное поле
                                         </small>
                                     </div>
                                     <div class="form-group">
-                                        <label for="passwordConfirm">Confirm Password</label>
-                                        <input type="password" class="form-control" name="passwordConfirm"
-                                               [ngModel]="model.passwordConfirm"
-                                               required validateEqualTo="password" #passwordConfirm="ngModel" [(ngModel)]="model.passwordConfirm" #passwordControl="ngModel">
-                                        <small [hidden]="passwordConfirm.valid || passwordControl.errors?.validateEqual ||
-                                               (passwordConfirm.pristine && !f.submitted)">
-                                            Password mismatch
+                                        <label for="passwordConfirm">Подтвердите пароль</label>
+                                        <input type="password" class="form-control" name="passwordConfirm" placeholder="Подтвердите пароль" formControlName="passwordConfirm">
+                                        <small *ngIf="!user.controls.passwordConfirm?.valid || user.get('password').hasError('validateEqual')">
+                                            Пароли не совпадают
                                         </small>
                                     </div>
                                     <div class="form-group">
                                         <label>
-                                            <input type="checkbox" name="active" [(ngModel)]="model.active" required #active="ngModel"> Enabled
+                                            <input type="checkbox" class="form-control" name="active" formControlName="active"> Enabled
                                         </label>
                                     </div>
 
                                     <div class="form-group">
                                         <label>Role</label>
-                                        <select name="role" [(ngModel)]="model.primeRole">
+                                        <select name="role" class="form-control" formControlName="primeRole">
                                             <option *ngFor="let role of roles" [value]="role.value">
                                                 {{role.display}}
                                             </option>

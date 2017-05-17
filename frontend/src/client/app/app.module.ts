@@ -24,13 +24,12 @@ import { FeedModule } from './network/feed/feed.module';
 import { FriendsModule } from './network/friends/friends.module';
 import { RegisterModule } from "./register/register.module";
 import { UserService,AlertService}  from './shared/index';
-import {SvideoModule} from "./shared/simple-video/svideo.module";
 import {BreadcrumbsModule} from "./shared/breadcrumbs/breadcrumbs.module";
 import {HlsPlayerModule} from "./shared/hls-video/hls-player.module";
 import {ProfileService} from "./shared/services/profile.service";
 import {LocationService} from "./shared/services/location.service";
 import { Ng2BootstrapModule } from 'ngx-bootstrap';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   imports: [BrowserModule,
@@ -49,8 +48,8 @@ import { Ng2BootstrapModule } from 'ngx-bootstrap';
       FeedModule,
       FriendsModule,
       RegisterModule,
-      SvideoModule,
       HlsPlayerModule,
+      BrowserAnimationsModule,
       HttpModule,
       BreadcrumbsModule,
       Ng2BootstrapModule.forRoot(),

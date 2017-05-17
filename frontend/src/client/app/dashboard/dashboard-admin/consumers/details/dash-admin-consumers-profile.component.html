@@ -26,42 +26,77 @@
                                 <form novalidate (ngSubmit)="onSubmit(profile)" [formGroup]="profile">
                                     <div class="form-group">
                                         <label for="firstName">Имя</label>
-                                        <input type="text" name="firstName" placeholder="Your full name" formControlName="firstName">
+                                        <input class="form-control" type="text" name="firstName" placeholder="Your full name" formControlName="firstName">
+                                        <small *ngIf="!profile.controls.firstName?.valid|| (profile.controls.firstName?.dirty && profile.controls.firstName?.touched)">
+                                            Обязательное поле, не менее 2 символов
+                                        </small>
                                     </div>
                                     <div class="form-group">
                                         <label for="middleName">Отчество</label>
-                                        <input type="text" name="middleName" placeholder="Your full name" formControlName="middleName">
+                                        <input class="form-control" type="text" name="middleName" placeholder="Your full name" formControlName="middleName">
+                                        <small *ngIf="!profile.controls.middleName?.valid">
+                                            Обязательное поле, не менее 2 символов
+                                        </small>
                                     </div>
                                     <div class="form-group">
                                         <label for="lastName">Фамилия</label>
-                                        <input type="text" name="lastName" placeholder="Your full name" formControlName="lastName">
+                                        <input class="form-control" type="text" name="lastName" placeholder="Your full name" formControlName="lastName">
+                                        <small *ngIf="!profile.controls.lastName?.valid">
+                                            Обязательное поле, не менее 2 символов
+                                        </small>
                                     </div>
                                     <div class="form-group">
                                         <label>Пол</label>
                                         <label class="radio-inline" *ngFor="let opt of genders">
-                                            <input type="radio" formControlName="gender" [value]="opt.value" [id]="gender" (change)="gender = opt.value">
+                                            <input class="form-control" type="radio" formControlName="gender" [value]="opt.value" [id]="gender" (change)="gender = opt.value">
                                             {{opt.display}}
                                         </label>
+                                        <small *ngIf="!profile.controls.gender?.valid">
+                                            Обязательное поле
+                                        </small>
                                     </div>
                                     <div class="form-group">
                                         <label for="email">E-mail</label>
-                                        <input type="email" name="email" placeholder="Your e-mail" formControlName="email">
+                                        <input class="form-control" type="email" name="email" placeholder="Your e-mail" formControlName="email">
+                                        <small *ngIf="!profile.controls.email?.valid">
+                                            Обязательное поле в формате <i>john@doe.com</i>.
+                                        </small>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="phone">Телефон</label>
-                                        <input type="email" name="phone" placeholder="Your phone" formControlName="phone">
+                                        <input class="form-control" type="text" name="phone" placeholder="Your phone" formControlName="phone">
+                                        <small *ngIf="!profile.controls.phone?.valid">
+                                            Поле содержащее цифры.
+                                        </small>
                                     </div>
 
                                     <div class="form-group">
-                                        <datepicker formControlName="birthDate" [showWeeks]="false"></datepicker>
+                                        <label for="phone">Дата рождения</label>
+                                        <p-calendar formControlName="birthDate" dateFormat="dd-mm-yy" [monthNavigator]="true" [yearNavigator]="true" yearRange="1930:2020" [locale]="ru"></p-calendar>
+                                        <!--<datepicker formControlName="birthDate" [showWeeks]="false"></datepicker>-->
                                     </div>
 
                                     <div formGroupName="address">
-                                        <label>
-                                            <span>Адрес</span>
-                                            <input type="text" placeholder="Адрес" formControlName="addressLine">
-                                        </label>
+
+                                        <h3>Адрес:</h3>
+
+                                        <div class="form-group">
+                                            <label for="phone">Страна</label>
+                                            <div formGroupName="country" id="country">
+                                                <p-dropdown [options]="countries" formControlName="id" placeholder="Выберите страну"></p-dropdown>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="phone">Город</label>
+                                            <div formGroupName="city" id="city">
+                                                <p-dropdown [options]="cities" formControlName="id" placeholder="Выберите город"></p-dropdown>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="phone">Адрес</label>
+                                            <input class="form-control" type="text" placeholder="Адрес" formControlName="addressLine">
+                                        </div>
                                     </div>
                                     <button type="submit" [disabled]="profile.invalid">Sign up</button>
                                 </form>

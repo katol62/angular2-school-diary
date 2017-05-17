@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './dashboard.component';
 import { DashboardMenuModule } from './menu/index';
-import { SvideoModule } from '../shared/simple-video/svideo.module';
 import { BreadcrumbsModule } from '../shared/breadcrumbs/breadcrumbs.module';
 import { HlsPlayerModule } from '../shared/hls-video/hls-player.module';
 import { DashAdminConsumersModule } from './dashboard-admin/consumers/dash-admin-consumers.module';
@@ -38,7 +37,6 @@ import {DashAdminConsumersProfileModule} from "./dashboard-admin/consumers/detai
 @NgModule({
     imports: [CommonModule,
         DashboardRoutingModule,
-        SvideoModule,
         HlsPlayerModule,
         BreadcrumbsModule,
         DashboardMenuModule,
