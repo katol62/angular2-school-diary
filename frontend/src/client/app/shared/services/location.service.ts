@@ -34,19 +34,19 @@ export class LocationService {
     }
 
     getAddress(id: number) {
-        return this.http.get(this.BASE_PATH+'address' + id, this.jwt()).map(
+        return this.http.get(this.BASE_PATH+'address/' + id, this.jwt()).map(
             (response: Response) => response.json()
         );
     }
 
     getCountry(id: number) {
-        return this.http.get(this.BASE_PATH+'country' + id, this.jwt()).map(
+        return this.http.get(this.BASE_PATH+'country/' + id, this.jwt()).map(
             (response: Response) => response.json()
         );
     }
 
     getCity(id: number) {
-        return this.http.get(this.BASE_PATH+'city' + id, this.jwt()).map(
+        return this.http.get(this.BASE_PATH+'city/' + id, this.jwt()).map(
             (response: Response) => response.json()
         );
     }
@@ -70,37 +70,37 @@ export class LocationService {
     }
 
     updateAddress(address: Address) {
-        return this.http.put(this.BASE_PATH+'address' + address.id, address, this.jwt()).map(
+        return this.http.put(this.BASE_PATH+'address/' + address.id, address, this.jwt()).map(
             (response: Response) => response.json()
         );
     }
 
     updateCountry(country: Country) {
-        return this.http.put(this.BASE_PATH+'country' + country.id, country, this.jwt()).map(
+        return this.http.put(this.BASE_PATH+'country/' + country.id, country, this.jwt()).map(
             (response: Response) => response.json()
         );
     }
 
     updateCity(city: City) {
-        return this.http.put(this.BASE_PATH+'city' + city.id, city, this.jwt()).map(
+        return this.http.put(this.BASE_PATH+'city/' + city.id, city, this.jwt()).map(
             (response: Response) => response.json()
         );
     }
 
     deleteAddress(id: number) {
-        return this.http.delete(this.BASE_PATH+'address' + id, this.jwt()).map(
+        return this.http.delete(this.BASE_PATH+'address/' + id, this.jwt()).map(
             (response: Response) => response.json()
         );
     }
 
     deleteCountry(id: number) {
-        return this.http.delete(this.BASE_PATH+'country' + id, this.jwt()).map(
+        return this.http.delete(this.BASE_PATH+'country/' + id, this.jwt()).map(
             (response: Response) => response.json()
         );
     }
 
     deleteCity(id: number) {
-        return this.http.delete(this.BASE_PATH+'city' + id, this.jwt()).map(
+        return this.http.delete(this.BASE_PATH+'city/' + id, this.jwt()).map(
             (response: Response) => response.json()
         );
     }

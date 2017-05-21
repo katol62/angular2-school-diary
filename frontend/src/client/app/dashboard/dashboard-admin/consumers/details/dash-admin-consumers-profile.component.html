@@ -20,44 +20,43 @@
                                 <div *ngIf="updateResult != ''" class="help-block">{{updateResult}}</div>
 
                                 <div class="form-group">
-                                    <button class="btn btn-primary" (click)="back()">Назад</button>
+                                    <button pButton (click)="back()" label="Назад"></button>
                                 </div>
 
-                                <form novalidate (ngSubmit)="onSubmit(profile)" [formGroup]="profile">
+                                <form novalidate [formGroup]="profile">
                                     <div class="form-group">
                                         <label for="firstName">Имя</label>
-                                        <input class="form-control" type="text" name="firstName" placeholder="Your full name" formControlName="firstName">
-                                        <small *ngIf="!profile.controls.firstName?.valid|| (profile.controls.firstName?.dirty && profile.controls.firstName?.touched)">
+                                        <input class="form-control" type="text" name="firstName" pInputText placeholder="Имя" formControlName="firstName">
+                                        <small *ngIf="!profile.controls.firstName?.valid">
                                             Обязательное поле, не менее 2 символов
                                         </small>
                                     </div>
                                     <div class="form-group">
                                         <label for="middleName">Отчество</label>
-                                        <input class="form-control" type="text" name="middleName" placeholder="Your full name" formControlName="middleName">
+                                        <input class="form-control" type="text" name="middleName" pInputText placeholder="Отчество" formControlName="middleName">
                                         <small *ngIf="!profile.controls.middleName?.valid">
                                             Обязательное поле, не менее 2 символов
                                         </small>
                                     </div>
                                     <div class="form-group">
                                         <label for="lastName">Фамилия</label>
-                                        <input class="form-control" type="text" name="lastName" placeholder="Your full name" formControlName="lastName">
+                                        <input class="form-control" type="text" name="lastName" pInputText placeholder="Фамилия" formControlName="lastName">
                                         <small *ngIf="!profile.controls.lastName?.valid">
                                             Обязательное поле, не менее 2 символов
                                         </small>
                                     </div>
                                     <div class="form-group">
                                         <label>Пол</label>
-                                        <label class="radio-inline" *ngFor="let opt of genders">
-                                            <input class="form-control" type="radio" formControlName="gender" [value]="opt.value" [id]="gender" (change)="gender = opt.value">
-                                            {{opt.display}}
-                                        </label>
+                                        <div>
+                                        <p-radioButton *ngFor="let opt of genders" name="gender" [label]="opt.display" [value]="opt.value" formControlName="gender" (change)="gender = opt.value"></p-radioButton>
+                                        </div>
                                         <small *ngIf="!profile.controls.gender?.valid">
                                             Обязательное поле
                                         </small>
                                     </div>
                                     <div class="form-group">
                                         <label for="email">E-mail</label>
-                                        <input class="form-control" type="email" name="email" placeholder="Your e-mail" formControlName="email">
+                                        <input class="form-control" type="email" name="email" pInputText placeholder="E-mail" formControlName="email">
                                         <small *ngIf="!profile.controls.email?.valid">
                                             Обязательное поле в формате <i>john@doe.com</i>.
                                         </small>
@@ -65,7 +64,7 @@
 
                                     <div class="form-group">
                                         <label for="phone">Телефон</label>
-                                        <input class="form-control" type="text" name="phone" placeholder="Your phone" formControlName="phone">
+                                        <input class="form-control" type="text" name="phone" pInputText placeholder="Телефон" formControlName="phone">
                                         <small *ngIf="!profile.controls.phone?.valid">
                                             Поле содержащее цифры.
                                         </small>
@@ -84,21 +83,27 @@
                                         <div class="form-group">
                                             <label for="phone">Страна</label>
                                             <div formGroupName="country" id="country">
+                                                <input type="hidden" formControlName="id">
                                                 <p-dropdown [options]="countries" formControlName="id" placeholder="Выберите страну"></p-dropdown>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label for="phone">Город</label>
                                             <div formGroupName="city" id="city">
+                                                <input type="hidden" formControlName="id">
                                                 <p-dropdown [options]="cities" formControlName="id" placeholder="Выберите город"></p-dropdown>
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label for="phone">Адрес</label>
-                                            <input class="form-control" type="text" placeholder="Адрес" formControlName="addressLine">
+                                            <label for="zip">ZIP</label>
+                                            <input class="form-control" type="text" name="zip" pInputText placeholder="Zip" formControlName="zip">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="addressLine">Адрес</label>
+                                            <input class="form-control" type="text" name="addressLine" pInputText placeholder="Адрес" formControlName="addressLine">
                                         </div>
                                     </div>
-                                    <button type="submit" [disabled]="profile.invalid">Sign up</button>
+                                    <button pButton type="submit" [disabled]="profile.invalid" (click)="onSubmit(profile)" label="Сохранить"></button>
                                 </form>
 
                             </div>

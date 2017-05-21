@@ -35,7 +35,7 @@ public class CustomUserDetailsService implements UserDetailsService {
         if(null == user){
             throw new UsernameNotFoundException("No user present with email: "+username);
         }else{
-            if(user.getRoles().size() > 0)
+            if(user.getRoles().size() >= 0)
             {
                 Collection<GrantedAuthority> grantedAuthorities = new ArrayList<>();
                 for (Role authority : user.getRoles()) {
