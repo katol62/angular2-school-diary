@@ -9,10 +9,7 @@ import ru.schoolarlife.logic.util.json.View;
 import ru.schoolarlife.logic.util.json.coders.EnumDeserializer;
 import ru.schoolarlife.logic.util.json.coders.EnumSerializer;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 
@@ -26,10 +23,11 @@ public class Game {
     @JsonView(View.Summary.class)
     private Long id;
 
+    @NotNull
     @JsonView(View.Summary.class)
-    @JsonSerialize(using = EnumSerializer.class)
-    @JsonDeserialize(using = EnumDeserializer.class)
-    private GameType gameType;
+    @OneToOne(fetch=FetchType.EAGER)
+    @JoinColumn(name="category_id")
+    private GameCategory gameCategory;
 
     @NotNull
     @JsonView(View.Summary.class)
@@ -60,12 +58,12 @@ public class Game {
         this.id = id;
     }
 
-    public GameType getGameType() {
-        return gameType;
+    public GameCategory getGameCategory() {
+        return gameCategory;
     }
 
-    public void setGameType(GameType gameType) {
-        this.gameType = gameType;
+    public void setGameCategory(GameCategory gameCategory) {
+        this.gameCategory = gameCategory;
     }
 
     public String getHeader() {

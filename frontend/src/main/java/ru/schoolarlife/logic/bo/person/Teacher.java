@@ -1,8 +1,12 @@
 package ru.schoolarlife.logic.bo.person;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import ru.schoolarlife.logic.bo.lifecycle.Subject;
+import ru.schoolarlife.logic.bo.school.School;
+import ru.schoolarlife.logic.util.json.View;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Set;
 
 /**
@@ -12,6 +16,12 @@ import java.util.Set;
 @Entity
 @Table(name = "teacher")
 public class Teacher extends Person {
+
+    @NotNull
+    @OneToOne(fetch=FetchType.EAGER)
+    @JoinColumn(name="school_id")
+    @JsonView(View.Summary.class)
+    School school;
 
     public Teacher() {
     }

@@ -6,6 +6,7 @@ import ru.schoolarlife.logic.bo.unsecure.Game;
 import ru.schoolarlife.logic.model.dao.repositories.unsecure.GameRepositiry;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by victor on 03.05.17.
@@ -19,6 +20,11 @@ public class GameService {
     public List<Game> getAllPublicGames()
     {
         return gameRepositiry.findAll();
+    }
+
+    public Set<Game> getAllGamesForCategory(Long categoryId)
+    {
+        return gameRepositiry.findByCategoryId(categoryId);
     }
 
     public Game getOne(Long id)

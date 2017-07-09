@@ -12,4 +12,5 @@ public interface TeacherRepository extends JpaRepository<Teacher, Long> {
     Set<Teacher> findByFirstName(String firstName);
     Set<Teacher> findByMiddleName(String middleName);
     Set<Teacher> findByLastName(String lastName);
+    Set<Teacher> findBySchoolId(Long schoolId);
 }

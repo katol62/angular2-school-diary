@@ -12,6 +12,7 @@ import ru.schoolarlife.logic.model.dao.services.GameService;
 import ru.schoolarlife.logic.util.CustomErrorType;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by victor on 03.05.17.
@@ -39,6 +40,22 @@ public class GameRestController {
             // You many decide to return HttpStatus.NOT_FOUND
         }
         return new ResponseEntity<List<Game>>(games, headers, HttpStatus.OK);
+    }
+
+    @GetMapping("/category/{gameId}")
+    public ResponseEntity<Set<Game>> getGamesForCategory(@PathVariable("categoryId") Long categoryId) {
+        logger.info("Fetching Games with category ID {}", categoryId);
+
+        Set<Game> games = gameService.getAllGamesForCategory(categoryId);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Access-Control-Allow-Origin", "*");
+
+        if (games.isEmpty()) {
+            return new ResponseEntity<>(headers, HttpStatus.NO_CONTENT);
+            // You many decide to return HttpStatus.NOT_FOUND
+        }
+        return new ResponseEntity<Set<Game>>(games, headers, HttpStatus.OK);
     }
 
     @GetMapping("/{gameId}")
